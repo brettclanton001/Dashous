@@ -13,12 +13,16 @@
         .search
           %input(type="text" name="query" placeholder="Search")
           .search-button
+            .fa.fa-search.fa-lg
     .nav
-      .item
+      %a.item
+        .fa.fa-handshake-o.fa-lg
         Offers
-      .item
+      %a.item
+        .fa.fa-street-view.fa-lg
         Trade Requests
-      .item
+      %a.item
+        .fa.fa-user-circle-o.fa-lg
         Account
     .content
       = yield

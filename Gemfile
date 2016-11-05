@@ -13,6 +13,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'haml-rails'
+gem 'font-awesome-sass'
 
 group :development, :test do
   gem 'byebug', platform: :mri
