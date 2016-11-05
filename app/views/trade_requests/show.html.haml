@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @trade_request.name
+
+= link_to 'Edit', edit_trade_request_path(@trade_request)
+\|
+= link_to 'Back', trade_requests_path

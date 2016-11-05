@@ -1,0 +1,23 @@
+!!! 5
+%html
+  %head
+    %title Dashous
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    .header
+      .logo
+        DASHOUS
+      .search
+        %input(type="text" name="query" placeholder="Search")
+        %input(type="submit" value="Search")
+    .nav
+      .item
+        Offers
+      .item
+        Trade Requests
+      .item
+        Account
+    .content
+      = yield
