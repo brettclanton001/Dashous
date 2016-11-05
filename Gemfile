@@ -4,6 +4,7 @@ ruby '2.3.1'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
+gem 'devise'
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -15,6 +16,8 @@ gem 'haml'
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'rspec-rails'
+  gem 'factory_girl_rails', '~> 4.0'
 end
 
 group :development do
@@ -23,8 +26,6 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails'
-  gem 'factory_girl_rails', '~> 4.0'
   gem 'capybara', '2.5.0'
   gem 'capybara-webkit', '1.7.1'
   gem 'selenium-webdriver', '2.44.0'
