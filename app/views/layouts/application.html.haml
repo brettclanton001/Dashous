@@ -8,10 +8,11 @@
   %body
     .header
       .logo
-        DASHOUS
-      .search
-        %input(type="text" name="query" placeholder="Search")
-        %input(type="submit" value="Search")
+        = link_to 'DASHOUS', root_path
+      .top-nav
+        .search
+          %input(type="text" name="query" placeholder="Search")
+          .search-button
     .nav
       .item
         Offers

@@ -7,7 +7,7 @@ body
   background-color: $offwhite
   font-family: 'Open Sans', sans-serif
   color: $dark-grey
-  font-size: 16px
+  font-size: 14px
 
 .header
   height: 70px
@@ -17,16 +17,46 @@ body
     width: 180px
     float: left
     background-color: $blue
-    color: $white
-    font-size: 24px
-    font-weight: bold
     text-align: center
     line-height: 70px
-  .search
+    a
+      font-size: 24px
+      font-weight: bold
+      color: $white
+      text-decoration: none
+  .top-nav
     box-sizing: border-box
     height: 70px
-    padding: 20px 10px 20px 200px
+    padding: 10px 10px 10px 200px
     background-color: $white
+    .search
+      position: relative
+      width: 460px
+      height: 50px
+      overflow: hidden
+      border-radius: 3px
+      input[name="query"]
+        box-sizing: border-box
+        position: absolute
+        top: 0
+        left: 0
+        right: auto
+        bottom: 0
+        width: 87%
+        height: 100%
+        background-color: $offwhite
+        padding: 0 15px
+        border: 0
+        outline: 0
+      .search-button
+        position: absolute
+        top: 0
+        left: auto
+        right: 0
+        bottom: 0
+        width: 13%
+        background-color: $grey
+        cursor: pointer
 
 .nav
   position: absolute
@@ -40,8 +70,10 @@ body
   background-color: $dark-grey
   color: $soft-grey
   .item
-    line-height: 40px
-    padding: 0 20px
+    padding: 14px 10px 14px 45px
 
 .content
   padding: 20px 20px 20px 200px
+  h1
+    font-weight: normal
+    font-size: 24px
