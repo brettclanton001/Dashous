@@ -17,3 +17,7 @@
 .byebug_history
 
 .DS_Store
+
+# simplecov
+./coverage/assets
+./coverage/index.html
