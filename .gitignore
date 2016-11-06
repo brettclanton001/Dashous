@@ -19,6 +19,6 @@
 .DS_Store
 
 # simplecov
-./coverage/assets
-./coverage/index.html
-./coverage/.resultset*
+coverage/assets/*
+coverage/index.html
+coverage/.resultset*
