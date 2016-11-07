@@ -1,21 +1,16 @@
-%h1 Listing trade_requests
+= link_to '+ Create New', new_trade_request_path, class: 'button primary right'
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th
-      %th
-      %th
+%h1 Trade Requests
 
-  %tbody
-    - @trade_requests.each do |trade_request|
-      %tr
-        %td= trade_request.name
-        %td= link_to 'Show', trade_request
-        %td= link_to 'Edit', edit_trade_request_path(trade_request)
-        %td= link_to 'Destroy', trade_request, :method => :delete, :data => { :confirm => 'Are you sure?' }
+%hr
 
-%br
+.trade-requests
+  - @trade_requests.each do |trade_request|
+    .trade-request
+      .name
+        = trade_request.name
+      .actions-trigger.fa.fa-cog.fa-lg
+      .actions
+        = link_to 'Edit', edit_trade_request_path(trade_request)
+        = link_to 'Destroy', trade_request, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-= link_to 'New Trade request', new_trade_request_path
