@@ -13,27 +13,27 @@
         .search
           %input(type="text" name="query" placeholder="Search")
           .search-button
-            .fa.fa-search.fa-lg
+            .fa.fa-binoculars.fa-lg
     .nav
       - if current_user
         %a.item
-          .fa.fa-handshake-o.fa-lg
+          .fa.fa-bullseye.fa-lg
           Offers
         %a.item
           .fa.fa-street-view.fa-lg
           Trade Requests
         %a.item
-          .fa.fa-user-circle-o.fa-lg
+          .fa.fa-briefcase.fa-lg
           Account
         = link_to destroy_user_session_path, method: 'DELETE', class: 'item' do
-          .fa.fa-sign-out.fa-lg
+          .fa.fa-bomb.fa-lg
           Logout
       - else
         = link_to new_user_session_path, class: 'item' do
-          .fa.fa-sign-in.fa-lg
+          .fa.fa-key.fa-lg
           Login
         = link_to new_user_registration_path, class: 'item' do
-          .fa.fa-user-plus.fa-lg
+          .fa.fa-trophy.fa-lg
           Sign Up
 
     .content
