@@ -1,0 +1,28 @@
+= form_for @trade_request do |f|
+  - if @trade_request.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@trade_request.errors.count, "error")} prohibited this trade_request from being saved:"
+      %ul
+        - @trade_request.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name, 'Name'
+    = f.text_field :name
+  .field
+    = f.label :location, 'Location'
+    = f.text_field :location
+  .field
+    = f.label :kind, 'Trade Type'
+    %label
+      = f.radio_button :kind, :buy
+      Buy
+    %label
+      = f.radio_button :kind, :sell
+      Sell
+  .field
+    = f.label :profit, 'Profit Margin'
+    = f.text_field :profit
+  .actions
+    = f.submit 'Save', class: 'button primary'
+    = link_to 'Cancel', trade_requests_path, class: 'button'

@@ -11,7 +11,7 @@
         = link_to 'DASHOUS', root_path
       .top-nav
         .search
-          %input(type="text" name="query" placeholder="Search")
+          %input(type="text" name="query" placeholder="Search City, State or Country")
           .search-button
             .fa.fa-binoculars.fa-lg
     .nav
@@ -19,7 +19,7 @@
         %a.item
           .fa.fa-usd.fa-lg
           Offers
-        %a.item
+        = link_to trade_requests_path, class: 'item' do
           .fa.fa-street-view.fa-lg
           Trade Requests
         %a.item
