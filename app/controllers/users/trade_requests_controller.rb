@@ -2,7 +2,7 @@ class Users::TradeRequestsController < Users::BaseController
   before_action :set_trade_request, only: [:show, :edit, :update, :destroy]
 
   def index
-    @trade_requests = TradeRequest.all
+    @trade_requests = current_user.trade_requests
   end
 
   def new

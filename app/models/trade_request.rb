@@ -16,6 +16,12 @@ class TradeRequest < ApplicationRecord
     :profit
 
   geocoded_by :location
-  after_validation :geocode
+  after_validation :maybe_geocode
 
+  private
+
+  def maybe_geocode
+    return true if longitude.present? and latitude.present?
+    geocode
+  end
 end
