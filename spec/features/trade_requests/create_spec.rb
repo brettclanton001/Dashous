@@ -2,6 +2,9 @@ require 'feature_helper'
 
 feature 'Create trade request', js: true do
   given(:user) { create :user }
+  given(:trade_request) { user.trade_requests.last }
+
+  given!(:geocode) { GeoHelper.define_stub 'New York City, New York', :geolocate_newyork }
 
   context 'authenticated' do
     background do
@@ -33,7 +36,7 @@ feature 'Create trade request', js: true do
       end
       When 'I fill out the form' do
         fill_in :trade_request_name, with: 'Best Trade Ever'
-        fill_in :trade_request_location, with: 'Atlanta GA'
+        fill_in :trade_request_location, with: 'New York City, New York'
         choose :trade_request_kind_sell
         fill_in :trade_request_profit, with: '2.5'
       end
@@ -42,6 +45,14 @@ feature 'Create trade request', js: true do
       end
       Then 'I should be on the list view' do
         should_see '+ Create New'
+      end
+      And 'the record should be created with correct data' do
+        expect(trade_request.name).to eq 'Best Trade Ever'
+        expect(trade_request.kind).to eq 'sell'
+        expect(trade_request.profit).to eq '2.5'
+        expect(trade_request.location).to eq 'New York City, New York'
+        expect(trade_request.longitude).to eq -74.0059413
+        expect(trade_request.latitude).to eq 40.7127837
       end
     end
   end

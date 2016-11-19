@@ -1,0 +1,140 @@
+{
+  "results": [
+    {
+      "address_components": [
+        {
+          "long_name": "New York",
+          "short_name": "New York",
+          "types": [
+            "locality",
+            "political"
+          ]
+        },
+        {
+          "long_name": "New York",
+          "short_name": "NY",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ]
+        },
+        {
+          "long_name": "United States",
+          "short_name": "US",
+          "types": [
+            "country",
+            "political"
+          ]
+        }
+      ],
+      "formatted_address": "New York, NY, USA",
+      "geometry": {
+        "bounds": {
+          "northeast": {
+            "lat": 40.91525559999999,
+            "lng": -73.70027209999999
+          },
+          "southwest": {
+            "lat": 40.4960439,
+            "lng": -74.2557349
+          }
+        },
+        "location": {
+          "lat": 40.7127837,
+          "lng": -74.0059413
+        },
+        "location_type": "APPROXIMATE",
+        "viewport": {
+          "northeast": {
+            "lat": 40.91525559999999,
+            "lng": -73.70027209999999
+          },
+          "southwest": {
+            "lat": 40.4960439,
+            "lng": -74.2557349
+          }
+        }
+      },
+      "place_id": "ChIJOwg_06VPwokRYv534QaPC8g",
+      "types": [
+        "locality",
+        "political"
+      ]
+    },
+    {
+      "address_components": [
+        {
+          "long_name": "New York",
+          "short_name": "New York",
+          "types": [
+            "locality",
+            "political"
+          ]
+        },
+        {
+          "long_name": "New York Township",
+          "short_name": "New York Township",
+          "types": [
+            "administrative_area_level_3",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Caldwell County",
+          "short_name": "Caldwell County",
+          "types": [
+            "administrative_area_level_2",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Missouri",
+          "short_name": "MO",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ]
+        },
+        {
+          "long_name": "United States",
+          "short_name": "US",
+          "types": [
+            "country",
+            "political"
+          ]
+        },
+        {
+          "long_name": "64644",
+          "short_name": "64644",
+          "types": [
+            "postal_code"
+          ]
+        }
+      ],
+      "formatted_address": "New York, MO 64644, USA",
+      "geometry": {
+        "location": {
+          "lat": 39.6852874,
+          "lng": -93.9268836
+        },
+        "location_type": "APPROXIMATE",
+        "viewport": {
+          "northeast": {
+            "lat": 39.6866363802915,
+            "lng": -93.9255346197085
+          },
+          "southwest": {
+            "lat": 39.6839384197085,
+            "lng": -93.9282325802915
+          }
+        }
+      },
+      "place_id": "ChIJtxWVM2vuwYcR9mO37IBbf-U",
+      "types": [
+        "locality",
+        "political"
+      ]
+    }
+  ],
+  "status": "OK"
+}

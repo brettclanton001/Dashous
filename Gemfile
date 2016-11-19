@@ -14,6 +14,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'font-awesome-sass'
+gem 'geocoder'
 
 group :development, :test do
   gem 'byebug', platform: :mri

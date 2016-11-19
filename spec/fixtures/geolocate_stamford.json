@@ -1,0 +1,81 @@
+{
+  "results": [
+    {
+      "address_components": [
+        {
+          "long_name": "Stamford",
+          "short_name": "Stamford",
+          "types": [
+            "locality",
+            "political"
+          ]
+        },
+        {
+          "long_name": "Delaware County",
+          "short_name": "Delaware County",
+          "types": [
+            "administrative_area_level_2",
+            "political"
+          ]
+        },
+        {
+          "long_name": "New York",
+          "short_name": "NY",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ]
+        },
+        {
+          "long_name": "United States",
+          "short_name": "US",
+          "types": [
+            "country",
+            "political"
+          ]
+        },
+        {
+          "long_name": "12167",
+          "short_name": "12167",
+          "types": [
+            "postal_code"
+          ]
+        }
+      ],
+      "formatted_address": "Stamford, NY 12167, USA",
+      "geometry": {
+        "bounds": {
+          "northeast": {
+            "lat": 42.420271,
+            "lng": -74.60227809999999
+          },
+          "southwest": {
+            "lat": 42.397694,
+            "lng": -74.630005
+          }
+        },
+        "location": {
+          "lat": 42.4073024,
+          "lng": -74.614318
+        },
+        "location_type": "APPROXIMATE",
+        "viewport": {
+          "northeast": {
+            "lat": 42.420271,
+            "lng": -74.60227809999999
+          },
+          "southwest": {
+            "lat": 42.397694,
+            "lng": -74.630005
+          }
+        }
+      },
+      "place_id": "ChIJt6RjCvFq3IkRwJSc34njwG8",
+      "types": [
+        "locality",
+        "political"
+      ]
+    }
+  ],
+  "status": "OK"
+}
