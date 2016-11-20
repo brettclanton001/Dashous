@@ -1,0 +1,15 @@
+%h1 Offers
+
+%hr
+
+.table-list
+  - @offers.each do |offer|
+    .row
+      .name
+        = link_to offer.trade_request.name, public_trade_request_path(offer.trade_request_id)
+      .info
+        = offer.status
+      .actions
+        .fa.fa-cog.fa-lg
+        .action-list
+

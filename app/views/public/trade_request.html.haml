@@ -1,1 +1,17 @@
 %h1= @trade_request.name
+%p= "This person is #{@trade_request.kind}ing Dash."
+%p= "This person wants a #{@trade_request.profit}% profit."
+%p= "The trade location is: #{@trade_request.location}"
+- if current_user.nil?
+  %p
+    %button.disabled Make Offer
+  %p
+    Please login to make an offer.
+- elsif current_user.offers.where(trade_request_id: @trade_request.id).exists?
+  %p
+    %button.disabled Make Offer
+  %p
+    Offer pending...
+- else
+  %p
+    = link_to 'Make Offer', offers_path('offer[trade_request_id]': @trade_request.id), method: 'POST', class: 'button primary'

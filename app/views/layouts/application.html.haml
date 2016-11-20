@@ -18,7 +18,7 @@
             .fa.fa-search.fa-lg
     .nav
       - if current_user
-        %a.item
+        = link_to offers_path, class: 'item' do
           .fa.fa-usd.fa-lg
           Offers
         = link_to trade_requests_path, class: 'item' do
@@ -39,4 +39,6 @@
           Sign Up
 
     .content
+      - flash.each do |key, value|
+        %div{class: "alert alert-#{key}"}= value
       = yield

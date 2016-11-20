@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   ## User Restricted Area
   scope :u, module: :users do
     resources :trade_requests
+    resources :offers, only: [:index, :create]
   end
 
 end
