@@ -12,7 +12,7 @@
       .top-nav
         %form.search(action="/" method="GET")
           = text_field_tag :query, @query, placeholder: 'Search City, State or Country'
-          .fa.fa-crosshairs.fa-lg.js-geolocate(title="Use your current location")
+          .fa.fa-crosshairs.fa-lg.js-geolocate(title="Use current location")
           %label.search-button
             %input(type="submit" value="")
             .fa.fa-binoculars.fa-lg
