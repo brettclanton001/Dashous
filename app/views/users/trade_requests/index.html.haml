@@ -4,13 +4,14 @@
 
 %hr
 
-.trade-requests
+.table-list
   - @trade_requests.each do |trade_request|
-    .trade-request
+    .row
       .name
         = trade_request.name
-      .actions-trigger.fa.fa-cog.fa-lg
       .actions
-        = link_to 'Edit', edit_trade_request_path(trade_request)
-        = link_to 'Destroy', trade_request, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        .fa.fa-cog.fa-lg
+        .action-list
+          = link_to 'Edit', edit_trade_request_path(trade_request)
+          = link_to 'Destroy', trade_request, :method => :delete, :data => { :confirm => 'Are you sure?' }
 

@@ -1,13 +1,18 @@
-%h1 Trade Requests
+%h1 Search Results
 
 - if @trade_requests.present?
-  - @trade_requests.each do |trade_request|
-    %div
-      = trade_request.name
-      \:
-      - distance = trade_request.distance_to(@query)
-      = number_with_precision distance, precision: 1, delimiter: ','
-      miles
-      = Geocoder::Calculations.compass_point trade_request.bearing_from(@query)
+  .table-list
+    - @trade_requests.each do |trade_request|
+      = link_to public_trade_request_path(trade_request.id), class: 'row' do
+        .name= trade_request.name
+        .info
+          - distance = trade_request.distance_to(@query)
+          = number_with_precision distance, precision: 1, delimiter: ','
+          miles
+          = Geocoder::Calculations.compass_point trade_request.bearing_from(@query)
+        .info
+          = trade_request.kind
+        .info
+          = "#{trade_request.profit}%"
 - else
   %p Use the search bar to find potential traders near you.  The closest trades will be listed first.

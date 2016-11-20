@@ -1,0 +1,31 @@
+.table-list
+  display: table
+  width: 100%
+  .row
+    display: table-row
+    color: lighten($dark-grey,40%)
+    &:hover
+      color: $dark-grey
+    .name, .info, .actions
+      display: table-cell
+      position: relative
+      padding: 20px 30px
+      border-bottom: solid 1px $light-grey
+    .actions
+      .fa-cog
+        display: block
+        position: absolute
+        top: 22px
+        right: 0
+        cursor: pointer
+      .action-list
+        display: none
+    .name
+      &:before
+        display: block
+        position: absolute
+        top: 19px
+        left: 5px
+        content: '+'
+        font-size: 22px
+

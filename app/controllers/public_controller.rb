@@ -4,4 +4,8 @@ class PublicController < ApplicationController
       @trade_requests = TradeRequest.near(@query, 5000).limit(20)
     end
   end
+
+  def trade_request
+    @trade_request = TradeRequest.find(params[:trade_request_id])
+  end
 end

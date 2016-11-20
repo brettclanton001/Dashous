@@ -19,7 +19,7 @@ feature 'my trade requests are listed correctly', js: true do
       login_as user1
     end
 
-    Steps 'I create my first trade request' do
+    Steps 'I view my trade requests' do
       Given 'I am on the trade requests page' do
         should_be_located '/u/trade_requests'
       end
