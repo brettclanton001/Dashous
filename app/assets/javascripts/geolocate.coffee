@@ -1,17 +1,11 @@
-$ ->
-
+window.getGeolocation = ->
   $search = $('.search input[name="query"]')
-  $geolocateButton = $('.search .js-geolocate')
+  $search.val 'Locating...'
+  if navigator.geolocation
+    navigator.geolocation.getCurrentPosition showPosition
 
-  getGeolocation = ->
-    if navigator.geolocation
-      navigator.geolocation.getCurrentPosition showPosition
-
-  showPosition = (position) ->
-    location = "#{position.coords.latitude} #{position.coords.longitude}"
-    $search.val location
-
-  $geolocateButton.on 'click', ->
-    $search.val 'Locating...'
-    getGeolocation()
+window.showPosition = (position) ->
+  $search = $('.search input[name="query"]')
+  location = "#{position.coords.latitude} #{position.coords.longitude}"
+  $search.val location
 

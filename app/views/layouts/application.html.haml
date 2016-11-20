@@ -10,9 +10,9 @@
       .logo
         = link_to 'DASHOUS', root_path
       .top-nav
-        %form.search(action="/" method="GET")
+        = form_tag('/', method: 'POST', class: 'search') do
           = text_field_tag :query, @query, placeholder: 'Search City, State or Country'
-          .fa.fa-crosshairs.fa-lg.js-geolocate(title="Use current location")
+          .fa.fa-crosshairs.fa-lg.js-geolocate(title="Use current location" onclick="window.getGeolocation()")
           %label.search-button
             %input(type="submit" value="")
             .fa.fa-search.fa-lg
