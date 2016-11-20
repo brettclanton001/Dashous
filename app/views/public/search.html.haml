@@ -1,2 +1,13 @@
-%h1 Public#search
-%p Find me in app/views/public/search.html.haml
+%h1 Trade Requests
+
+- if @trade_requests.present?
+  - @trade_requests.each do |trade_request|
+    %div
+      = trade_request.name
+      \:
+      - distance = trade_request.distance_to(@query)
+      = number_with_precision distance, precision: 1, delimiter: ','
+      miles
+      = Geocoder::Calculations.compass_point trade_request.bearing_from(@query)
+- else
+  %p Use the search bar to find potential traders near you.  The closest trades will be listed first.
