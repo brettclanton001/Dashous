@@ -14,6 +14,8 @@
       color: $white
       text-decoration: none
       letter-spacing: 0.05em
+    .mobile-nav
+      display: none
   .top-nav
     box-sizing: border-box
     height: 70px
@@ -40,7 +42,7 @@
         outline: 0
       .fa-crosshairs
         position: absolute
-        right: 70px
+        right: 15%
         top: 16px
         width: 20px
         height: 20px
@@ -65,3 +67,43 @@
           top: -1px
         input
           display: none
+
+@media (max-width: 720px)
+  .header
+    height: auto
+    .logo
+      width: auto
+      height: auto
+      padding: 10px
+      text-align: left
+      line-height: 20px
+      float: none
+      a
+        font-size: 16px
+      .mobile-nav
+        display: block
+        float: right
+        .item
+          box-sizing: border-box
+          display: inline-block
+          min-width: 40px
+          padding: 0 5px
+          text-align: center
+          font-size: 12px
+          font-weight: normal
+          .fa-briefcase
+            position: relative
+            top: 1px
+    .top-nav
+      height: auto
+      padding: 5px 10px
+      .search
+        width: 100%
+        height: 30px
+        input[type="text"]
+          font-size: 12px
+        .fa-crosshairs
+          top: 6px
+        .search-button .fa
+          top: -11px
+

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   scope :u, module: :users do
     resources :trade_requests
     resources :offers, only: [:index, :create]
+    resources :account, only: [:index]
   end
 
 end
