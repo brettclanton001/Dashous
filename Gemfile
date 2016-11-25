@@ -21,6 +21,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rspec-example_steps'
   gem 'factory_girl_rails', '~> 4.0'
+  gem 'annotate'
 end
 
 group :development do

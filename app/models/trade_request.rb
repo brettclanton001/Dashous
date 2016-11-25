@@ -25,3 +25,19 @@ class TradeRequest < ApplicationRecord
     geocode
   end
 end
+
+# == Schema Information
+#
+# Table name: trade_requests
+#
+#  id         :integer          not null, primary key
+#  name       :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  user_id    :integer          not null
+#  kind       :string           not null
+#  profit     :string           not null
+#  location   :string           not null
+#  latitude   :float
+#  longitude  :float
+#
