@@ -6,6 +6,7 @@ class TradeRequest < ApplicationRecord
   ).freeze
 
   belongs_to :user
+  has_many :offers
 
   validates :kind, inclusion: { in: KINDS }
   validates_presence_of \

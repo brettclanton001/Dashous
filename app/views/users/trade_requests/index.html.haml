@@ -6,13 +6,28 @@
 
 .table-list
   - @trade_requests.each do |trade_request|
-    .row
+    = link_to trade_requests_path(expand: trade_request.id), class: 'row' do
       .name
         = trade_request.name
       .actions
         .fa.fa-cog.fa-lg
         .action-list
-          = link_to 'Edit', edit_trade_request_path(trade_request)
-          = link_to 'Destroy', trade_request, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          =# link_to 'Edit', edit_trade_request_path(trade_request)
+          =# link_to 'Destroy', trade_request, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    - if @expand == trade_request.id
+      .row
+        .table-list
+          - trade_request.offers.each do |offer|
+            .row
+              .name
+                foo
+              .info
+                = offer.status
+              .actions
+                .fa.fa-cog.fa-lg
+                .action-list
+                  = link_to 'Decline', '#', :data => { :confirm => 'Are you sure?' }
+                  = link_to 'Approve', '#'
+
 
 = link_to '+ Create New', new_trade_request_path, class: 'button primary phone-only'

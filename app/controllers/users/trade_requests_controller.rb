@@ -3,6 +3,7 @@ class Users::TradeRequestsController < Users::BaseController
 
   def index
     @trade_requests = current_user.trade_requests
+    @expand = params[:expand].to_i
   end
 
   def new
