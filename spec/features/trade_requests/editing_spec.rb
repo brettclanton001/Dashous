@@ -29,6 +29,7 @@ feature 'my trade requests are editable', js: true do
       And 'I should not see the action options' do
         within '.table-list .row:first-child' do
           should_not_see 'Edit'
+          should_not_see 'View'
         end
       end
       When 'I click the gear for the trade request' do
@@ -39,6 +40,7 @@ feature 'my trade requests are editable', js: true do
       Then 'I should see the action options' do
         within '.table-list .row:first-child' do
           should_see 'Edit'
+          should_see 'View'
         end
       end
       When 'I click the link to edit' do

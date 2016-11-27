@@ -4,9 +4,11 @@
   padding-bottom: 30px
   .row
     display: table-row
-    color: lighten($dark-grey,40%)
+    &, a.name
+      color: lighten($dark-grey,40%)
     &:hover
-      color: $dark-grey
+      &, a.name
+        color: $dark-grey
     .name, .info, .actions
       display: table-cell
       position: relative

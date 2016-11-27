@@ -70,7 +70,8 @@ feature 'Make an offer', js: true do
         end
       end
       When 'I click on the trade request name' do
-        click_link "Another Guy's Trade"
+        find('.fa-cog').click
+        click_link 'View'
       end
       Then 'I should see the trade request' do
         should_be_located "/t/#{trade_request2.id}"

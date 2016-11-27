@@ -29,6 +29,16 @@ feature 'my trade requests are listed correctly', js: true do
       And "I should not see other people's trade requests" do
         should_not_see "Another Guy's Trade"
       end
+      When 'I click the view link' do
+        find('.actions .fa-cog').click
+        click_link 'View'
+      end
+      Then 'I should be on the public page' do
+        within 'h1' do
+          should_see 'My Trade'
+        end
+        should_be_located public_trade_request_path(trade_request1.id)
+      end
     end
   end
 end

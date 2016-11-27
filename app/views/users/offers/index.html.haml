@@ -6,10 +6,11 @@
   - @offers.each do |offer|
     .row
       .name
-        = link_to offer.trade_request.name, public_trade_request_path(offer.trade_request_id)
+        = offer.trade_request.name
       .info
         = offer.status
       .actions
-        .fa.fa-cog.fa-lg
+        .fa.fa-cog.fa-lg{onclick: 'window.onClickActionToggle(this)'}
         .action-list
+          = link_to 'View', public_trade_request_path(offer.trade_request.id)
 
