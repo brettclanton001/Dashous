@@ -4,6 +4,7 @@
   padding-bottom: 30px
   .row
     display: table-row
+    position: relative
     &, a.name
       color: lighten($dark-grey,40%)
     &:hover
@@ -11,11 +12,9 @@
         color: $dark-grey
     .name, .info, .actions
       display: table-cell
-      position: relative
       padding: 20px 30px
       border-bottom: solid 1px $light-grey
     .actions
-      position: relative
       width: 140px
       text-align: right
       .fa-cog
@@ -64,3 +63,27 @@
           top: 17px
           left: 6px
           content: '–'
+
+  @media (max-width: 720px)
+    &,
+    .row,
+    .row .name,
+    .row .info,
+    .row .actions
+      display: block
+    .row
+      border-bottom: solid 1px $light-grey
+      .name, .info, .actions
+        border-bottom: none
+        padding: 5px 30px
+        text-align: left
+        &:empty
+          padding: 0
+      &.collapsed
+        .name
+          &:before
+            top: 4px
+      &.expanded
+        .name
+          &:before
+            top: 2px
