@@ -1,8 +1,8 @@
 require 'feature_helper'
 
 feature 'Make an offer', js: true do
-  given!(:user1) { create :user }
-  given!(:user2) { create :user }
+  given!(:user1) { create :user, username: 'Bob' }
+  given!(:user2) { create :user, username: 'Ken' }
   given!(:trade_request1) do
     create :trade_request, :new_york,
       user: user1,
@@ -83,6 +83,41 @@ feature 'Make an offer', js: true do
             should_see 'Make Offer'
           end
           should_see 'Offer pending...'
+        end
+      end
+      When 'I logout' do
+        logout
+      end
+
+      # ===== Login as User 2 ===== #
+
+      And 'I login as the other user' do
+        login_as user2
+      end
+      And 'I go to the trade requests page' do
+        within '.nav' do
+          click_link 'Trade Requests'
+        end
+      end
+      Then 'I should see my trade request' do
+        within '.table-list .row:first-child' do
+          should_see "Another Guy's Trade"
+          should_see '1 Offers'
+        end
+      end
+      And 'I should not see the new offer details' do
+        within '.table-list' do
+          should_not_see 'Bob'
+          should_not_see 'pending'
+        end
+      end
+      When 'I expand my trade request' do
+        find('.table-list .row:first-child').click
+      end
+      Then 'I should see the new offer details' do
+        within '.table-list' do
+          should_see 'Bob'
+          should_see 'pending'
         end
       end
     end

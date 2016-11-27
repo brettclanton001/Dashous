@@ -1,10 +1,13 @@
-- class_name = expanded ? 'row expanded' : 'row'
+- class_name = expanded ? 'row expanded' : 'row collapsed'
 - link_url = expanded ? trade_requests_path : trade_requests_path(expand: trade_request.id)
 = link_to link_url, class: class_name do
   .name
     = trade_request.name
   .info
     Active
+  .info
+    = trade_request.offers.count
+    Offers
   .actions
     .fa.fa-cog.fa-lg
     .action-list
@@ -12,11 +15,12 @@
       =# link_to 'Destroy', trade_request, :method => :delete, :data => { :confirm => 'Are you sure?' }
 - if expanded
   - trade_request.offers.each do |offer|
-    .row.static
+    .row
       .name
-        foo
+        = offer.user.username
       .info
         = offer.status
+      .info
       .actions
         = link_to 'Decline', '#', :data => { :confirm => 'Are you sure?' }
         = link_to 'Approve', '#'

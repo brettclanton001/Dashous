@@ -4,6 +4,6 @@ class Users::BaseController < ApplicationController
   private
 
   def require_user
-    head :unauthorized unless current_user.present?
+    redirect_to root_path unless current_user.present?
   end
 end

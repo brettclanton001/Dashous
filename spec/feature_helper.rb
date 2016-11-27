@@ -44,3 +44,12 @@ def login_as(user)
     should_see 'Account'
   end
 end
+
+def logout
+  visit account_index_path
+  click_link 'Logout'
+  within '.nav' do
+    should_see 'Login'
+    should_see 'Signup'
+  end
+end
