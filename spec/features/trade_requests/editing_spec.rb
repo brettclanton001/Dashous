@@ -19,7 +19,7 @@ feature 'my trade requests are editable', js: true do
       login_as user1
     end
 
-    Steps 'I view my trade requests' do
+    Steps 'I edit my trade request' do
       Given 'I am on the trade requests page' do
         should_be_located '/u/trade_requests'
       end
@@ -59,6 +59,28 @@ feature 'my trade requests are editable', js: true do
       Then 'I should see my updated trade request' do
         should_see 'My Updated Trade'
         should_not_see 'My Trade'
+      end
+    end
+
+    Steps 'I cancel my edits' do
+      Given 'I am on the trade requests page' do
+        should_be_located '/u/trade_requests'
+      end
+      When 'I click the link to edit' do
+        within '.table-list .row:first-child' do
+          find('.fa-cog').click
+          click_link 'Edit'
+        end
+      end
+      And 'I change the name' do
+        fill_in :trade_request_name, with: 'My Updated Trade'
+      end
+      And 'I click cancel' do
+        click_link 'Cancel'
+      end
+      Then 'I should not see an updated trade request' do
+        should_see 'My Trade'
+        should_not_see 'My Updated Trade'
       end
     end
 
