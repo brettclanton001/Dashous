@@ -13,6 +13,8 @@
       padding: 20px 30px
       border-bottom: solid 1px $light-grey
     .actions
+      width: 200px
+      text-align: right
       .fa-cog
         display: block
         position: absolute
@@ -29,4 +31,13 @@
         left: 5px
         content: '+'
         font-size: 22px
+    &.expanded
+      .name
+        &:before
+          top: 17px
+          content: '–'
+    &.static
+      .name
+        &:before
+          display: none
 
