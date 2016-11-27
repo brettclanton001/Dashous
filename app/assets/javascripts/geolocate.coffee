@@ -4,7 +4,7 @@ window.getGeolocation = ->
   if navigator.geolocation
     navigator.geolocation.getCurrentPosition showPosition
 
-window.showPosition = (position) ->
+showPosition = (position) ->
   $search = $('.search input[name="query"]')
   location = "#{position.coords.latitude} #{position.coords.longitude}"
   $search.val location

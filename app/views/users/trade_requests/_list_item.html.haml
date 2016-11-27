@@ -1,7 +1,7 @@
 - class_name = expanded ? 'row expanded' : 'row collapsed'
 - link_url = expanded ? trade_requests_path : trade_requests_path(expand: trade_request.id)
-= link_to link_url, class: class_name do
-  .name
+%div{class: class_name}
+  = link_to link_url, class: 'name' do
     = trade_request.name
   .info
     Active
@@ -9,10 +9,9 @@
     = trade_request.offers.count
     Offers
   .actions
-    .fa.fa-cog.fa-lg
+    .fa.fa-cog.fa-lg{onclick: 'window.onClickActionToggle(this)'}
     .action-list
-      =# link_to 'Edit', edit_trade_request_path(trade_request)
-      =# link_to 'Destroy', trade_request, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      = link_to 'Edit', edit_trade_request_path(trade_request)
 - if expanded
   - trade_request.offers.each do |offer|
     .row

@@ -13,6 +13,7 @@
       padding: 20px 30px
       border-bottom: solid 1px $light-grey
     .actions
+      position: relative
       width: 140px
       text-align: right
       .fa-cog
@@ -23,6 +24,26 @@
         cursor: pointer
       .action-list
         display: none
+        position: absolute
+        top: 40px
+        right: 0
+        width: 100px
+        height: auto
+        border: solid 1px $light-grey
+        z-index: 10
+        a
+          display: block
+          padding: 10px
+          background-color: $white
+          text-align: left
+          border-bottom: solid 1px $light-grey
+          &:hover
+            background-color: $offwhite
+          &:last-child
+            border-bottom: none
+      &.open
+        .action-list
+          display: block
     &.expanded, &.collapsed
       .name
         &:before

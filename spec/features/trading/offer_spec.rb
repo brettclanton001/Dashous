@@ -112,7 +112,7 @@ feature 'Make an offer', js: true do
         end
       end
       When 'I expand my trade request' do
-        find('.table-list .row:first-child').click
+        click_link "Another Guy's Trade"
       end
       Then 'I should see the new offer details' do
         within '.table-list' do

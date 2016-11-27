@@ -28,15 +28,11 @@ class Users::TradeRequestsController < Users::BaseController
     end
   end
 
-  def destroy
-    @trade_request.destroy
-    redirect_to trade_requests_path, notice: 'Trade request was successfully destroyed.'
-  end
-
   private
 
   def set_trade_request
-    @trade_request = TradeRequest.find(params[:id])
+    @trade_request = current_user.trade_requests.where(id: params[:id]).first
+    redirect_to trade_requests_path unless @trade_request.present?
   end
 
   def trade_request_params
