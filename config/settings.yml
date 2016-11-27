@@ -1,0 +1,2 @@
+new_relic:
+  key: <%= ENV['NEW_RELIC_LICENSE_KEY'] %>

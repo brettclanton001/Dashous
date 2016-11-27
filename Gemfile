@@ -16,6 +16,7 @@ gem 'haml-rails'
 gem 'font-awesome-sass'
 gem 'geocoder'
 gem 'newrelic_rpm'
+gem 'config'
 
 group :development, :test do
   gem 'byebug', platform: :mri
