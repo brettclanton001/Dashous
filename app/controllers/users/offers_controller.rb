@@ -9,8 +9,6 @@ class Users::OffersController < Users::BaseController
 
     if @offer.save
       redirect_to public_trade_request_path(@offer.trade_request_id), notice: 'Offer successfully created. Please wait for a reply.'
-    else
-      redirect_to public_trade_request_path(@offer.trade_request_id), error: 'Something went wrong'
     end
   end
 

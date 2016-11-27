@@ -1,9 +1,5 @@
 require 'spec_helper'
 
-Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome, :args => ['--window-size=1280,800'])
-end
-
 Capybara.configure do |config|
   config.javascript_driver = :webkit
   config.default_max_wait_time = 10
@@ -21,14 +17,6 @@ RSpec.configure do |config|
     Capybara.reset_sessions!
     CapybaraSupport.set_user_agent(example.metadata[:user_agent]) if example.metadata[:user_agent]
   end
-end
-
-def should_see(content)
-  expect(page).to have_content(content)
-end
-
-def should_not_see(content)
-  expect(page).not_to have_content(content)
 end
 
 def should_be_located(path)

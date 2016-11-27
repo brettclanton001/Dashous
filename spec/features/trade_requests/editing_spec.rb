@@ -62,6 +62,38 @@ feature 'my trade requests are editable', js: true do
       end
     end
 
+    Steps 'I edit the trade request to have invalid data' do
+      Given 'I am on the trade requests page' do
+        should_be_located '/u/trade_requests'
+      end
+      When 'I click the link to edit' do
+        within '.table-list .row:first-child' do
+          find('.fa-cog').click
+          click_link 'Edit'
+        end
+      end
+      And 'I change the name' do
+        fill_in :trade_request_name, with: ''
+      end
+      And 'I click save' do
+        click_button 'Save'
+      end
+      Then 'I should still be on the edit form' do
+        should_see 'Edit Trade Request'
+        should_see "Name can't be blank"
+      end
+      When 'I change the name' do
+        fill_in :trade_request_name, with: 'My Updated Trade'
+      end
+      And 'I click save' do
+        click_button 'Save'
+      end
+      Then 'I should see my updated trade request' do
+        should_see 'My Updated Trade'
+        should_not_see 'My Trade'
+      end
+    end
+
     Steps 'I cancel my edits' do
       Given 'I am on the trade requests page' do
         should_be_located '/u/trade_requests'
