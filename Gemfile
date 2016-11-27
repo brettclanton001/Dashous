@@ -15,6 +15,7 @@ gem 'jquery-rails'
 gem 'haml-rails'
 gem 'font-awesome-sass'
 gem 'geocoder'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'byebug', platform: :mri
