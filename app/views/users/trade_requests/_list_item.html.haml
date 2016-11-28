@@ -19,8 +19,11 @@
       .name
         = offer.user.username
       .info
-        = offer.status
+        = offer.status.capitalize
       .info
       .actions
-        = link_to 'Decline', '#', :data => { :confirm => 'Are you sure?' }
-        = link_to 'Approve', '#'
+        - if offer.pending?
+          = link_to 'Decline', trade_requests_offer_decline_path(offer.id), method: 'PATCH', data: { confirm: 'Are you sure?' }
+          = link_to 'Approve', trade_requests_offer_approve_path(offer.id), method: 'PATCH'
+        - if offer.approved?
+          = mail_to offer.user.email, 'Email'

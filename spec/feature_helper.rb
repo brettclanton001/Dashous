@@ -20,7 +20,7 @@ RSpec.configure do |config|
 end
 
 def should_be_located(path)
-  expect(page.current_path).to eq path
+  expect(page.current_url).to eq "#{page.current_host}:#{Capybara.server_port}#{path}"
 end
 
 def login_as(user)

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_filter :persist_query
+  before_action :persist_query
   protect_from_forgery with: :exception
 
   private

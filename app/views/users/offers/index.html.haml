@@ -8,9 +8,11 @@
       .name
         = offer.trade_request.name
       .info
-        = offer.status
+        = offer.status.capitalize
       .actions
         .fa.fa-cog.fa-lg{onclick: 'window.onClickActionToggle(this)'}
         .action-list
           = link_to 'View', public_trade_request_path(offer.trade_request.id)
+          - if offer.approved?
+            = mail_to offer.trade_request.user.email, 'Email'
 

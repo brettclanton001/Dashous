@@ -2,7 +2,7 @@ class Offer < ApplicationRecord
 
   STATUSES = %w(
     pending
-    rejected
+    declined
     approved
     canceled
   ).freeze
@@ -16,6 +16,21 @@ class Offer < ApplicationRecord
     :trade_request_id,
     :status
 
+  def pending?
+    status == 'pending'
+  end
+
+  def declined?
+    status == 'declined'
+  end
+
+  def approved?
+    status == 'approved'
+  end
+
+  def canceled?
+    status == 'canceled'
+  end
 end
 
 # == Schema Information

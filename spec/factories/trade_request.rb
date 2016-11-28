@@ -6,6 +6,9 @@ FactoryGirl.define do
     name 'Great Trade'
     kind 'sell'
     profit '2'
+    location 'New York City, New York'
+    longitude -74.0059413
+    latitude 40.7127837
 
     trait :new_york do
       location 'New York City, New York'
