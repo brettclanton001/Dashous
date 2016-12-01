@@ -5,14 +5,21 @@ class User < ApplicationRecord
   has_many :offers
 
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # :confirmable, :lockable, :timeoutable, :validatable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable
+
+  attr_encrypted :email, key: Settings.attr_encrypted.key
 
   validates \
-    :email,
     :username,
     uniqueness: true
+
+  validates \
+    :encrypted_email,
+    :encrypted_email_iv,
+    :username,
+    presence: true
 end
 
 # == Schema Information
@@ -20,7 +27,6 @@ end
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
@@ -33,10 +39,11 @@ end
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  username               :string           not null
+#  encrypted_email        :string           not null
+#  encrypted_email_iv     :string           not null
 #
 # Indexes
 #
-#  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_username              (username) UNIQUE
 #

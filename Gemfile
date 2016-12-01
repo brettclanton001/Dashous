@@ -17,6 +17,7 @@ gem 'font-awesome-sass'
 gem 'geocoder'
 gem 'newrelic_rpm'
 gem 'config'
+gem "attr_encrypted", "~> 3.0.0"
 
 group :development, :test do
   gem 'byebug', platform: :mri

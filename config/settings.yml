@@ -1,2 +1,5 @@
 new_relic:
   key: <%= ENV['NEW_RELIC_LICENSE_KEY'] %>
+
+attr_encrypted:
+  key: <%= ENV['ATTR_ENCRYPTED_KEY'] %>

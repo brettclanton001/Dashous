@@ -44,6 +44,8 @@ GEM
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 12.0)
     arel (7.1.4)
+    attr_encrypted (3.0.3)
+      encryptor (~> 3.0.0)
     bcrypt (3.1.11)
     builder (3.2.2)
     byebug (9.0.6)
@@ -86,6 +88,7 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.5)
+    encryptor (3.0.0)
     erubis (2.7.0)
     execjs (2.7.0)
     factory_girl (4.7.0)
@@ -258,6 +261,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  attr_encrypted (~> 3.0.0)
   byebug
   capybara (= 2.5.0)
   capybara-email (= 2.4.0)
