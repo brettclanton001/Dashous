@@ -28,4 +28,16 @@ describe User do
       expect(user.trade_request_offers).to match_array [offer1, offer2, offer3]
     end
   end
+
+  describe 'validations' do
+    it 'validates username' do
+      expect(user.update_attributes(username: 'JoeShmo123')).to eq true
+      expect(user.update_attributes(username: 'Joe Shmo123')).to eq false
+      expect(user.update_attributes(username: 'Joe.Shmo123')).to eq false
+      expect(user.update_attributes(username: 'Joe/Shmo123')).to eq false
+      expect(user.update_attributes(username: 'Joe%Shmo123')).to eq false
+      expect(user.update_attributes(username: 'Joe^Shmo123')).to eq false
+      expect(user.update_attributes(username: 'Joe?Shmo123')).to eq false
+    end
+  end
 end

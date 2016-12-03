@@ -17,7 +17,7 @@
   - trade_request.offers.each do |offer|
     .row
       .name
-        = offer.user.username
+        = link_to offer.user.username, public_user_profile_path(offer.user.username)
       .info
         = offer.status.capitalize
       .info

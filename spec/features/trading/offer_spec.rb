@@ -159,6 +159,15 @@ feature 'Make an offer', js: true do
           should_not_see 'Decline'
         end
       end
+      When 'I click on the username' do
+        click_link 'Bob'
+      end
+      Then 'I should see bobs profile page' do
+        within 'h1' do
+          should_see 'Bob'
+          should_be_located '/p/Bob'
+        end
+      end
       When 'I logout' do
         logout
       end

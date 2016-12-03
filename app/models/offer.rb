@@ -16,6 +16,8 @@ class Offer < ApplicationRecord
     :trade_request_id,
     :status
 
+  scope :approved, -> { where(status: 'approved') }
+
   def pending?
     status == 'pending'
   end

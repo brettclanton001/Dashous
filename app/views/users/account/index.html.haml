@@ -1,1 +1,5 @@
+= link_to 'View my Public Profile', public_user_profile_path(current_user.username), class: 'button primary'
+
+%hr
+
 = link_to 'Logout', destroy_user_session_path, method: 'DELETE', class: 'button'

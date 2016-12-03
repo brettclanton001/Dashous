@@ -14,12 +14,13 @@ class User < ApplicationRecord
   validates \
     :username,
     uniqueness: true
-
   validates \
     :encrypted_email,
     :encrypted_email_iv,
     :username,
     presence: true
+  validates_format_of :username, with: /\A[a-zA-Z0-9]+\z/
+
 end
 
 # == Schema Information

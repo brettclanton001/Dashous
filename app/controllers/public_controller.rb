@@ -8,4 +8,12 @@ class PublicController < ApplicationController
   def trade_request
     @trade_request = TradeRequest.find(params[:trade_request_id])
   end
+
+  def user_profile
+    if profile_user = User.find_by_username(params[:username])
+      @profile_user = profile_user.decorate
+    else
+      render :not_found
+    end
+  end
 end

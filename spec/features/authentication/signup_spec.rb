@@ -27,7 +27,38 @@ feature 'Signup', js: true do
     end
     When 'I fill out and submit the form' do
       fill_in :user_email, with: 'test@example.com'
+      fill_in :user_username, with: 'JohnDoe'
+      fill_in :user_password, with: '123456'
+      fill_in :user_password_confirmation, with: '123456'
+      click_button 'Signup'
+    end
+    Then 'I should see links meant for an internal account' do
+      within '.nav' do
+        should_not_see 'Login'
+        should_not_see 'Signup'
+        should_see 'Offers'
+        should_see 'Trade Requests'
+        should_see 'Account'
+      end
+    end
+  end
+
+  Steps 'invalid usernames' do
+    When 'I visit the signup page' do
+      visit '/signup'
+    end
+    And 'I enter in an invalid username' do
       fill_in :user_username, with: 'John Doe'
+    end
+    And 'I click submit' do
+      click_button 'Signup'
+    end
+    Then 'I should see an error' do
+      should_see 'Username is invalid'
+    end
+    When 'I fill out and submit the form' do
+      fill_in :user_email, with: 'test@example.com'
+      fill_in :user_username, with: 'JohnDoe'
       fill_in :user_password, with: '123456'
       fill_in :user_password_confirmation, with: '123456'
       click_button 'Signup'

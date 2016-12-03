@@ -4,7 +4,7 @@ FactoryGirl.define do
       "test#{n}@example.com"
     end
     sequence :username do |n|
-      "Joe Shmo #{n}"
+      "JoeShmo#{n}"
     end
     password 'password'
     password_confirmation 'password'
