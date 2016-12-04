@@ -149,7 +149,7 @@ feature 'Make an offer', js: true do
         should_be_located trade_requests_path(expand: trade_request2.id)
       end
       And 'I should see an email link' do
-        within '.table-list .row:last-child .actions' do
+        within '.table-list .row:last-child' do
           should_see_element 'a[href="mailto:bob@email.com"]', text: 'Email'
         end
       end
@@ -158,6 +158,29 @@ feature 'Make an offer', js: true do
           should_not_see 'Approve'
           should_not_see 'Decline'
         end
+      end
+      And 'I should see links to review the offer' do
+        within '.table-list .row:last-child .actions' do
+          should_see 'Positive'
+          should_see 'Negative'
+        end
+      end
+      When 'I click Positive' do
+        within '.table-list .row:last-child .actions' do
+          click_link 'Positive'
+        end
+      end
+      Then 'I see a success message' do
+        should_see 'Review created successfully'
+      end
+      And 'I should not see the review links anymore' do
+        within '.table-list .row:last-child .actions' do
+          should_not_see 'Positive'
+          should_not_see 'Negative'
+        end
+      end
+      And 'There should be a review record' do
+        expect(Review.count).to eq 1
       end
       When 'I click on the username' do
         click_link 'Bob'
@@ -331,7 +354,7 @@ feature 'Make an offer', js: true do
         should_be_located trade_requests_path(expand: trade_request2.id)
       end
       And 'I should not see an email link' do
-        within '.table-list .row:last-child .actions' do
+        within '.table-list .row:last-child' do
           should_not_see_element 'a[href="mailto:bob@email.com"]', text: 'Email'
         end
       end
@@ -339,6 +362,12 @@ feature 'Make an offer', js: true do
         within '.table-list .row:last-child .actions' do
           should_not_see 'Approve'
           should_not_see 'Decline'
+        end
+      end
+      And 'I should not see the review links anymore' do
+        within '.table-list .row:last-child .actions' do
+          should_not_see 'Positive'
+          should_not_see 'Negative'
         end
       end
       When 'I logout' do

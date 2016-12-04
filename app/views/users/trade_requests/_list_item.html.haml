@@ -21,9 +21,12 @@
       .info
         = offer.status.capitalize
       .info
+        - if offer.approved?
+          = mail_to offer.user.email, 'Email'
       .actions
         - if offer.pending?
           = link_to 'Decline', trade_requests_offer_decline_path(offer.id), method: 'PATCH', data: { confirm: 'Are you sure?' }
           = link_to 'Approve', trade_requests_offer_approve_path(offer.id), method: 'PATCH'
-        - if offer.approved?
-          = mail_to offer.user.email, 'Email'
+        - if offer.approved? and  not offer.reviewed_by?(current_user)
+          = link_to 'Positive', reviews_path(review: {offer_id: offer.id, tone: 'positive'}), method: 'POST'
+          = link_to 'Negative', reviews_path(review: {offer_id: offer.id, tone: 'negative'}), method: 'POST'

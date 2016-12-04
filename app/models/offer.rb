@@ -9,6 +9,7 @@ class Offer < ApplicationRecord
 
   belongs_to :trade_request
   belongs_to :user
+  has_many :reviews
 
   validates :status, inclusion: { in: STATUSES }
   validates_presence_of \
@@ -32,6 +33,10 @@ class Offer < ApplicationRecord
 
   def canceled?
     status == 'canceled'
+  end
+
+  def reviewed_by?(user)
+    reviews.where(reviewing_user: user).exists?
   end
 end
 

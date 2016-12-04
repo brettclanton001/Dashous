@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :trade_requests
     resources :offers, only: [:index, :create]
     resources :account, only: [:index]
+    resources :reviews, only: [:create]
     namespace :trade_requests do
       resources :offers, only: [] do
         patch :approve
