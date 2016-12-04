@@ -161,22 +161,34 @@ feature 'Make an offer', js: true do
       end
       And 'I should see links to review the offer' do
         within '.table-list .row:last-child .actions' do
+          should_see 'Review'
+        end
+      end
+      When 'I click Review' do
+        within '.table-list .row:last-child .actions' do
+          find('span.link', text: 'Review').click
+        end
+      end
+      Then 'I should see links to review the offer' do
+        within '.table-list .row:last-child .actions' do
           should_see 'Positive'
           should_see 'Negative'
         end
       end
-      When 'I click Positive' do
-        within '.table-list .row:last-child .actions' do
-          click_link 'Positive'
-        end
+      When 'I click positive' do
+        click_link 'Positive'
       end
       Then 'I see a success message' do
         should_see 'Review created successfully'
       end
+      And 'I should see the confirmation that I have reivewed the trade' do
+        within '.table-list .row:last-child' do
+          should_see 'Reviewed'
+        end
+      end
       And 'I should not see the review links anymore' do
         within '.table-list .row:last-child .actions' do
-          should_not_see 'Positive'
-          should_not_see 'Negative'
+          should_not_see 'Review'
         end
       end
       And 'There should be a review record' do
@@ -366,8 +378,7 @@ feature 'Make an offer', js: true do
       end
       And 'I should not see the review links anymore' do
         within '.table-list .row:last-child .actions' do
-          should_not_see 'Positive'
-          should_not_see 'Negative'
+          should_not_see 'Review'
         end
       end
       When 'I logout' do

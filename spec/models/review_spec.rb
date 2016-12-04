@@ -25,7 +25,7 @@ RSpec.describe Review, type: :model do
   describe 'validations' do
     it 'only allows supported tones' do
       expect(review.update_attributes(tone: 'negative')).to eq true
-      expect(review.update_attributes(tone: 'neutral')).to eq true
+      expect(review.update_attributes(tone: 'neutral')).to eq false
       expect(review.update_attributes(tone: 'aggresive')).to eq false
       expect(review.update_attributes(tone: nil)).to eq false
       expect(review.update_attributes(tone: '')).to eq false
@@ -38,7 +38,7 @@ RSpec.describe Review, type: :model do
         reviewing_user: user2,
         tone: tone
       )
-      expect {new_review.save}.to raise_error
+      expect {new_review.save}.to raise_error(ActiveRecord::RecordNotUnique)
     end
   end
 
@@ -46,17 +46,6 @@ RSpec.describe Review, type: :model do
     context 'positive' do
       it 'should have correct tone' do
         expect(review.positive?).to eq true
-        expect(review.neutral?).to eq false
-        expect(review.negative?).to eq false
-      end
-    end
-
-    context 'neutral' do
-      let(:tone) { 'neutral' }
-
-      it 'should have correct tone' do
-        expect(review.positive?).to eq false
-        expect(review.neutral?).to eq true
         expect(review.negative?).to eq false
       end
     end
@@ -66,7 +55,6 @@ RSpec.describe Review, type: :model do
 
       it 'should have correct tone' do
         expect(review.positive?).to eq false
-        expect(review.neutral?).to eq false
         expect(review.negative?).to eq true
       end
     end

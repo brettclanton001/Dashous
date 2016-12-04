@@ -77,6 +77,27 @@ feature 'viewing a user provile', js: true do
       trade_request: trade_request6,
       status: 'approved'
   end
+  given!(:review1) do
+    create :review,
+      offer: offer3,
+      reviewing_user: user2,
+      reviewed_user: user1,
+      tone: 'positive'
+  end
+  given!(:review2) do
+    create :review,
+      offer: offer6,
+      reviewing_user: user2,
+      reviewed_user: user1,
+      tone: 'negative'
+  end
+  given!(:review3) do
+    create :review,
+      offer: offer6,
+      reviewing_user: user1,
+      reviewed_user: user2,
+      tone: 'negative'
+  end
 
   Steps 'I should be able to view the profile page' do
     When 'I visit the profile url' do
@@ -91,6 +112,9 @@ feature 'viewing a user provile', js: true do
     end
     And 'I should see the correct number of trades that the user has had' do
       should_see 'Total Trades: 2'
+    end
+    And 'I should see the reputation of the user' do
+      should_see '50% positive reviews (2 reviews)'
     end
   end
 

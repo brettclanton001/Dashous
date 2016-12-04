@@ -2,7 +2,6 @@ class Review < ApplicationRecord
 
   TONES = %w(
     positive
-    neutral
     negative
   ).freeze
 
@@ -17,12 +16,10 @@ class Review < ApplicationRecord
     :offer_id,
     :tone
 
+  scope :positive, -> { where(tone: 'positive') }
+
   def positive?
     tone == 'positive'
-  end
-
-  def neutral?
-    tone == 'neutral'
   end
 
   def negative?

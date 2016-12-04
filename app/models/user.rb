@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :trade_requests
   has_many :trade_request_offers, through: :trade_requests, source: :offers
   has_many :offers
+  has_many :incoming_reviews, class_name: 'Review', foreign_key: 'reviewed_user_id'
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :validatable and :omniauthable
