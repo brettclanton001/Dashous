@@ -117,6 +117,8 @@ GEM
     factory_girl_rails (4.7.0)
       factory_girl (~> 4.7.0)
       railties (>= 3.0.0)
+    faraday (0.10.0)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.14)
     font-awesome-sass (4.7.0)
       sass (>= 3.2)
@@ -160,6 +162,7 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.9.1)
     multi_json (1.12.1)
+    multipart-post (2.0.0)
     newrelic_rpm (3.17.1.326)
     nio4r (1.2.1)
     nokogiri (1.6.8.1)
@@ -296,6 +299,7 @@ DEPENDENCIES
   devise
   draper!
   factory_girl_rails (~> 4.0)
+  faraday
   font-awesome-sass
   geocoder
   haml-rails

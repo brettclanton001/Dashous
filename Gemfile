@@ -20,6 +20,7 @@ gem 'config'
 gem "attr_encrypted", "~> 3.0.0"
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml' # added for draper
 gem 'draper', github: 'audionerd/draper', branch: 'rails5'
+gem 'faraday'
 
 group :development, :test do
   gem 'byebug', platform: :mri

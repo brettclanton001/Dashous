@@ -30,6 +30,9 @@
           %label.search-button
             %input(type="submit" value="")
             .fa.fa-search.fa-lg
+      .price
+        Current Exchange:
+        = number_to_currency PriceService.current_price
     .nav
       - if current_user
         = link_to offers_path, class: 'item' do
