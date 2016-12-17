@@ -11,7 +11,7 @@
           miles
           = Geocoder::Calculations.compass_point trade_request.bearing_from(@query)
         .info
-          = trade_request.kind
+          = trade_request.intention
         .info
           = "#{trade_request.profit}%"
 - else

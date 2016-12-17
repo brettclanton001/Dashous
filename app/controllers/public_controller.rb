@@ -1,12 +1,13 @@
 class PublicController < ApplicationController
   def search
     if @query
-      @trade_requests = TradeRequest.near(@query, 5000).limit(20)
+      trade_requests = TradeRequest.near(@query, 5000).limit(20)
+      @trade_requests = trade_requests.map {|tr| tr.decorate }
     end
   end
 
   def trade_request
-    @trade_request = TradeRequest.find(params[:trade_request_id])
+    @trade_request = TradeRequest.find(params[:trade_request_id]).decorate
   end
 
   def user_profile

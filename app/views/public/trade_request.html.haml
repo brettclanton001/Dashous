@@ -1,5 +1,5 @@
 %h1= @trade_request.name
-%p= "This person is #{@trade_request.kind}ing Dash."
+%p= "This person is #{@trade_request.intention} Dash."
 %p= "This person wants a #{@trade_request.profit}% profit."
 %p= "The trade location is: #{@trade_request.location}"
 - if current_user.nil?
