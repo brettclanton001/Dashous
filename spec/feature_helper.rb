@@ -19,6 +19,26 @@ RSpec.configure do |config|
   end
 end
 
+def stub_price(price)
+  Rails.cache.delete(:price_data)
+  stub_request(:get, 'https://api.cryptonator.com/api/ticker/dash-usd').to_return(
+    status: 200,
+    body: {
+      ticker: {
+        base: 'DASH',
+        target: 'USD',
+        price: price,
+        volume: '2056.78697840',
+        change: '0.04682657'
+      },
+      timestamp: 1481982394,
+      success: true,
+      error: ''
+    }.to_json,
+    headers: {}
+  )
+end
+
 def should_be_located(path)
   expect(page.current_url).to eq "#{page.current_host}:#{Capybara.server_port}#{path}"
 end

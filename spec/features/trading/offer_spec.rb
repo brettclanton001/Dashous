@@ -6,15 +6,19 @@ feature 'Make an offer', js: true do
   given!(:trade_request1) do
     create :trade_request, :new_york,
       user: user1,
-      name: 'My Trade'
+      name: 'My Trade',
+      kind: 'sell',
+      profit: '12'
   end
   given!(:trade_request2) do
     create :trade_request, :stamford,
       user: user2,
       name: "Another Guy's Trade",
+      kind: 'sell',
       profit: '12'
   end
   given(:offer) { user1.offers.last }
+  given!(:current_price) { stub_price(10) }
 
   context 'authenticated' do
 
@@ -29,8 +33,8 @@ feature 'Make an offer', js: true do
       Then 'I should see the trade request' do
         within '.content' do
           should_see "Another Guy's Trade"
-          should_see 'This person is selling Dash.'
-          should_see 'This person wants a 12% profit.'
+          should_see 'This person is selling Dash'
+          should_see 'This person wants a 12% profit so the current sale price is $11.20'
           should_see 'The trade location is: Stamford'
           should_see 'Make Offer'
         end
@@ -42,8 +46,8 @@ feature 'Make an offer', js: true do
         should_see 'Offer successfully created. Please wait for a reply.'
         within '.content' do
           should_see "Another Guy's Trade"
-          should_see 'This person is selling Dash.'
-          should_see 'This person wants a 12% profit.'
+          should_see 'This person is selling Dash'
+          should_see 'This person wants a 12% profit so the current sale price is $11.20'
           should_see 'The trade location is: Stamford'
           within 'button.disabled' do
             should_see 'Make Offer'
@@ -88,8 +92,8 @@ feature 'Make an offer', js: true do
         should_be_located "/t/#{trade_request2.id}"
         within '.content' do
           should_see "Another Guy's Trade"
-          should_see 'This person is selling Dash.'
-          should_see 'This person wants a 12% profit.'
+          should_see 'This person is selling Dash'
+          should_see 'This person wants a 12% profit so the current sale price is $11.20'
           should_see 'The trade location is: Stamford'
           within 'button.disabled' do
             should_see 'Make Offer'
@@ -246,8 +250,8 @@ feature 'Make an offer', js: true do
       Then 'I should see the trade request' do
         within '.content' do
           should_see "Another Guy's Trade"
-          should_see 'This person is selling Dash.'
-          should_see 'This person wants a 12% profit.'
+          should_see 'This person is selling Dash'
+          should_see 'This person wants a 12% profit so the current sale price is $11.20'
           should_see 'The trade location is: Stamford'
           should_see 'Make Offer'
         end
@@ -259,8 +263,8 @@ feature 'Make an offer', js: true do
         should_see 'Offer successfully created. Please wait for a reply.'
         within '.content' do
           should_see "Another Guy's Trade"
-          should_see 'This person is selling Dash.'
-          should_see 'This person wants a 12% profit.'
+          should_see 'This person is selling Dash'
+          should_see 'This person wants a 12% profit so the current sale price is $11.20'
           should_see 'The trade location is: Stamford'
           within 'button.disabled' do
             should_see 'Make Offer'
@@ -305,8 +309,8 @@ feature 'Make an offer', js: true do
         should_be_located "/t/#{trade_request2.id}"
         within '.content' do
           should_see "Another Guy's Trade"
-          should_see 'This person is selling Dash.'
-          should_see 'This person wants a 12% profit.'
+          should_see 'This person is selling Dash'
+          should_see 'This person wants a 12% profit so the current sale price is $11.20'
           should_see 'The trade location is: Stamford'
           within 'button.disabled' do
             should_see 'Make Offer'

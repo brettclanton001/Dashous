@@ -13,6 +13,6 @@
         .info
           = trade_request.intention
         .info
-          = "#{trade_request.profit}%"
+          = number_to_currency trade_request.sale_price
 - else
   %p Use the search bar to find potential traders near you.  The closest trades will be listed first.

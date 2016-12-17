@@ -1,7 +1,17 @@
 %h1= @trade_request.name
-%p= "This person is #{@trade_request.intention} Dash."
-%p= "This person wants a #{@trade_request.profit}% profit."
-%p= "The trade location is: #{@trade_request.location}"
+%p
+  This person is
+  = @trade_request.intention
+  Dash
+%p
+  This person wants a
+  = "#{@trade_request.profit}%"
+  profit so the current sale price is
+  = number_to_currency @trade_request.sale_price
+%p
+  The trade location is:
+  = @trade_request.location
+
 - if current_user.nil?
   %p
     %button.disabled Make Offer

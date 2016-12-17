@@ -20,6 +20,10 @@ describe PriceService do
     }.to_json
   end
 
+  before do
+    Rails.cache.delete(:price_data)
+  end
+
   describe '#current_price' do
     subject { described_class.current_price }
 
