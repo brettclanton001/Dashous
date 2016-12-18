@@ -21,6 +21,7 @@ gem "attr_encrypted", "~> 3.0.0"
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml' # added for draper
 gem 'draper', github: 'audionerd/draper', branch: 'rails5'
 gem 'faraday'
+gem 'autoprefixer-rails'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -28,6 +29,7 @@ group :development, :test do
   gem 'rspec-example_steps'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'annotate'
+  gem 'launchy'
 end
 
 group :development do
