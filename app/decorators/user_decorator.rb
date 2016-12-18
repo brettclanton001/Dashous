@@ -9,7 +9,7 @@ class UserDecorator < Draper::Decorator
     reviews = object.incoming_reviews
     total = reviews.count
     positive = reviews.positive.count
-    percentage = (positive * 100 / total).floor
+    percentage = total.zero? ? 0 : (positive * 100 / total).floor
     "#{percentage}% positive reviews (#{total} reviews)"
   end
 end

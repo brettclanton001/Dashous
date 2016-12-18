@@ -1,3 +1,10 @@
+.profile-tag
+  - user = @trade_request.user.decorate
+  = link_to user.username, public_user_profile_path(user.username)
+  %br
+  = user.reputation
+
+
 %h1= @trade_request.name
 
 %iframe.map{ src: "//www.google.com/maps/embed/v1/place?q=#{@trade_request.map_location}&zoom=14&key=#{Settings.google_maps_embed.key}" }
