@@ -3,3 +3,6 @@ new_relic:
 
 attr_encrypted:
   key: <%= ENV['ATTR_ENCRYPTED_KEY'] %>
+
+google_maps_embed:
+  key: <%= ENV['GOOGLE_MAPS_EMBED_API_KEY'] %>

@@ -1,4 +1,7 @@
 %h1= @trade_request.name
+
+%iframe.map{ src: "//www.google.com/maps/embed/v1/place?q=#{@trade_request.map_location}&zoom=14&key=#{Settings.google_maps_embed.key}" }
+
 %p
   This person is
   = @trade_request.intention

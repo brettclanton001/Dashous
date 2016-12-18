@@ -14,6 +14,10 @@ class TradeRequestDecorator < Draper::Decorator
     end
   end
 
+  def map_location
+    "#{object.latitude}, #{object.longitude}"
+  end
+
   private
 
   def current_price
