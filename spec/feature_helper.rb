@@ -16,6 +16,7 @@ RSpec.configure do |config|
   config.before do |example|
     Capybara.reset_sessions!
     CapybaraSupport.set_user_agent(example.metadata[:user_agent]) if example.metadata[:user_agent]
+    stub_price(10)
   end
 end
 

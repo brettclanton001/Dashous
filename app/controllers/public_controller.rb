@@ -1,8 +1,7 @@
 class PublicController < ApplicationController
   def search
     if @query
-      trade_requests = TradeRequest.near(@query, 5000).limit(20)
-      @trade_requests = trade_requests.map {|tr| tr.decorate }
+      @trade_requests = TradeRequest.near(@query, 5000).limit(20).decorate
     end
   end
 

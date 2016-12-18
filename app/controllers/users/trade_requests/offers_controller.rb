@@ -5,7 +5,7 @@ class Users::TradeRequests::OffersController < Users::BaseController
     @offer.status = :approved
 
     if @offer.save
-      redirect_to trade_requests_path(expand: @offer.trade_request_id),
+      redirect_to request.referer,
         notice: 'Offer approved.'
     end
   end
@@ -14,7 +14,7 @@ class Users::TradeRequests::OffersController < Users::BaseController
     @offer.status = :declined
 
     if @offer.save
-      redirect_to trade_requests_path(expand: @offer.trade_request_id),
+      redirect_to request.referer,
         notice: 'Offer declined.'
     end
   end

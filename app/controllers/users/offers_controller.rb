@@ -1,7 +1,7 @@
 class Users::OffersController < Users::BaseController
 
   def index
-    @offers = current_user.offers
+    @offers = current_user.offers.decorate
   end
 
   def create

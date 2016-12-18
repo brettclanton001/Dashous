@@ -73,19 +73,15 @@ feature 'Make an offer', js: true do
           end
         end
       end
-      When 'I open the gear menu' do
-        within '.table-list .row:first-child .actions' do
-          find('.fa-cog').click
-        end
-      end
-      Then 'I should see an email link' do
+      And 'I should see an email link' do
         within '.table-list .row:first-child .actions' do
           should_not_see_element 'a[href="mailto:ken@email.com"]', text: 'Email'
+          should_not_see 'Review'
         end
       end
       When 'I click on the trade View link' do
-        within '.table-list .row:first-child .actions' do
-          click_link 'View'
+        within '.table-list .row:first-child .name' do
+          click_link "Another Guy's Trade"
         end
       end
       Then 'I should see the trade request' do
@@ -185,6 +181,9 @@ feature 'Make an offer', js: true do
       Then 'I see a success message' do
         should_see 'Review created successfully'
       end
+      And 'I should be back on the trade requests list page' do
+        should_be_located trade_requests_path(expand: trade_request2.id)
+      end
       And 'I should see the confirmation that I have reivewed the trade' do
         within '.table-list .row:last-child' do
           should_see 'Reviewed'
@@ -197,6 +196,7 @@ feature 'Make an offer', js: true do
       end
       And 'There should be a review record' do
         expect(Review.count).to eq 1
+        expect(Review.last.tone).to eq 'positive'
       end
       When 'I click on the username' do
         click_link 'Bob'
@@ -230,16 +230,45 @@ feature 'Make an offer', js: true do
           end
         end
       end
-      When 'I open the gear menu' do
+      And 'I should see an email link' do
         within '.table-list .row:first-child .actions' do
-          find('.fa-cog').click
-        end
-      end
-      Then 'I should see an email link' do
-        within '.table-list .row:first-child .actions' do
-          should_see 'View'
+          should_see 'Review'
           should_see_element 'a[href="mailto:ken@email.com"]', text: 'Email'
         end
+      end
+      When 'I click Review' do
+        within '.table-list .row:last-child .actions' do
+          find('span.link', text: 'Review').click
+        end
+      end
+      Then 'I should see links to review the trade' do
+        within '.table-list .row:last-child .actions' do
+          should_see 'Positive'
+          should_see 'Negative'
+        end
+      end
+      When 'I click Negative' do
+        click_link 'Negative'
+      end
+      Then 'I see a success message' do
+        should_see 'Review created successfully'
+      end
+      And 'I should be back on the offers page' do
+        should_be_located offers_path
+      end
+      And 'I should see the confirmation that I have reivewed the trade' do
+        within '.table-list .row:last-child' do
+          should_see 'Reviewed'
+        end
+      end
+      And 'I should not see the review links anymore' do
+        within '.table-list .row:last-child .actions' do
+          should_not_see 'Review'
+        end
+      end
+      And 'There should be a review record' do
+        expect(Review.count).to eq 2
+        expect(Review.last.tone).to eq 'negative'
       end
     end
 
@@ -290,19 +319,15 @@ feature 'Make an offer', js: true do
           end
         end
       end
-      When 'I open the gear menu' do
-        within '.table-list .row:first-child .actions' do
-          find('.fa-cog').click
-        end
-      end
-      Then 'I should see an email link' do
+      And 'I should see an email link' do
         within '.table-list .row:first-child .actions' do
           should_not_see_element 'a[href="mailto:ken@email.com"]', text: 'Email'
+          should_not_see 'Review'
         end
       end
       When 'I click on the trade View link' do
-        within '.table-list .row:first-child .actions' do
-          click_link 'View'
+        within '.table-list .row:first-child .name' do
+          click_link "Another Guy's Trade"
         end
       end
       Then 'I should see the trade request' do
@@ -408,14 +433,8 @@ feature 'Make an offer', js: true do
           end
         end
       end
-      When 'I open the gear menu' do
+      And 'I should not see an email link' do
         within '.table-list .row:first-child .actions' do
-          find('.fa-cog').click
-        end
-      end
-      Then 'I should not see an email link' do
-        within '.table-list .row:first-child .actions' do
-          should_see 'View'
           should_not_see_element 'a[href="mailto:ken@email.com"]', text: 'Email'
         end
       end
