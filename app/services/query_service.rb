@@ -16,6 +16,6 @@ class QueryService
   end
 
   def human_location
-    "#{@location.city} #{@location.state}, #{@location.country}"
+    "#{@location.city}, #{@location.state}, #{@location.country}"
   end
 end
