@@ -9,8 +9,8 @@
     %p You can the search tool (above) to find people that want to trade in a specific location!
     %p Or if you like, we can guess your location:
     = form_tag('/', method: 'POST', class: 'search') do
-      = hidden_field_tag :query, @current_ip
-      %input.button.primary(type="submit" value="Detect my location")
+      = hidden_field_tag :detect_location, 1
+      %input.button.primary(type="submit" value="Guess my location")
 
 - else
 
