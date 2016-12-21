@@ -1,6 +1,19 @@
 %h1 Search Results
 
-- if @trade_requests.present?
+%hr
+
+- if @trade_requests.blank?
+
+  .empty-state
+    .fa.fa-search.fa-5x
+    %p You can the search tool (above) to find people that want to trade in a specific location!
+    %p Or if you like, we can guess your location:
+    = form_tag('/', method: 'POST', class: 'search') do
+      = hidden_field_tag :query, @current_ip
+      %input.button.primary(type="submit" value="Detect my location")
+
+- else
+
   .table-list
     - @trade_requests.each do |trade_request|
       = link_to public_trade_request_path(trade_request.id), class: 'row' do
@@ -14,5 +27,3 @@
           = trade_request.intention
         .info
           = number_to_currency trade_request.sale_price
-- else
-  %p Use the search bar to find potential traders near you.  The closest trades will be listed first.
