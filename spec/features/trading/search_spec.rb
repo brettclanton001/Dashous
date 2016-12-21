@@ -27,8 +27,8 @@ feature 'search for trade requests', js: true do
       end
       Then 'I should no search results' do
         should_see 'Search Results'
-        should_see 'Use the search bar to find potential traders near you.'
-        should_see 'The closest trades will be listed first.'
+        should_see 'You can use the search tool (above) to find people that want to trade in a specific location!'
+        should_see 'Or if you like, we can guess your location:'
         should_see '1 Dash = $8.34'
       end
       When 'I enter in my location' do

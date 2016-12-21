@@ -6,7 +6,7 @@
 
   .empty-state
     .fa.fa-search.fa-5x
-    %p You can the search tool (above) to find people that want to trade in a specific location!
+    %p You can use the search tool (above) to find people that want to trade in a specific location!
     %p Or if you like, we can guess your location:
     = form_tag('/', method: 'POST', class: 'search') do
       = hidden_field_tag :detect_location, 1
