@@ -2,23 +2,32 @@
 
 %hr
 
-.table-list
-  - @offers.each do |offer|
-    - trade_request = offer.trade_request
-    - user = trade_request.user
-    .row
-      .name
-        = link_to trade_request.name, public_trade_request_path(trade_request.id)
-      .info
-        = link_to user.username, public_user_profile_path(user.username)
-      .info
-        = offer.status_for_user(current_user)
-      .actions
-        - if offer.approved?
-          = mail_to user.email, 'Email'
-        - if offer.approved? and not offer.reviewed_by?(current_user)
-          %span.link{onclick: 'window.onClickActionToggle(this)'} Review
-          .action-list
-            = link_to 'Positive', reviews_path(review: {offer_id: offer.id, tone: 'positive'}), method: 'POST'
-            = link_to 'Negative', reviews_path(review: {offer_id: offer.id, tone: 'negative'}), method: 'POST'
+- if @offers.count.zero?
+
+  .empty-state
+    .fa.fa-search.fa-5x
+    %p Use the search tool (above) to find people that want to trade near you!
+    %p Once you offer to trade with someone, you will see those offers here.
+
+- else
+
+  .table-list
+    - @offers.each do |offer|
+      - trade_request = offer.trade_request
+      - user = trade_request.user
+      .row
+        .name
+          = link_to trade_request.name, public_trade_request_path(trade_request.id)
+        .info
+          = link_to user.username, public_user_profile_path(user.username)
+        .info
+          = offer.status_for_user(current_user)
+        .actions
+          - if offer.approved?
+            = mail_to user.email, 'Email'
+          - if offer.approved? and not offer.reviewed_by?(current_user)
+            %span.link{onclick: 'window.onClickActionToggle(this)'} Review
+            .action-list
+              = link_to 'Positive', reviews_path(review: {offer_id: offer.id, tone: 'positive'}), method: 'POST'
+              = link_to 'Negative', reviews_path(review: {offer_id: offer.id, tone: 'negative'}), method: 'POST'
 

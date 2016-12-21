@@ -4,9 +4,19 @@
 
 %hr
 
-.table-list
-  - @trade_requests.each do |trade_request|
-    = render 'list_item', trade_request: trade_request, expanded: @expand == trade_request.id
+- if @trade_requests.count.zero?
+
+  .empty-state
+    .fa.fa-street-view.fa-5x
+    %p Do you want to set the terms for a trade, or be the first to offer to buy or sell in your area?
+    %p This is your chance!
+    = link_to 'Create your first Trade Request', new_trade_request_path, class: 'button primary'
+
+- else
+
+  .table-list
+    - @trade_requests.each do |trade_request|
+      = render 'list_item', trade_request: trade_request, expanded: @expand == trade_request.id
 
 
-= link_to '+ Create New', new_trade_request_path, class: 'button primary phone-only'
+  = link_to '+ Create New', new_trade_request_path, class: 'button primary phone-only'

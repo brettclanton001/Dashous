@@ -23,7 +23,7 @@ feature 'Create trade request', js: true do
         should_see 'Name'
         should_see 'Location'
         should_see 'Trade Type'
-        should_see 'Profit Margin'
+        should_see 'Percentage Profit'
         should_be_located '/u/trade_requests/new'
       end
       When 'I click save' do
@@ -37,7 +37,7 @@ feature 'Create trade request', js: true do
       When 'I fill out the form' do
         fill_in :trade_request_name, with: 'Best Trade Ever'
         fill_in :trade_request_location, with: 'New York City, New York'
-        choose :trade_request_kind_sell
+        select "I am Buying Dash", from: "trade_request_kind"
         fill_in :trade_request_profit, with: '2.5'
       end
       When 'I click save' do
@@ -48,7 +48,7 @@ feature 'Create trade request', js: true do
       end
       And 'the record should be created with correct data' do
         expect(trade_request.name).to eq 'Best Trade Ever'
-        expect(trade_request.kind).to eq 'sell'
+        expect(trade_request.kind).to eq 'buy'
         expect(trade_request.profit).to eq '2.5'
         expect(trade_request.location).to eq 'New York City, New York'
         expect(trade_request.longitude).to eq -74.0059413

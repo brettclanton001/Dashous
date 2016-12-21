@@ -18,4 +18,8 @@ class Users::OffersController < Users::BaseController
   def offer_params
     params.require(:offer).permit(:trade_request_id)
   end
+
+  def set_section
+    @section = :offers
+  end
 end

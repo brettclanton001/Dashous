@@ -29,7 +29,7 @@ feature 'search for trade requests', js: true do
         should_see 'Search Results'
         should_see 'Use the search bar to find potential traders near you.'
         should_see 'The closest trades will be listed first.'
-        should_see 'Current Exchange: $8.34'
+        should_see '1 Dash = $8.34'
       end
       When 'I enter in my location' do
         fill_in :query, with: 'New York City, New York'

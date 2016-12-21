@@ -14,15 +14,10 @@
     = f.text_area :location, placeholder: "The full address of a well-populated public place like a Cafe, Bank, or Police Station. \r\rWARNING - Never use your Home or Work as a Trade Location"
   .field
     = f.label :kind, 'Trade Type'
-    %label
-      = f.radio_button :kind, :buy
-      I am Buying Dash
-    %label
-      = f.radio_button :kind, :sell
-      I am Selling Dash
+    = f.select :kind, [['I am Selling Dash', 'sell'], ['I am Buying Dash', 'buy']]
   .field
-    = f.label :profit, 'Profit Margin'
+    = f.label :profit, 'Percentage Profit'
     = f.text_field :profit, placeholder: 'A number like "2" or "5.5"'
   .actions
     = f.submit 'Save', class: 'button primary'
-    = link_to 'Cancel', trade_requests_path, class: 'button'
+    = link_to 'Cancel', trade_requests_path, class: 'button text'

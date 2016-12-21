@@ -43,4 +43,8 @@ class Users::TradeRequestsController < Users::BaseController
       :profit
     )
   end
+
+  def set_section
+    @section = :trade_requests
+  end
 end
