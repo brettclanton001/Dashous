@@ -17,6 +17,8 @@ hr
   border-size: 1px 0
 
 .content
+  box-sizing: border-box
+  min-height: calc(100vh - 100px)
   padding: 30px 30px 30px 210px
 
 @media (min-width: 721px)
@@ -27,6 +29,7 @@ hr
 @media (max-width: 720px)
 
   .content
+    min-height: calc(100vh - 111px)
     padding: 30px 20px
 
   .phone-hidden

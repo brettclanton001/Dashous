@@ -56,3 +56,9 @@
       - flash.each do |key, value|
         %div{class: "alert alert-#{key}"}= value
       = yield
+
+    .footer
+      = link_to 'Terms and Conditions', '#'
+      = link_to 'Privacy Policy', '#'
+      = link_to 'Github', 'https://github.com/brettclanton001/Dashous'
+      %span Dashous LLC
