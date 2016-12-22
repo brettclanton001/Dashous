@@ -18,10 +18,14 @@ feature 'search for trade requests', js: true do
       profit: '20'
   end
   given!(:geocode) { GeoHelper.define_stub 'New York City, New York', :geolocate_newyork }
+  given!(:geocode2) { GeoHelper.define_stub 'Stamford, New York', :geolocate_stamford }
   given!(:current_price) { stub_price(8.34) }
 
   context 'unauthenticated' do
     Steps 'I search for trade requests' do
+      Given 'location lookup by ip will be Butte' do
+        expect_any_instance_of(QueryService).to receive(:query).once.and_return('Stamford, New York')
+      end
       When 'I am on the homepage' do
         visit '/'
       end
@@ -30,6 +34,13 @@ feature 'search for trade requests', js: true do
         should_see 'You can use the search tool (above) to find people that want to trade in a specific location!'
         should_see 'Or if you like, we can guess your location:'
         should_see '1 Dash = $8.34'
+      end
+      When 'I ask dashous to guess my location' do
+        click_button 'Guess my location'
+      end
+      Then 'I should see the query input prefilled with my local city' do
+        should_see 'My Trade'
+        expect(page).to have_field('query', with: 'Stamford, New York')
       end
       When 'I enter in my location' do
         fill_in :query, with: 'New York City, New York'
