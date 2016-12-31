@@ -14,3 +14,7 @@ smtp_config:
   domain: <%= ENV['SMTP_DOMAIN'] %>
   port: <%= ENV['SMTP_PORT'] %>
   authentication: <%= ENV['SMTP_AUTH'] %>
+
+default_url:
+  host: <%= ENV['URL_HOST'] %>
+  port: <%= ENV['URL_PORT'] %>

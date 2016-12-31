@@ -48,7 +48,7 @@ def login_as(user)
   visit new_user_session_path
   fill_in :user_username, with: user.username
   fill_in :user_password, with: 'password'
-  click_button 'Log in'
+  click_button 'Login'
   within '.nav' do
     should_see 'Account'
   end

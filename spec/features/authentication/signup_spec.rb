@@ -32,7 +32,42 @@ feature 'Signup', js: true do
       fill_in :user_password_confirmation, with: '123456'
       click_button 'Signup'
     end
-    Then 'I should see links meant for an internal account' do
+    Then 'I should see a message about checking my email' do
+      should_see 'A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.'
+    end
+    And 'I should not be logged in' do
+      within '.nav' do
+        should_see 'Login'
+        should_see 'Signup'
+        should_not_see 'Offers'
+        should_not_see 'Trade Requests'
+        should_not_see 'Account'
+      end
+    end
+    When 'I visit the link' do
+      visit "/users/confirmation?confirmation_token=#{User.last.confirmation_token}"
+    end
+    Then 'I should see a success message' do
+      should_see 'Your email address has been successfully confirmed.'
+    end
+    And 'I should not be logged in' do
+      within '.nav' do
+        should_see 'Login'
+        should_see 'Signup'
+        should_not_see 'Offers'
+        should_not_see 'Trade Requests'
+        should_not_see 'Account'
+      end
+    end
+    When 'I log in' do
+      fill_in :user_username, with: 'JohnDoe'
+      fill_in :user_password, with: '123456'
+      click_button 'Login'
+    end
+    Then 'I see the success message' do
+      should_see 'Signed in successfully.'
+    end
+    And 'I should see links meant for an internal account' do
       within '.nav' do
         should_not_see 'Login'
         should_not_see 'Signup'
@@ -63,14 +98,8 @@ feature 'Signup', js: true do
       fill_in :user_password_confirmation, with: '123456'
       click_button 'Signup'
     end
-    Then 'I should see links meant for an internal account' do
-      within '.nav' do
-        should_not_see 'Login'
-        should_not_see 'Signup'
-        should_see 'Offers'
-        should_see 'Trade Requests'
-        should_see 'Account'
-      end
+    Then 'I should see a message about checking my email' do
+      should_see 'A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.'
     end
   end
 end

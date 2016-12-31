@@ -6,7 +6,6 @@ class User < ApplicationRecord
   has_many :incoming_reviews, class_name: 'Review', foreign_key: 'reviewed_user_id'
 
   # Include default devise modules. Others available are:
-  #  :confirmable,
   #  :lockable,
   #  :timeoutable,
   #  :validatable,
@@ -16,6 +15,7 @@ class User < ApplicationRecord
     :registerable,
     :recoverable,
     :rememberable,
+    :confirmable,
     :trackable
 
   attr_encrypted :email, key: Settings.attr_encrypted.key
@@ -51,6 +51,10 @@ end
 #  username               :string           not null
 #  encrypted_email        :string           not null
 #  encrypted_email_iv     :string           not null
+#  confirmation_token     :string
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
+#  unconfirmed_email      :string
 #
 # Indexes
 #
