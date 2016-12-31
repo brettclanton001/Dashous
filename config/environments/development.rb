@@ -54,4 +54,14 @@ Rails.application.configure do
 
   # URL
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    user_name: Settings.smtp_config.user_name,
+    password: Settings.smtp_config.password,
+    address: Settings.smtp_config.address,
+    domain: Settings.smtp_config.domain,
+    port: Settings.smtp_config.port,
+    authentication: Settings.smtp_config.authentication
+  }
 end
