@@ -12,9 +12,9 @@ smtp_config:
   password: <%= ENV['SMTP_PASSWORD'] %>
   address: <%= ENV['SMTP_ADDRESS'] %>
   domain: <%= ENV['SMTP_DOMAIN'] %>
-  port: <%= ENV['SMTP_PORT'] %>
-  authentication: <%= ENV['SMTP_AUTH'] %>
+  port: <%= ENV['SMTP_PORT'].to_i %>
+  authentication: <%= ENV['SMTP_AUTH'].to_sym %>
 
 default_url:
   host: <%= ENV['URL_HOST'] %>
-  port: <%= ENV['URL_PORT'] %>
+  port: <%= ENV['URL_PORT'].to_i %>
