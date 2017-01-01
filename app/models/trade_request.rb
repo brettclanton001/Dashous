@@ -18,12 +18,18 @@ class TradeRequest < ApplicationRecord
 
   geocoded_by :location
   after_validation :maybe_geocode
+  before_create :generate_slug
 
   private
 
   def maybe_geocode
     return true if longitude.present? and latitude.present?
     geocode
+  end
+
+  def generate_slug
+    return true if slug.present?
+    self.slug = SlugService.generate(name)
   end
 end
 
@@ -41,4 +47,9 @@ end
 #  location   :string           not null
 #  latitude   :float
 #  longitude  :float
+#  slug       :string           not null
+#
+# Indexes
+#
+#  index_trade_requests_on_slug  (slug) UNIQUE
 #

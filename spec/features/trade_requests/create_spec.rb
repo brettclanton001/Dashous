@@ -53,6 +53,7 @@ feature 'Create trade request', js: true do
         expect(trade_request.location).to eq 'New York City, New York'
         expect(trade_request.longitude).to eq -74.0059413
         expect(trade_request.latitude).to eq 40.7127837
+        expect(trade_request.slug).to eq 'best_trade_ever'
       end
     end
   end
