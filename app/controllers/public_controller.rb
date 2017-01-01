@@ -4,12 +4,12 @@ class PublicController < ApplicationController
       @query = QueryService.new(request.location).query
     end
     if @query
-      @trade_requests = TradeRequest.near(@query, 5000).limit(20).decorate
+      @trade_requests = TradeRequest.active.near(@query, 5000).limit(20).decorate
     end
   end
 
   def trade_request
-    if trade_request = TradeRequest.find_by_slug(params[:trade_request_slug])
+    if trade_request = TradeRequest.active.find_by_slug(params[:trade_request_slug])
       @trade_request = trade_request.decorate
     else
       render :not_found

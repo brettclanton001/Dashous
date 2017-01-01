@@ -30,6 +30,7 @@ feature 'my trade requests are editable', js: true do
         within '.table-list .row:first-child' do
           should_not_see 'Edit'
           should_not_see 'View'
+          should_not_see 'Disable'
         end
       end
       When 'I click the gear for the trade request' do
@@ -41,6 +42,7 @@ feature 'my trade requests are editable', js: true do
         within '.table-list .row:first-child' do
           should_see 'Edit'
           should_see 'View'
+          should_see 'Disable'
         end
       end
       When 'I click the link to edit' do
@@ -130,6 +132,59 @@ feature 'my trade requests are editable', js: true do
       end
       And 'I should not be on the edit form' do
         should_not_see 'Edit Trade Request'
+      end
+    end
+
+    Steps 'I disable & activate my trade request' do
+      Given 'I am on the trade requests page' do
+        should_be_located '/u/trade_requests'
+      end
+      Then 'I should see my trade request' do
+        within '.table-list .row:first-child' do
+          should_see 'My Trade'
+          should_see 'Active'
+          should_not_see 'Disabled'
+        end
+      end
+      When 'I click the gear for the trade request' do
+        within '.table-list .row:first-child' do
+          find('.fa-cog').click
+        end
+      end
+      And 'I click Disable' do
+        within '.table-list .row:first-child' do
+          click_link 'Disable'
+        end
+      end
+      Then 'I should see a success message' do
+        should_see 'Trade Request Disabled.'
+      end
+      And 'I should see my disabled trade request' do
+        within '.table-list .row:first-child' do
+          should_see 'My Trade'
+          should_see 'Disabled'
+          should_not_see 'Active'
+        end
+      end
+      When 'I click the gear for the trade request' do
+        within '.table-list .row:first-child' do
+          find('.fa-cog').click
+        end
+      end
+      And 'I click Activate' do
+        within '.table-list .row:first-child' do
+          click_link 'Activate'
+        end
+      end
+      Then 'I should see a success message' do
+        should_see 'Trade Request Activated!'
+      end
+      And 'I should see my disabled trade request' do
+        within '.table-list .row:first-child' do
+          should_see 'My Trade'
+          should_see 'Active'
+          should_not_see 'Disabled'
+        end
       end
     end
   end

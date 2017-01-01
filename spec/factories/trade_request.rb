@@ -9,6 +9,7 @@ FactoryGirl.define do
     location 'New York City, New York'
     longitude -74.0059413
     latitude 40.7127837
+    active true
 
     trait :new_york do
       location 'New York City, New York'

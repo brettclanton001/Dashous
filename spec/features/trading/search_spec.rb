@@ -17,6 +17,14 @@ feature 'search for trade requests', js: true do
       kind: 'buy',
       profit: '20'
   end
+  given!(:trade_request3) do
+    create :trade_request, :stamford,
+      user: user2,
+      name: "Another Guy's Disabled Trade",
+      active: false,
+      kind: 'buy',
+      profit: '20'
+  end
   given!(:geocode) { GeoHelper.define_stub 'New York City, New York', :geolocate_newyork }
   given!(:geocode2) { GeoHelper.define_stub 'Stamford, New York', :geolocate_stamford }
   given!(:current_price) { stub_price(8.34) }
@@ -50,6 +58,7 @@ feature 'search for trade requests', js: true do
       end
       Then 'I should see search results' do
         should_see 'Search Results'
+        should_not_see "Another Guy's Disabled Trade"
         within '.table-list .row:first-child' do
           should_see 'My Trade'
           should_see '0.0 miles E'

@@ -4,7 +4,10 @@
   = link_to link_url, class: 'name' do
     = trade_request.name
   .info
-    Active
+    - if trade_request.active
+      Active
+    - else
+      Disabled
   .info
     = trade_request.offers.count
     Offers
@@ -12,7 +15,12 @@
     .fa.fa-cog.fa-lg{onclick: 'window.onClickActionToggle(this)'}
     .action-list
       = link_to 'Edit', edit_trade_request_path(trade_request)
-      = link_to 'View', public_trade_request_path(trade_request.slug)
+
+      = link_to 'View', public_trade_request_path(trade_request.slug) if trade_request.active
+
+      = link_to 'Activate', trade_request_activate_path(trade_request), method: 'PATCH' unless trade_request.active
+      = link_to 'Disable', trade_request_disable_path(trade_request), method: 'PATCH' if trade_request.active
+
       = link_to 'Show Offers', link_url unless expanded
       = link_to 'Hide Offers', link_url if expanded
 - if expanded

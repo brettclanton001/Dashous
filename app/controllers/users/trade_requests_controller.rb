@@ -1,5 +1,5 @@
 class Users::TradeRequestsController < Users::BaseController
-  before_action :set_trade_request, only: [:show, :edit, :update, :destroy]
+  before_action :set_trade_request, only: [:show, :edit, :update, :activate, :disable]
 
   def index
     @trade_requests = current_user.trade_requests
@@ -11,7 +11,7 @@ class Users::TradeRequestsController < Users::BaseController
   end
 
   def create
-    @trade_request = current_user.trade_requests.build(trade_request_params)
+    @trade_request = current_user.trade_requests.build(trade_request_params.merge(active: true))
 
     if @trade_request.save
       redirect_to trade_requests_path, notice: 'Trade request was successfully created.'
@@ -28,10 +28,29 @@ class Users::TradeRequestsController < Users::BaseController
     end
   end
 
+  def activate
+    @trade_request.active = true
+
+    if @trade_request.save
+      redirect_to request.referer,
+        notice: 'Trade Request Activated!'
+    end
+  end
+
+  def disable
+    @trade_request.active = false
+
+    if @trade_request.save
+      redirect_to request.referer,
+        notice: 'Trade Request Disabled.'
+    end
+  end
+
   private
 
   def set_trade_request
-    @trade_request = current_user.trade_requests.where(id: params[:id]).first
+    trade_request_id = params[:id] || params[:trade_request_id]
+    @trade_request = current_user.trade_requests.where(id: trade_request_id).first
     redirect_to trade_requests_path unless @trade_request.present?
   end
 

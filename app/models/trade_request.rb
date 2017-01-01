@@ -8,6 +8,8 @@ class TradeRequest < ApplicationRecord
   belongs_to :user
   has_many :offers
 
+  scope :active, -> { where(active: true) }
+
   validates :kind, inclusion: { in: KINDS }
   validates_presence_of \
     :user_id,
@@ -48,6 +50,7 @@ end
 #  latitude   :float
 #  longitude  :float
 #  slug       :string           not null
+#  active     :boolean          default(FALSE), not null
 #
 # Indexes
 #
