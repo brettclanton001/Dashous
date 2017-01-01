@@ -2,12 +2,14 @@
   height: 70px
   box-shadow: rgba(0,0,0,0.1) 0 2px 4px
   .logo
+    position: relative
     height: 70px
     width: 180px
     float: left
     background-color: $blue
     text-align: center
     line-height: 70px
+    z-index: 2
     a
       font-size: 24px
       font-weight: bold
@@ -17,13 +19,16 @@
     .mobile-nav
       display: none
   .top-nav
+    position: relative
     box-sizing: border-box
     height: 70px
     padding: 10px 10px 10px 200px
     background-color: $white
+    z-index: 1
     .search
       position: relative
       width: 460px
+      max-width: 80%
       height: 50px
       overflow: hidden
       border-radius: 3px
@@ -106,10 +111,15 @@
             position: relative
             top: 1px
     .top-nav
-      height: auto
-      padding: 5px 10px
+      height: 40px
       .search
-        width: 100%
+        position: absolute
+        top: 5px
+        left: 10px
+        bottom: 5px
+        right: 80px
+        width: auto
+        max-width: none
         height: 30px
         input[type="text"]
           font-size: 12px
@@ -117,8 +127,19 @@
           top: 5px
         .search-button .fa
           top: -11px
+      .price
+        position: absolute
+        top: 5px
+        right: 10px
+        bottom: 5px
+        left: auto
+        width: 60px
+        padding: 0
+        margin: 0
+        text-align: center
+        font-size: 12px
 
 @media (max-width: 830px)
   .header
-    .price
+    .price-description
       display: none

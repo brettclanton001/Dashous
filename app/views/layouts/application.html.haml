@@ -25,14 +25,14 @@
               Signup
       .top-nav
         = form_tag('/', method: 'POST', class: 'search') do
-          = text_field_tag :query, @query, placeholder: 'Search City, State or Country'
+          = text_field_tag :query, @query, placeholder: 'City, State or Country'
           .fa.fa-crosshairs.fa-lg.js-geolocate(title="Use current location" onclick="window.getGeolocation()")
           %label.search-button
             %input(type="submit" value="")
             .fa.fa-search.fa-lg
-      .price
-        1 Dash =
-        = number_to_currency PriceService.current_price
+        .price
+          %span.price-description 1 Dash =
+          = number_to_currency PriceService.current_price
     .nav
       - if current_user
         = link_to offers_path, class: "item #{'active' if @section == :offers}" do
