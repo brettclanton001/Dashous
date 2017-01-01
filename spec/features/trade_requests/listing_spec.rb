@@ -37,7 +37,7 @@ feature 'my trade requests are listed correctly', js: true do
         within 'h1' do
           should_see 'My Trade'
         end
-        should_be_located public_trade_request_path(trade_request1.id)
+        should_be_located public_trade_request_path(trade_request1.slug)
       end
     end
   end

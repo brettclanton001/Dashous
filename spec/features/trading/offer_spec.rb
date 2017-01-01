@@ -28,7 +28,7 @@ feature 'Make an offer', js: true do
 
     Steps 'I make my first offer and it is accepted' do
       When 'I visit the trade request page' do
-        visit public_trade_request_path(trade_request2.id)
+        visit public_trade_request_path(trade_request2.slug)
       end
       Then 'I should see the trade request' do
         within '.content' do
@@ -85,7 +85,7 @@ feature 'Make an offer', js: true do
         end
       end
       Then 'I should see the trade request' do
-        should_be_located "/t/#{trade_request2.id}"
+        should_be_located '/t/another_guys_trade'
         within '.content' do
           should_see "Another Guy's Trade"
           should_see 'This person is selling Dash'
@@ -274,7 +274,7 @@ feature 'Make an offer', js: true do
 
     Steps 'I make my first offer and it is declined' do
       When 'I visit the trade request page' do
-        visit public_trade_request_path(trade_request2.id)
+        visit public_trade_request_path(trade_request2.slug)
       end
       Then 'I should see the trade request' do
         within '.content' do
@@ -331,7 +331,7 @@ feature 'Make an offer', js: true do
         end
       end
       Then 'I should see the trade request' do
-        should_be_located "/t/#{trade_request2.id}"
+        should_be_located '/t/another_guys_trade'
         within '.content' do
           should_see "Another Guy's Trade"
           should_see 'This person is selling Dash'

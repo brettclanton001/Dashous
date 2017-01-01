@@ -17,7 +17,7 @@
       - user = trade_request.user
       .row
         .name
-          = link_to trade_request.name, public_trade_request_path(trade_request.id)
+          = link_to trade_request.name, public_trade_request_path(trade_request.slug)
         .info
           = link_to user.username, public_user_profile_path(user.username)
         .info

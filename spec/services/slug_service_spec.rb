@@ -3,7 +3,7 @@ require 'spec_helper'
 describe SlugService do
 
   describe '#generate' do
-    let(:name) { "I'm the best NAME -- Ever.." }
+    let(:name) { "I'm the best NAME -- Ever.!?" }
     subject { described_class.generate(name) }
 
     it 'should snake-case the name' do

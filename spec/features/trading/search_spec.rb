@@ -70,7 +70,7 @@ feature 'search for trade requests', js: true do
         within '.content h1' do
           should_see "Another Guy's Trade"
         end
-        should_be_located "/t/#{trade_request2.id}"
+        should_be_located '/t/another_guys_trade'
       end
     end
   end

@@ -12,7 +12,7 @@
     .fa.fa-cog.fa-lg{onclick: 'window.onClickActionToggle(this)'}
     .action-list
       = link_to 'Edit', edit_trade_request_path(trade_request)
-      = link_to 'View', public_trade_request_path(trade_request.id)
+      = link_to 'View', public_trade_request_path(trade_request.slug)
       = link_to 'Show Offers', link_url unless expanded
       = link_to 'Hide Offers', link_url if expanded
 - if expanded

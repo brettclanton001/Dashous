@@ -8,7 +8,7 @@ module SlugService extend self
 
   def format(name)
     name.downcase
-      .gsub(/['.-]/, '')
+      .gsub(/['\.\-\!\?]/, '')
       .tr('^A-Za-z0-9', '_')
       .gsub('__', '_')
       .slice(0, 40)

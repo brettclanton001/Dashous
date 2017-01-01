@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   ## Public Pages
   root to: 'public#search'
   post '/', to: 'public#search'
-  get '/t/:trade_request_id', to: 'public#trade_request', as: :public_trade_request
+  get '/t/:trade_request_slug', to: 'public#trade_request', as: :public_trade_request
   get '/p/:username', to: 'public#user_profile', as: :public_user_profile
 
   ## Devise

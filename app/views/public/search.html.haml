@@ -16,7 +16,7 @@
 
   .table-list
     - @trade_requests.each do |trade_request|
-      = link_to public_trade_request_path(trade_request.id), class: 'row' do
+      = link_to public_trade_request_path(trade_request.slug), class: 'row' do
         .name= trade_request.name
         .info
           - distance = trade_request.distance_to(@query)

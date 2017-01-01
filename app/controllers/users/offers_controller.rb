@@ -8,7 +8,7 @@ class Users::OffersController < Users::BaseController
     @offer = current_user.offers.build(offer_params.merge(status: :pending))
 
     if @offer.save
-      redirect_to public_trade_request_path(@offer.trade_request_id),
+      redirect_to public_trade_request_path(@offer.trade_request.slug),
         notice: 'Offer successfully created. Please wait for a reply.'
     end
   end

@@ -9,7 +9,11 @@ class PublicController < ApplicationController
   end
 
   def trade_request
-    @trade_request = TradeRequest.find(params[:trade_request_id]).decorate
+    if trade_request = TradeRequest.find_by_slug(params[:trade_request_slug])
+      @trade_request = trade_request.decorate
+    else
+      render :not_found
+    end
   end
 
   def user_profile
