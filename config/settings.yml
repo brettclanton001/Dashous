@@ -7,6 +7,9 @@ attr_encrypted:
 google_maps_embed:
   key: <%= ENV['GOOGLE_MAPS_EMBED_API_KEY'] %>
 
+google_geocode:
+  key: <%= ENV['GOOGLE_GEOCODE_API_KEY'] %>
+
 smtp_config:
   user_name: <%= ENV['SMTP_USER_NAME'] %>
   password: <%= ENV['SMTP_PASSWORD'] %>
