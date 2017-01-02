@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170101154329) do
+ActiveRecord::Schema.define(version: 20170102165245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20170101154329) do
     t.string   "status",           null: false
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.index ["user_id", "trade_request_id"], name: "index_offers_on_user_id_and_trade_request_id", unique: true, using: :btree
   end
 
   create_table "reviews", force: :cascade do |t|

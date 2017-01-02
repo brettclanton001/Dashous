@@ -16,6 +16,8 @@ class Offer < ApplicationRecord
     :user_id,
     :trade_request_id,
     :status
+  validate :offer_users
+  validate :previous_offers, on: :create
 
   scope :approved, -> { where(status: 'approved') }
 
@@ -37,6 +39,20 @@ class Offer < ApplicationRecord
 
   def reviewed_by?(user)
     reviews.where(reviewing_user: user).exists?
+  end
+
+  private
+
+  def offer_users
+    if self.user == self.trade_request.user
+      errors.add(:user, 'You cannot make an offer with yourself.')
+    end
+  end
+
+  def previous_offers
+    if self.user.offers.where(trade_request_id: self.trade_request_id, status: [:pending, :declined]).exists?
+      errors.add(:user, 'You cannot make an offer on this trade request at this time.')
+    end
   end
 end
 

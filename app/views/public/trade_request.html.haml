@@ -22,16 +22,10 @@
   The trade location is:
   = @trade_request.location
 
-- if current_user.nil?
-  %p
-    %button.disabled Make Offer
-  %p
-    Please login to make an offer.
-- elsif current_user.offers.where(trade_request_id: @trade_request.id).exists?
-  %p
-    %button.disabled Make Offer
-  %p
-    Offer pending...
-- else
+- if @trade_request.offer_possible current_user
   %p
     = link_to 'Make Offer', offers_path('offer[trade_request_id]': @trade_request.id), method: 'POST', class: 'button primary'
+- else
+  %p
+    %button.disabled Make Offer
+  %p= @trade_request.offer_restricted_reason current_user

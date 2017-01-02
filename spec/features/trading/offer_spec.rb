@@ -421,12 +421,12 @@ feature 'Make an offer', js: true do
       end
       When 'I navigate to my offers list page' do
         within '.nav' do
-          click_link 'Offers'
+          click_link 'My Offers'
         end
       end
       Then 'I should see this offer' do
         within '.content' do
-          should_see 'Offers'
+          should_see 'My Offers'
           within '.table-list .row:first-child' do
             should_see "Another Guy's Trade"
             should_see 'Declined'
@@ -436,6 +436,39 @@ feature 'Make an offer', js: true do
       And 'I should not see an email link' do
         within '.table-list .row:first-child .actions' do
           should_not_see_element 'a[href="mailto:ken@email.com"]', text: 'Email'
+        end
+      end
+      When 'I visit the trade request page' do
+        visit public_trade_request_path(trade_request2.slug)
+      end
+      Then 'I should see the trade request' do
+        within '.content' do
+          should_see "Another Guy's Trade"
+          should_see 'This person is selling Dash'
+          should_see 'This person wants a 12% profit so the current sale price is $11.20'
+          should_see 'The trade location is: Stamford'
+          within 'button.disabled' do
+            should_see 'Make Offer'
+          end
+          should_see 'Offer declined.'
+        end
+      end
+    end
+
+    Steps 'I attempt to create an offer with myself' do
+      When 'I visit the trade request page' do
+        visit public_trade_request_path(trade_request1.slug)
+      end
+      Then 'I should see the trade request' do
+        within '.content' do
+          should_see 'My Trade'
+          should_see 'This person is selling Dash'
+          should_see 'This person wants a 12% profit so the current sale price is $11.20'
+          should_see 'The trade location is: New York'
+          within 'button.disabled' do
+            should_see 'Make Offer'
+          end
+          should_see 'This is your Trade Request.'
         end
       end
     end
