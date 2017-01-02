@@ -1,4 +1,5 @@
-- class_name = expanded ? 'row expanded' : 'row collapsed'
+- state_class_name = expanded ? 'row expanded' : 'row collapsed'
+- class_name = trade_request.offers.empty? ? 'row' : state_class_name
 - link_url = expanded ? trade_requests_path : trade_requests_path(expand: trade_request.id)
 %div{class: class_name}
   = link_to link_url, class: 'name' do
@@ -21,8 +22,9 @@
       = link_to 'Activate', trade_request_activate_path(trade_request), method: 'PATCH' unless trade_request.active
       = link_to 'Disable', trade_request_disable_path(trade_request), method: 'PATCH' if trade_request.active
 
-      = link_to 'Show Offers', link_url unless expanded
-      = link_to 'Hide Offers', link_url if expanded
+      - unless trade_request.offers.empty?
+        = link_to 'Show Offers', link_url unless expanded
+        = link_to 'Hide Offers', link_url if expanded
 - if expanded
   - trade_request.offers.each do |offer|
     - offer = offer.decorate
