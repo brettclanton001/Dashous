@@ -1,5 +1,11 @@
-= link_to 'View my Public Profile', public_user_profile_path(current_user.username), class: 'button primary'
+%h1 Account
 
 %hr
 
+%p You have a public profile page that you can share with others:
+= link_to 'View my Public Profile', public_user_profile_path(current_user.username), class: 'button primary'
+
+%p &nbsp;
+
+%p Logout if you're done using Dashous on a public computer.
 = link_to 'Logout', destroy_user_session_path, method: 'DELETE', class: 'button'
