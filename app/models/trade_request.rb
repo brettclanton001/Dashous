@@ -17,12 +17,20 @@ class TradeRequest < ApplicationRecord
     :location,
     :kind,
     :profit
+  validate :profit_valid
 
   geocoded_by :location
   after_validation :maybe_geocode
   before_create :generate_slug
 
   private
+
+  def profit_valid
+    valid = true if Float(self.profit) rescue false
+    unless valid
+      errors.add(:profit, "must be a number")
+    end
+  end
 
   def maybe_geocode
     return true if longitude.present? and latitude.present?

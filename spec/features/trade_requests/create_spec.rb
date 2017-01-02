@@ -33,14 +33,24 @@ feature 'Create trade request', js: true do
         should_see 'New Trade Request'
         should_see "Name can't be blank"
         should_see "Location can't be blank"
+        should_see "Profit can't be blank"
       end
       When 'I fill out the form' do
         fill_in :trade_request_name, with: 'Best Trade Ever'
         fill_in :trade_request_location, with: 'New York City, New York'
         select "I am Buying Dash", from: "trade_request_kind"
+        fill_in :trade_request_profit, with: 'foo'
+      end
+      And 'I click save' do
+        click_button 'Save'
+      end
+      Then 'I should see validation errors' do
+        should_see "Profit must be a number"
+      end
+      When 'I fill out the form' do
         fill_in :trade_request_profit, with: '2.5'
       end
-      When 'I click save' do
+      And 'I click save' do
         click_button 'Save'
       end
       Then 'I should be on the list view' do
