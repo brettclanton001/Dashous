@@ -1,5 +1,7 @@
 %h1= @profile_user.username
 
+%hr
+
 %p
   Total Trades:
   = @profile_user.total_trades
@@ -7,3 +9,20 @@
 %p
   Reputation:
   = @profile_user.reputation
+
+- if @trade_requests.present?
+
+  %p &nbsp;
+
+  %h1 Trade Requests
+
+  %hr
+
+  .table-list
+    - @trade_requests.each do |trade_request|
+      = link_to public_trade_request_path(trade_request.slug), class: 'row' do
+        .name= trade_request.name
+        .info= trade_request.location
+        .info= trade_request.intention
+        .info= number_to_currency trade_request.sale_price
+

@@ -202,10 +202,8 @@ feature 'Make an offer', js: true do
         click_link 'Bob'
       end
       Then 'I should see bobs profile page' do
-        within 'h1' do
-          should_see 'Bob'
-          should_be_located '/p/Bob'
-        end
+        should_see 'Bob'
+        should_be_located '/p/Bob'
       end
       When 'I logout' do
         logout

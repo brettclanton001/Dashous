@@ -11,6 +11,10 @@ feature 'viewing a user provile', js: true do
     create :user,
       username: 'fooColins'
   end
+  given!(:inactive_user) do
+    create :user,
+      username: 'noob'
+  end
   given!(:trade_request1) do
     create :trade_request, :new_york,
       user: user1,
@@ -115,6 +119,37 @@ feature 'viewing a user provile', js: true do
     end
     And 'I should see the reputation of the user' do
       should_see '50% positive reviews (2 reviews)'
+    end
+    And 'I should see my trade requests' do
+      should_see 'Trade Requests'
+      should_see 'My Trade'
+      should_see 'My Trade 2'
+      should_see 'My Trade 3'
+      should_not_see "Another Guy's Trade"
+    end
+  end
+
+  Steps 'I should see simple info for a person that has not done anything' do
+    When 'I visit the profile url' do
+      visit '/p/noob'
+    end
+    Then 'I should see public information' do
+      should_see 'noob'
+    end
+    And 'I should not see private information' do
+      should_not_see 'keepmesecret'
+      should_not_see 'nevershowme'
+    end
+    And 'I should see the correct number of trades that the user has had' do
+      should_see 'Total Trades: 0'
+    end
+    And 'I should see the reputation of the user' do
+      should_see '0% positive reviews (0 reviews)'
+    end
+    And 'I should not see the trade requests section' do
+      should_not_see 'Trade Requests'
+      should_not_see 'My Trade'
+      should_not_see "Another Guy's Trade"
     end
   end
 
