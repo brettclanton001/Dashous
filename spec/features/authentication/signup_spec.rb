@@ -16,7 +16,9 @@ feature 'Signup', js: true do
       end
     end
     When 'I click the Signup link' do
-      click_link 'Signup'
+      within '.nav' do
+        click_link 'Signup'
+      end
     end
     Then 'I should be on the sign up page' do
       within '.content' do

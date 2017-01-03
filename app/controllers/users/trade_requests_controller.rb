@@ -2,7 +2,7 @@ class Users::TradeRequestsController < Users::BaseController
   before_action :set_trade_request, only: [:show, :edit, :update, :activate, :disable]
 
   def index
-    @trade_requests = current_user.trade_requests
+    @trade_requests = current_user.trade_requests.order('created_at DESC')
     @expand = params[:expand].to_i
   end
 

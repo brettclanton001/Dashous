@@ -31,19 +31,19 @@ feature 'my trade requests are listed correctly', js: true do
       end
       Then 'I should see my trade request' do
         within '.table-list .row:first-child' do
-          should_see 'My Trade'
-          should_see 'Active'
-        end
-        within '.table-list .row:last-child' do
           should_see 'My Other Trade'
           should_see 'Disabled'
+        end
+        within '.table-list .row:last-child' do
+          should_see 'My Trade'
+          should_see 'Active'
         end
       end
       And "I should not see other people's trade requests" do
         should_not_see "Another Guy's Trade"
       end
       When 'I click the view link' do
-        within '.table-list .row:first-child' do
+        within '.table-list .row:last-child' do
           find('.actions .fa-cog').click
           click_link 'View'
         end
@@ -59,16 +59,16 @@ feature 'my trade requests are listed correctly', js: true do
       end
       Then 'I should see my trade request' do
         within '.table-list .row:first-child' do
-          should_see 'My Trade'
-          should_see 'Active'
-        end
-        within '.table-list .row:last-child' do
           should_see 'My Other Trade'
           should_see 'Disabled'
         end
+        within '.table-list .row:last-child' do
+          should_see 'My Trade'
+          should_see 'Active'
+        end
       end
       When 'I open the gear menu for the disabled Trade Request' do
-        within '.table-list .row:last-child' do
+        within '.table-list .row:first-child' do
           find('.actions .fa-cog').click
         end
       end
