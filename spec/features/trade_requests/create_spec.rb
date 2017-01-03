@@ -64,6 +64,92 @@ feature 'Create trade request', js: true do
         expect(trade_request.longitude).to eq -74.0059413
         expect(trade_request.latitude).to eq 40.7127837
         expect(trade_request.slug).to eq 'best_trade_ever'
+        expect(trade_request.active).to eq true
+      end
+    end
+
+    describe 'correctly setting default active states based on limit of 2 active trade requests' do
+
+      context 'I already have one active trade requests' do
+        let!(:trade_request_1) { create :trade_request, user: user }
+
+        Steps 'I create a trade request' do
+          When 'I click the create button' do
+            click_link '+ Create New'
+          end
+          When 'I fill out the form' do
+            fill_in :trade_request_name, with: 'Best Trade Ever'
+            fill_in :trade_request_location, with: 'New York City, New York'
+            select "I am Buying Dash", from: "trade_request_kind"
+            fill_in :trade_request_profit, with: '2.5'
+          end
+          And 'I click save' do
+            click_button 'Save'
+          end
+          Then 'I should be on the list view' do
+            should_see '+ Create New'
+          end
+          And 'the record should be created with correct data' do
+            expect(trade_request.name).to eq 'Best Trade Ever'
+            expect(trade_request.active).to eq true
+          end
+        end
+      end
+
+      context 'I already have two active trade requests' do
+        let!(:trade_request_1) { create :trade_request, user: user }
+        let!(:trade_request_2) { create :trade_request, user: user }
+
+        Steps 'I create a trade request' do
+          When 'I click the create button' do
+            click_link '+ Create New'
+          end
+          When 'I fill out the form' do
+            fill_in :trade_request_name, with: 'Best Trade Ever'
+            fill_in :trade_request_location, with: 'New York City, New York'
+            select "I am Buying Dash", from: "trade_request_kind"
+            fill_in :trade_request_profit, with: '2.5'
+          end
+          And 'I click save' do
+            click_button 'Save'
+          end
+          Then 'I should be on the list view' do
+            should_see '+ Create New'
+          end
+          And 'the record should be created with correct data' do
+            expect(trade_request.name).to eq 'Best Trade Ever'
+            expect(trade_request.active).to eq false
+          end
+        end
+      end
+
+      context 'I already have two active trade requests and two inactive' do
+        let!(:trade_request_1) { create :trade_request, user: user }
+        let!(:trade_request_2) { create :trade_request, user: user }
+        let!(:trade_request_3) { create :trade_request, user: user, active: false }
+        let!(:trade_request_4) { create :trade_request, user: user, active: false }
+
+        Steps 'I create a trade request' do
+          When 'I click the create button' do
+            click_link '+ Create New'
+          end
+          When 'I fill out the form' do
+            fill_in :trade_request_name, with: 'Best Trade Ever'
+            fill_in :trade_request_location, with: 'New York City, New York'
+            select "I am Buying Dash", from: "trade_request_kind"
+            fill_in :trade_request_profit, with: '2.5'
+          end
+          And 'I click save' do
+            click_button 'Save'
+          end
+          Then 'I should be on the list view' do
+            should_see '+ Create New'
+          end
+          And 'the record should be created with correct data' do
+            expect(trade_request.name).to eq 'Best Trade Ever'
+            expect(trade_request.active).to eq false
+          end
+        end
       end
     end
   end

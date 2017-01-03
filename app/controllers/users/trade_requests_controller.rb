@@ -11,7 +11,7 @@ class Users::TradeRequestsController < Users::BaseController
   end
 
   def create
-    @trade_request = current_user.trade_requests.build(trade_request_params.merge(active: true))
+    @trade_request = TradeRequestService.new(current_user).build(trade_request_params)
 
     if @trade_request.save
       redirect_to trade_requests_path, notice: 'Trade request was successfully created.'
@@ -29,18 +29,21 @@ class Users::TradeRequestsController < Users::BaseController
   end
 
   def activate
-    @trade_request.active = true
+    service = TradeRequestService.new(current_user, @trade_request)
 
-    if @trade_request.save
+    if service.activate
       redirect_to request.referer,
         notice: 'Trade Request Activated!'
+    else
+      redirect_to request.referer,
+        alert: 'Trade Request not activated. You can only have two active trade requests at a time. You must disable another if you wish to activate this one.'
     end
   end
 
   def disable
-    @trade_request.active = false
+    service = TradeRequestService.new(current_user, @trade_request)
 
-    if @trade_request.save
+    if service.disable
       redirect_to request.referer,
         notice: 'Trade Request Disabled.'
     end

@@ -187,6 +187,43 @@ feature 'my trade requests are editable', js: true do
         end
       end
     end
+
+    context 'I already have two active trade requests and two inactive' do
+      given!(:trade_request1) do
+        create :trade_request, :new_york,
+          user: user1,
+          name: 'My Trade',
+          active: false
+      end
+      # trade_request2 defined above
+      given!(:trade_request3) { create :trade_request, user: user1, active: true }
+      given!(:trade_request4) { create :trade_request, user: user1, active: true }
+      given!(:trade_request5) { create :trade_request, user: user1, active: false }
+
+      Steps 'I cannot activate a 3rd trade request' do
+        And 'I should see my disabled trade request' do
+          within '.table-list .row:first-child' do
+            should_see 'My Trade'
+            should_see 'Disabled'
+            should_not_see 'Active'
+          end
+        end
+        When 'I click the gear for the trade request' do
+          within '.table-list .row:first-child' do
+            find('.fa-cog').click
+          end
+        end
+        And 'I click Activate' do
+          within '.table-list .row:first-child' do
+            click_link 'Activate'
+          end
+        end
+        Then 'I should see a success message' do
+          should_see 'Trade Request not activated. You can only have two active trade requests at a time. You must disable another if you wish to activate this one.'
+          should_not_see 'Trade Request Activated!'
+        end
+      end
+    end
   end
 end
 
