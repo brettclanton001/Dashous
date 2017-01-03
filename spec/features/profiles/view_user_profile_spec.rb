@@ -45,6 +45,12 @@ feature 'viewing a user provile', js: true do
       user: user2,
       name: "Another Guy's Trade 3"
   end
+  given!(:trade_request7) do
+    create :trade_request, :new_york,
+      user: user1,
+      name: 'My Disabled Trade',
+      active: false
+  end
   given!(:offer1) do
     create :offer,
       user: user2,
@@ -125,6 +131,7 @@ feature 'viewing a user provile', js: true do
       should_see 'My Trade'
       should_see 'My Trade 2'
       should_see 'My Trade 3'
+      should_not_see 'My Disabled Trade'
       should_not_see "Another Guy's Trade"
     end
   end

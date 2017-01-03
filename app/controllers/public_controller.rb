@@ -19,7 +19,7 @@ class PublicController < ApplicationController
   def user_profile
     if profile_user = User.find_by_username(params[:username])
       @profile_user = profile_user.decorate
-      @trade_requests = @profile_user.trade_requests.decorate
+      @trade_requests = @profile_user.trade_requests.active.decorate
     else
       render :not_found
     end
