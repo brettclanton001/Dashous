@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   post '/', to: 'public#search'
   get '/t/:trade_request_slug', to: 'public#trade_request', as: :public_trade_request
   get '/p/:username', to: 'public#user_profile', as: :public_user_profile
+  get :terms, to: 'public#terms'
+  get :privacy, to: 'public#privacy'
 
   ## Devise
   devise_for :users, skip: [:sessions, :registrations]
