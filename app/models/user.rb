@@ -24,11 +24,14 @@ class User < ApplicationRecord
     :username,
     uniqueness: true
   validates \
-    :encrypted_email,
+    :email,
     :encrypted_email_iv,
     :username,
+    :password,
+    :password_confirmation,
     presence: true
   validates_format_of :username, with: /\A[a-zA-Z0-9]+\z/
+  validates_acceptance_of :terms_and_conditions
 
 end
 

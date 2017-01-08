@@ -23,15 +23,54 @@ feature 'Signup', js: true do
     Then 'I should be on the sign up page' do
       within '.content' do
         should_see 'Signup'
-        should_see 'Password* (6 characters minimum)'
-        should_see 'Password Confirmation*'
+        should_see 'Password * (6 characters minimum)'
+        should_see 'Password Confirmation *'
+      end
+    end
+    When 'I submit the form' do
+      click_button 'Signup'
+    end
+    Then 'I should see validation errors' do
+      within '.content' do
+        should_see "Email can't be blank"
+        should_see "Username can't be blank"
+        should_see 'Username is invalid'
+        should_see "Password can't be blank"
+        should_see "Password confirmation can't be blank"
+        should_see 'Terms and conditions must be accepted'
       end
     end
     When 'I fill out and submit the form' do
       fill_in :user_email, with: 'test@example.com'
-      fill_in :user_username, with: 'JohnDoe'
+      fill_in :user_username, with: 'John Doe'
       fill_in :user_password, with: '123456'
       fill_in :user_password_confirmation, with: '123456'
+    end
+    And 'I submit the form' do
+      click_button 'Signup'
+    end
+    And 'I enter in a valid username' do
+      fill_in :user_username, with: 'JohnDoe'
+    end
+    And 'I submit the form' do
+      click_button 'Signup'
+    end
+    Then 'I should see validation errors' do
+      within '.content' do
+        should_not_see "Email can't be blank"
+        should_not_see "Username can't be blank"
+        should_not_see 'Username is invalid'
+        should_see 'Terms and conditions must be accepted'
+        expect(find_field('user[password]').value).to eq ''
+        expect(find_field('user[password_confirmation]').value).to eq ''
+      end
+    end
+    When 'I accept the terms and conditions and re-enter the password' do
+      check 'I accept the terms and conditions *'
+      fill_in :user_password, with: '123456'
+      fill_in :user_password_confirmation, with: '123456'
+    end
+    And 'I submit the form' do
       click_button 'Signup'
     end
     Then 'I should see a message about checking my email' do
@@ -98,6 +137,7 @@ feature 'Signup', js: true do
       fill_in :user_username, with: 'JohnDoe'
       fill_in :user_password, with: '123456'
       fill_in :user_password_confirmation, with: '123456'
+      check 'I accept the terms and conditions *'
       click_button 'Signup'
     end
     Then 'I should see a message about checking my email' do

@@ -1,4 +1,6 @@
-%h2 Login
+%h1 Login
+
+%hr
 
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
   .field
@@ -11,5 +13,3 @@
 
   .actions
     = f.submit "Login"
-
-=# render "devise/shared/links"
