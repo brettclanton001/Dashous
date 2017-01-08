@@ -2,7 +2,19 @@
 
 %hr
 
-- if @trade_requests.blank?
+- if @trade_requests.blank? and @query.present?
+
+  .empty-state
+    .fa.fa-lightbulb-o.fa-5x
+    %p It looks like no Trade Requests were found near you.
+    %p Be the first to create a Trade Request in your area!
+    - if current_user.present?
+      = link_to 'Create Trade Request', new_trade_request_path, class: 'button primary'
+    - else
+      = link_to 'Signup', new_user_registration_path, class: 'button primary'
+      %p ( it's free )
+
+- elsif @trade_requests.blank?
 
   .empty-state
     .fa.fa-search.fa-5x

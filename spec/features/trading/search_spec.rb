@@ -82,5 +82,108 @@ feature 'search for trade requests', js: true do
         should_be_located '/t/another_guys_trade'
       end
     end
+
+    context 'there are no Trade Requests in your area' do
+      given!(:trade_request1) { nil }
+      given!(:trade_request2) { nil }
+      given!(:trade_request3) { nil }
+
+      Steps 'I search for trade requests' do
+        Given 'location lookup by ip will be Butte' do
+          expect_any_instance_of(QueryService).to receive(:query).once.and_return('Stamford, New York')
+        end
+        When 'I am on the homepage' do
+          visit '/'
+        end
+        Then 'I should no search results' do
+          should_see 'Search Results'
+          should_see 'You can use the search tool (above) to find people that want to trade in a specific location!'
+          should_see 'Or if you like, we can guess your location:'
+          should_see '1 Dash = $8.34'
+        end
+        When 'I ask dashous to guess my location' do
+          click_button 'Guess my location'
+        end
+        Then 'I should see the query input prefilled with my local city' do
+          expect(page).to have_field('query', with: 'Stamford, New York')
+        end
+        And 'I should not see the messaging telling me how to search' do
+          should_see 'Search Results'
+          should_not_see 'You can use the search tool (above) to find people that want to trade in a specific location!'
+          should_not_see 'Or if you like, we can guess your location:'
+        end
+        And 'I should be encouraged to create an account and create a new Trade request' do
+          within '.empty-state' do
+            should_see 'It looks like no Trade Requests were found near you.'
+            should_see 'Be the first to create a Trade Request in your area!'
+            should_see 'Signup'
+            should_see "( it's free )"
+          end
+        end
+        When 'I click signup' do
+          within '.empty-state' do
+            click_link 'Signup'
+          end
+        end
+        Then 'I should be on the signup page' do
+          should_be_located '/signup'
+        end
+      end
+    end
+  end
+
+  context 'authenticated' do
+
+    background do
+      login_as user1
+    end
+
+    context 'there are no Trade Requests in your area' do
+      given!(:trade_request1) { nil }
+      given!(:trade_request2) { nil }
+      given!(:trade_request3) { nil }
+
+      Steps 'I search for trade requests' do
+        Given 'location lookup by ip will be Butte' do
+          expect_any_instance_of(QueryService).to receive(:query).once.and_return('Stamford, New York')
+        end
+        When 'I am on the homepage' do
+          visit '/'
+        end
+        Then 'I should no search results' do
+          should_see 'Search Results'
+          should_see 'You can use the search tool (above) to find people that want to trade in a specific location!'
+          should_see 'Or if you like, we can guess your location:'
+          should_see '1 Dash = $8.34'
+        end
+        When 'I ask dashous to guess my location' do
+          click_button 'Guess my location'
+        end
+        Then 'I should see the query input prefilled with my local city' do
+          expect(page).to have_field('query', with: 'Stamford, New York')
+        end
+        And 'I should not see the messaging telling me how to search' do
+          should_see 'Search Results'
+          should_not_see 'You can use the search tool (above) to find people that want to trade in a specific location!'
+          should_not_see 'Or if you like, we can guess your location:'
+        end
+        And 'I should be encouraged to create an account and create a new Trade request' do
+          within '.empty-state' do
+            should_see 'It looks like no Trade Requests were found near you.'
+            should_see 'Be the first to create a Trade Request in your area!'
+            should_not_see 'Signup'
+            should_not_see "( it's free )"
+          end
+        end
+        When 'I click signup' do
+          within '.empty-state' do
+            click_link 'Create Trade Request'
+          end
+        end
+        Then 'I should be on the signup page' do
+          should_be_located new_trade_request_path
+        end
+      end
+    end
   end
 end
