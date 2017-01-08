@@ -21,3 +21,6 @@ smtp_config:
 default_url:
   host: <%= ENV['URL_HOST'] %>
   port: <%= ENV['URL_PORT'].to_i %>
+
+cdn:
+  host: <%= ENV['CDN_HOST'] %>
