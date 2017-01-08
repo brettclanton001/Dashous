@@ -24,6 +24,10 @@ gem 'faraday'
 gem 'autoprefixer-rails'
 gem 'redis'
 
+group :production do
+  gem 'rails_12factor'
+end
+
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
