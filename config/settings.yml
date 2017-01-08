@@ -24,3 +24,6 @@ default_url:
 
 cdn:
   host: <%= ENV['CDN_HOST'] %>
+
+cors:
+  origins: <%= ENV.fetch('CORS_ORIGINS', '').split(',') %>

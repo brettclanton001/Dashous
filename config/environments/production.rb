@@ -75,6 +75,13 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
+  config.middleware.insert_before 0, Rack::Cors do
+    allow do
+      origins Settings.cors.origins
+      resource '*', headers: :any, methods: [:get]
+    end
+  end
+
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
