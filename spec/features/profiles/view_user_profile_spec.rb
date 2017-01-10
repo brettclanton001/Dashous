@@ -5,7 +5,8 @@ feature 'viewing a user provile', js: true do
     create :user,
       email: 'keepmesecret@gmail.com',
       username: 'mypublichandle',
-      password: 'nevershowme'
+      password: 'nevershowme',
+      password_confirmation: 'nevershowme'
   end
   given!(:user2) do
     create :user,

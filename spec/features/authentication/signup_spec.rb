@@ -144,4 +144,33 @@ feature 'Signup', js: true do
       should_see 'A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.'
     end
   end
+
+  Steps 'non-matching passwords' do
+    When 'I visit the signup page' do
+      visit '/signup'
+    end
+    And 'I enter in an invalid username' do
+      fill_in :user_username, with: 'John Doe'
+    end
+    When 'I fill out and submit the form' do
+      fill_in :user_email, with: 'test@example.com'
+      fill_in :user_username, with: 'JohnDoe'
+      fill_in :user_password, with: '123456'
+      fill_in :user_password_confirmation, with: '654321'
+      check 'I accept the terms and conditions *'
+      click_button 'Signup'
+    end
+    Then 'I should see an error' do
+      should_see "Password confirmation doesn't match Password"
+      should_not_see 'A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.'
+    end
+    When 'I fill out and submit the form' do
+      fill_in :user_password, with: '123456'
+      fill_in :user_password_confirmation, with: '123456'
+      click_button 'Signup'
+    end
+    Then 'I should see a message about checking my email' do
+      should_see 'A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.'
+    end
+  end
 end
