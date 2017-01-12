@@ -21,16 +21,16 @@ hr
   min-height: calc(100vh - 120px)
   padding: 30px 30px 30px 210px
 
-@media (min-width: 721px)
+@media (max-width: 800px)
+  .content
+    min-height: calc(100vh - 161px)
 
+@media (min-width: 721px)
   .phone-only
     display: none !important
 
 @media (max-width: 720px)
-
   .content
-    min-height: calc(100vh - 161px)
     padding: 30px 20px
-
   .phone-hidden
     display: none !important

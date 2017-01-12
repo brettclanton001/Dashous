@@ -67,7 +67,3 @@ end
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #
-# Indexes
-#
-#  index_offers_on_user_id_and_trade_request_id  (user_id,trade_request_id) UNIQUE
-#
