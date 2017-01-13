@@ -27,3 +27,6 @@ cdn:
 
 cors:
   origins: <%= ENV.fetch('CORS_ORIGINS', '').split(',') %>
+
+rack_timeout:
+  seconds: <%= ENV.fetch('TIMEOUT', 5).to_i %>

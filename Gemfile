@@ -4,7 +4,8 @@ ruby '2.3.1'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
-gem 'devise'
+gem 'redis'
+gem 'rack-timeout'
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -14,15 +15,16 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'font-awesome-sass'
-gem 'geocoder'
-gem 'newrelic_rpm'
 gem 'config'
 gem "attr_encrypted", "~> 3.0.0"
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml' # added for draper
-gem 'draper', github: 'audionerd/draper', branch: 'rails5'
 gem 'faraday'
 gem 'autoprefixer-rails'
-gem 'redis'
+
+gem 'draper', github: 'audionerd/draper', branch: 'rails5'
+gem 'devise'
+gem 'newrelic_rpm'
+gem 'geocoder'
 
 group :production do
   gem 'rails_12factor'
