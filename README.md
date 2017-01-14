@@ -99,6 +99,6 @@ later.
 
 Donation Address: `XrLFuhyvrm3PdPrCLNC9hM7hjdbAEvuZPL`
 
-![QR CODE](https://explorer.coinpayments.net/qraddr.php?addr=VxstoFBueS0EUwrfvumxOOjNxICZvlJ%2BJn6YCeSS0rBiaYYxClWdtLobjEuJq3nvaJf8C5l2ngN44cv925cg50IaL%2BCyXARlgdNzA3VQ7xGsvKv9JCp1mfLqH8P5lB548xq7pYa5MXQXnfYMpbLOhPM0%2BUlVm7uM8rEV9twXDTE%3D)
+![QR CODE](http://i.imgur.com/5tyPJla.png)
 
 Donation Instructions: [video](https://www.youtube.com/watch?v=I-BYzaDwNoE)
