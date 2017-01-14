@@ -15,6 +15,12 @@ This repo exists for three main reasons:
 1. **Supporting Altcoins**: This repo can be cloned and used for other new
    Altcoins with minimal changes.
 
+# Creating an "Issue"
+
+If you have a feature to request or a bug to report, [create a new issue](https://github.com/brettclanton001/Dashous/issues/new).
+
+Check [some of the issues that I created](https://github.com/brettclanton001/Dashous/issues/created_by/brettclanton001) for a guide in formatting.
+
 # Contributing
 It's expected that contributors have a solid understanding of how Ruby
 on Rails apps work.
