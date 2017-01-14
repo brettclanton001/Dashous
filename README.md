@@ -7,6 +7,7 @@ Reading further is not needed if you want to use the dashous service.
 Simply go to [Dashous.com](https://dashous.com) to get started.
 
 This repo exists for three main reasons:
+
 1. Transparency: I want to support the open source community and operate
    a service without user concerns about how I use their data.
 1. Community Contribution: I want members of the community to help build
