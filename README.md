@@ -18,7 +18,7 @@ This repo exists for three main reasons:
 It's expected that contributors have a solid understanding of how Ruby
 on Rails apps work.
 
-#### Configure:
+### Configure:
 
 Copy the development config file to enable it.
 ```
@@ -50,7 +50,7 @@ google_maps_embed:
   key: GOOGLE_EMBED_KEY
 ```
 
-#### Setup App
+### Setup App:
 
 1. Clone the app and enter the directory.
 1. Install Redis, usually: `brew install redis` or `sudo apt-get install redis-server`
@@ -61,7 +61,7 @@ google_maps_embed:
 1. View local app [localhost:3000](http://localhost:3000)
 
 
-#### Run specs
+### Run specs:
 [I maintain 100% spec coverage](https://github.com/brettclanton001/Dashous/blob/master/coverage/.last_run.json)
 on this app and will not accept PRs that don't maintain 100% coverage.
 
@@ -82,7 +82,7 @@ Coverage report generated for RSpec to
 path/to/dashous/coverage. 1579 / 1579 LOC (100.0%) covered.
 ```
 
-#### Create PR
-For right now, I don't have any formality to Pull Requests.  I'll
+### Submit Pull Request:
+For right now, I don't have any formality to PRs.  I'll
 consider any that are created.  I might add more specific requirements
 later.
