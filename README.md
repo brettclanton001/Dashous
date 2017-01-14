@@ -25,6 +25,8 @@ Check [some of the issues that I created](https://github.com/brettclanton001/Das
 It's expected that contributors have a solid understanding of how Ruby
 on Rails apps work.
 
+I also use Postgres locally. If you're unfamiliar/rusty with PG setup, I find [GoRails.com](https://gorails.com/setup) to be a high-quality resource for setup steps.
+
 ### Configure:
 
 Copy the development config file to enable it.
