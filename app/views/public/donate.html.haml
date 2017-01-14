@@ -1,0 +1,11 @@
+%h1 Donate
+
+%hr
+
+%br
+
+.field
+  %label Donation Address
+  %input{type: 'text', value: Settings.donations.address, readonly: 'readonly'}
+
+%img{src: Settings.donations.qr_code}

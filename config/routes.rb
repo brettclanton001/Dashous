@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/p/:username', to: 'public#user_profile', as: :public_user_profile
   get :terms, to: 'public#terms'
   get :privacy, to: 'public#privacy'
+  get :donate, to: 'public#donate'
 
   ## Devise
   devise_for :users, skip: [:sessions, :registrations]

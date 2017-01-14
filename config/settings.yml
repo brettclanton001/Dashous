@@ -30,3 +30,7 @@ cors:
 
 rack_timeout:
   seconds: <%= ENV.fetch('TIMEOUT', 5).to_i %>
+
+donations:
+  address: <%= ENV['DONATION_ADDRESS'] %>
+  qr_code: <%= ENV['DONATION_QR_CODE'] %>

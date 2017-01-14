@@ -77,9 +77,10 @@
       = yield
 
     .footer
-      = link_to 'Terms and Conditions', terms_path
-      = link_to 'Privacy Policy', privacy_path
+      = link_to 'Terms', terms_path
+      = link_to 'Privacy', privacy_path
       = link_to 'Github', 'https://github.com/brettclanton001/Dashous', target: '_blank'
       = link_to 'Reddit', 'https://www.reddit.com/r/dashous', target: '_blank'
       = mail_to 'brett@dashous.com', 'Contact'
+      = link_to 'Donate', donate_path
       %span Dashous LLC
