@@ -61,7 +61,6 @@ google_maps_embed:
 
 ### Setup App:
 
-1. Clone the app and enter the directory.
 1. Install Redis, usually: `brew install redis` or `sudo apt-get install redis-server`
 1. Install Gems `bundle install`
 1. Setup the DB `rails db:setup`
