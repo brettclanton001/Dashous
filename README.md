@@ -97,7 +97,7 @@ later.
 
 # Donations
 
-Donation Address: `XrLFuhyvrm3PdPrCLNC9hM7hjdbAEvuZPL`
+Dash Donation Address: `XrLFuhyvrm3PdPrCLNC9hM7hjdbAEvuZPL`
 
 ![QR CODE](http://i.imgur.com/5tyPJla.png)
 
