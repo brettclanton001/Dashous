@@ -1,0 +1,30 @@
+# Email Config:
+#
+# You will need to configure something for emails, so you can create an account locally.
+# I suggest you create an account at https://mailtrap.io/ and enter the details here.
+
+smtp_config:
+  user_name: PROVIDED_USERNAME
+  password: PROVIDED_PASSWORD
+  address: mailtrap.io
+  domain: mailtrap.io
+  port: 2525
+  authentication: cram_md5
+
+# Google Maps Config:
+#
+# Google requires an API key for their embedded map.
+# Go here to get one for yourself: https://developers.google.com/maps/documentation/javascript/get-api-key#key
+
+google_maps_embed:
+  key: GOOGLE_EMBED_KEY
+
+# New Relic Config (optional):
+#
+# new_relic:
+#   key: NEW_RELIC_KEY
+
+# Google Geocode Config (optional):
+#
+# google_geocode:
+#   key: GOOGLE_GEOCODE_KEY
