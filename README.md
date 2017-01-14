@@ -19,7 +19,7 @@ This repo exists for three main reasons:
 
 If you have a feature to request or a bug to report, [create a new issue](https://github.com/brettclanton001/Dashous/issues/new).
 
-Check [some of the issues that I created](https://github.com/brettclanton001/Dashous/issues/created_by/brettclanton001) for a guide in formatting.
+Check [some of the issues that I created](https://github.com/brettclanton001/Dashous/issues?utf8=%E2%9C%93&q=is%3Aissue%20author%3Abrettclanton001%20) for a guide in formatting.
 
 # Contributing
 It's expected that contributors have a solid understanding of how Ruby
