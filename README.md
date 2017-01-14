@@ -94,3 +94,11 @@ path/to/dashous/coverage. 1579 / 1579 LOC (100.0%) covered.
 For right now, I don't have any formality to PRs.  I'll
 consider any that are created.  I might add more specific requirements
 later.
+
+# Donations
+
+Donation Address: `XrLFuhyvrm3PdPrCLNC9hM7hjdbAEvuZPL`
+
+![QR CODE](https://explorer.coinpayments.net/qraddr.php?addr=VxstoFBueS0EUwrfvumxOOjNxICZvlJ%2BJn6YCeSS0rBiaYYxClWdtLobjEuJq3nvaJf8C5l2ngN44cv925cg50IaL%2BCyXARlgdNzA3VQ7xGsvKv9JCp1mfLqH8P5lB548xq7pYa5MXQXnfYMpbLOhPM0%2BUlVm7uM8rEV9twXDTE%3D)
+
+Donation Instructions: [video](https://www.youtube.com/watch?v=I-BYzaDwNoE)
