@@ -21,7 +21,9 @@ on Rails apps work.
 #### Configure:
 
 Copy the development config file to enable it.
-`cp config/settings/development.local.yml.example config/settings/development.local.yml`
+```
+cp config/settings/development.local.yml.example config/settings/development.local.yml
+```
 
 Create an account at [mailtrap.io](https://mailtrap.io) and add the
 user/pass details that mailtrap provides for your mailbox in the new
