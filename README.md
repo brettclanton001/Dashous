@@ -12,7 +12,7 @@ This repo exists for three main reasons:
    a service without user concerns about how I use their data.
 1. **Community Contribution**: I want members of the community to help build
    the features that they desire.
-1. **Supporting Altcoins**: This repo can be cloned and used for other new
+1. **Supporting Altcoins**: This repo can be cloned and used for other
    Altcoins with minimal changes.
 
 # Creating an "Issue"
