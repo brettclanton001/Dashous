@@ -71,7 +71,7 @@ google_maps_embed:
 
 ### Run specs:
 [I maintain 100% spec coverage](https://github.com/brettclanton001/Dashous/blob/master/coverage/.last_run.json)
-on this app and will not accept PRs that don't maintain 100% coverage.
+on this app and will not accept PRs that diminish the test coverage.
 
 To run specs:
 ```
