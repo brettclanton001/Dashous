@@ -8,11 +8,11 @@ Simply go to [Dashous.com](https://dashous.com) to get started.
 
 This repo exists for three main reasons:
 
-1. Transparency: I want to support the open source community and operate
+1. **Transparency**: I want to support the open source community and operate
    a service without user concerns about how I use their data.
-1. Community Contribution: I want members of the community to help build
+1. **Community Contribution**: I want members of the community to help build
    the features that they desire.
-1. Supporting Altcoins: This repo can be cloned and used for other new
+1. **Supporting Altcoins**: This repo can be cloned and used for other new
    Altcoins with minimal changes.
 
 # Contributing
