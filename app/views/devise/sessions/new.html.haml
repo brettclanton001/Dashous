@@ -12,4 +12,5 @@
     = f.password_field :password, autocomplete: "off"
 
   .actions
+    = f.hidden_field :remember_me, value: 1
     = f.submit "Login"
