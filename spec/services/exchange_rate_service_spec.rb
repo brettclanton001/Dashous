@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PriceService do
+describe ExchangeRateService do
   let!(:api_request) do
     stub_request(:get, 'https://api.cryptonator.com/api/ticker/dash-usd').
       to_return(status: 200, body: api_response, headers: {})

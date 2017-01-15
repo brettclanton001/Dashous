@@ -65,6 +65,7 @@ feature 'Create trade request', js: true do
         expect(trade_request.latitude).to eq 40.7127837
         expect(trade_request.slug).to eq 'best_trade_ever'
         expect(trade_request.active).to eq true
+        expect(trade_request.currency).to eq 'usd'
       end
     end
 

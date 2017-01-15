@@ -34,7 +34,7 @@ class TradeRequestDecorator < Draper::Decorator
   private
 
   def current_price
-    PriceService.current_price
+    ExchangeRateService.current_price
   end
 
   def profit_margin

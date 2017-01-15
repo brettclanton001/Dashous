@@ -59,6 +59,7 @@ end
 #  longitude  :float
 #  slug       :string           not null
 #  active     :boolean          default(FALSE), not null
+#  currency   :string
 #
 # Indexes
 #

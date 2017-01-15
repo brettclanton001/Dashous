@@ -1,4 +1,4 @@
-module PriceService extend self
+module ExchangeRateService extend self
 
   def current_price
     external_data['ticker']['price'].to_f.round(2)

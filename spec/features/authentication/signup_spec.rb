@@ -1,6 +1,7 @@
 require 'feature_helper'
 
 feature 'Signup', js: true do
+  given(:user) { User.last }
 
   Steps 'a new user signs up' do
     When 'I visit the homepage' do
@@ -85,8 +86,13 @@ feature 'Signup', js: true do
         should_not_see 'Account'
       end
     end
+    And 'The user should be created' do
+      expect(user).to be_present
+      expect(user.username).to eq 'JohnDoe'
+      expect(user.currency).to eq 'usd'
+    end
     When 'I visit the link' do
-      visit "/users/confirmation?confirmation_token=#{User.last.confirmation_token}"
+      visit "/users/confirmation?confirmation_token=#{user.confirmation_token}"
     end
     Then 'I should see a success message' do
       should_see 'Your email address has been successfully confirmed.'
