@@ -25,6 +25,7 @@ gem 'draper', github: 'audionerd/draper', branch: 'rails5'
 gem 'devise'
 gem 'newrelic_rpm'
 gem 'geocoder'
+gem 'airbrake', '~> 5.6'
 
 group :production do
   gem 'rails_12factor'
