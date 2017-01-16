@@ -18,6 +18,9 @@ RSpec.configure do |config|
     CapybaraSupport.set_user_agent(example.metadata[:user_agent]) if example.metadata[:user_agent]
     stub_price(10)
   end
+  config.after do
+    $redis.del(:exchange_rate)
+  end
 end
 
 def stub_price(price)

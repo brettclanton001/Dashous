@@ -6,13 +6,15 @@ feature 'my trade requests are editable', js: true do
   given!(:trade_request1) do
     create :trade_request, :new_york,
       user: user1,
-      name: 'My Trade'
+      name: 'My Trade',
+      currency: currency
   end
   given!(:trade_request2) do
     create :trade_request, :new_york,
       user: user2,
       name: "Another Guy's Trade"
   end
+  given(:currency) { 'usd' }
 
   context 'authenticated' do
     background do
@@ -184,6 +186,29 @@ feature 'my trade requests are editable', js: true do
           should_see 'My Trade'
           should_see 'Active'
           should_not_see 'Disabled'
+        end
+      end
+    end
+
+    context 'eur currency' do
+      given(:currency) { 'eur' }
+
+      Steps 'edit eur trade request' do
+        When 'I visit the trade request form' do
+          visit edit_trade_request_path(trade_request1.id)
+        end
+        Then 'I see the form' do
+          expect(page).to have_select('trade_request_currency', selected: 'EUR')
+        end
+        When 'I change the name' do
+          fill_in :trade_request_name, with: 'My Updated Trade'
+        end
+        And 'I click save' do
+          click_button 'Save'
+        end
+        Then 'I should see my updated trade request' do
+          should_see 'My Updated Trade'
+          should_not_see 'My Trade'
         end
       end
     end

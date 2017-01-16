@@ -8,7 +8,6 @@ class TradeRequestService
   def build(params)
     @trade_request = @user.trade_requests.build(params)
     @trade_request.active = limit_reached? ? false : true
-    @trade_request.currency = 'usd'
     @trade_request
   end
 

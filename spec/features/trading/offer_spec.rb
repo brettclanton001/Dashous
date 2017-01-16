@@ -8,6 +8,7 @@ feature 'Make an offer', js: true do
       user: user1,
       name: 'My Trade',
       kind: 'sell',
+      currency: currency,
       profit: '12'
   end
   given!(:trade_request2) do
@@ -19,6 +20,7 @@ feature 'Make an offer', js: true do
   end
   given(:offer) { user1.offers.last }
   given!(:current_price) { stub_price(10) }
+  given(:currency) { 'usd' }
 
   context 'authenticated' do
 
@@ -467,6 +469,28 @@ feature 'Make an offer', js: true do
             should_see 'Make Offer'
           end
           should_see 'This is your Trade Request.'
+        end
+      end
+    end
+
+    context 'eur currency' do
+      given(:currency) { 'eur' }
+
+      Steps 'I attempt to create an offer with myself' do
+        When 'I visit the trade request page' do
+          visit public_trade_request_path(trade_request1.slug)
+        end
+        Then 'I should see the trade request' do
+          within '.content' do
+            should_see 'My Trade'
+            should_see 'This person is selling Dash'
+            should_see 'This person wants a 12% profit so the current sale price is €11.20'
+            should_see 'The trade location is: New York'
+            within 'button.disabled' do
+              should_see 'Make Offer'
+            end
+            should_see 'This is your Trade Request.'
+          end
         end
       end
     end

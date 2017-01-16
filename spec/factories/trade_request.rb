@@ -10,6 +10,7 @@ FactoryGirl.define do
     longitude -74.0059413
     latitude 40.7127837
     active true
+    currency 'usd'
 
     trait :new_york do
       location 'New York City, New York'

@@ -11,6 +11,7 @@ class TradeRequest < ApplicationRecord
   scope :active, -> { where(active: true) }
 
   validates :kind, inclusion: { in: KINDS }
+  validates :currency, inclusion: { in: ExchangeRateService::CURRENCIES }
   validates_presence_of \
     :user_id,
     :name,

@@ -24,6 +24,7 @@ feature 'Create trade request', js: true do
         should_see 'Location'
         should_see 'Trade Type'
         should_see 'Percentage Profit'
+        should_see 'Accepted Currency'
         should_be_located '/u/trade_requests/new'
       end
       When 'I click save' do
@@ -39,6 +40,7 @@ feature 'Create trade request', js: true do
         fill_in :trade_request_name, with: 'Best Trade Ever'
         fill_in :trade_request_location, with: 'New York City, New York'
         select "I am Buying Dash", from: "trade_request_kind"
+        select "EUR", from: "trade_request_currency"
         fill_in :trade_request_profit, with: 'foo'
       end
       And 'I click save' do
@@ -65,7 +67,7 @@ feature 'Create trade request', js: true do
         expect(trade_request.latitude).to eq 40.7127837
         expect(trade_request.slug).to eq 'best_trade_ever'
         expect(trade_request.active).to eq true
-        expect(trade_request.currency).to eq 'usd'
+        expect(trade_request.currency).to eq 'eur'
       end
     end
 
