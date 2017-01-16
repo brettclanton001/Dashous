@@ -1,16 +1,57 @@
 module ExchangeRateService extend self
 
-  def current_price
-    external_data['ticker']['price'].to_f.round(2)
+  CURRENCIES = %w(
+    usd
+    eur
+  ).freeze
+
+  CACHE_TIMEOUT = 15.minutes.freeze
+
+  def current_price(currency='usd')
+    external_data[currency]
   end
 
   private
 
   def external_data
-    data = Rails.cache.fetch(:price_data, expires_in: 5.minutes) do
-      connection.get('/api/ticker/dash-usd').body
+    cache = get_cache
+    return cache if cache_valid?(cache)
+    data = fetch_external_data
+    set_cache(data)
+    data
+  end
+
+  def fetch_external_data
+    data = {}
+    CURRENCIES.each do |currency|
+      data[currency] = parse_data connection.get("/api/ticker/dash-#{currency}").body
     end
-    JSON.parse data
+    data['updated_at'] = Time.now
+    data
+  end
+
+  def parse_data(body)
+    data = JSON.parse body
+    price = data['ticker']['price']
+    price.to_f.round(2)
+  end
+
+  def cache_valid?(cache)
+    cache.present? and cache['updated_at'] > Time.now - CACHE_TIMEOUT
+  end
+
+  def get_cache
+    cache = redis.get(:exchange_rate)
+    cache = JSON.parse(cache) if cache.present?
+    cache
+  end
+
+  def set_cache(data)
+    redis.set(:exchange_rate, data.to_json)
+  end
+
+  def redis
+    Redis.new
   end
 
   def connection
