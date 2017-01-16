@@ -21,8 +21,7 @@ RSpec.configure do |config|
 end
 
 def stub_price(price)
-  redis = Redis.new
-  redis.del(:exchange_rate)
+  $redis.del(:exchange_rate)
   ExchangeRateService::CURRENCIES.each do |currency|
     stub_request(:get, "https://api.cryptonator.com/api/ticker/dash-#{currency}").to_return(
       status: 200,

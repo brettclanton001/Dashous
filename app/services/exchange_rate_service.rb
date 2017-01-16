@@ -41,17 +41,13 @@ module ExchangeRateService extend self
   end
 
   def get_cache
-    cache = redis.get(:exchange_rate)
+    cache = $redis.get(:exchange_rate)
     cache = JSON.parse(cache) if cache.present?
     cache
   end
 
   def set_cache(data)
-    redis.set(:exchange_rate, data.to_json)
-  end
-
-  def redis
-    Redis.new
+    $redis.set(:exchange_rate, data.to_json)
   end
 
   def connection
