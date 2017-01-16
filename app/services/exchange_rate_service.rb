@@ -16,9 +16,7 @@ module ExchangeRateService extend self
   def external_data
     cache = get_cache
     return cache if cache_valid?(cache)
-    data = fetch_external_data
-    set_cache(data)
-    data
+    fetch_external_data
   end
 
   def fetch_external_data
@@ -27,6 +25,7 @@ module ExchangeRateService extend self
       data[currency] = parse_data connection.get("/api/ticker/dash-#{currency}").body
     end
     data['updated_at'] = Time.now
+    set_cache(data)
     data
   end
 
