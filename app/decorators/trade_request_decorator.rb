@@ -34,16 +34,7 @@ class TradeRequestDecorator < Draper::Decorator
   private
 
   def format_price(price)
-    "#{currency_prefix}#{'%.2f' % price}"
-  end
-
-  def currency_prefix
-    case object.currency
-    when 'usd'
-      "$"
-    when 'eur'
-      "€"
-    end
+    MoneyService.format(price, object.currency)
   end
 
   def current_price

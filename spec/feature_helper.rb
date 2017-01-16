@@ -60,7 +60,7 @@ def login_as(user)
 end
 
 def logout
-  visit account_index_path
+  visit account_path
   click_link 'Logout'
   within '.nav' do
     should_see 'Login'

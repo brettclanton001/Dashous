@@ -184,7 +184,7 @@ feature 'viewing a user provile', js: true do
 
     Steps 'I find my own profile page' do
       When 'I visit the account page' do
-        visit account_index_path
+        visit account_path
       end
       And 'I click the view my profile button' do
         click_link 'View my Public Profile'

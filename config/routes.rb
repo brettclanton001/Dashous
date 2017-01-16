@@ -26,7 +26,10 @@ Rails.application.routes.draw do
       patch :disable
     end
     resources :offers, only: [:index, :create]
-    resources :account, only: [:index]
+    resource :account, only: [] do
+      get :show
+      patch :update
+    end
     resources :reviews, only: [:create]
     namespace :trade_requests do
       resources :offers, only: [] do
