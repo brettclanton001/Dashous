@@ -30,6 +30,12 @@ describe User do
   end
 
   describe 'validations' do
+    it { is_expected.to validate_presence_of(:username) }
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_presence_of(:password).on(:create) }
+    it { is_expected.to validate_presence_of(:password_confirmation).on(:create) }
+    it { is_expected.to validate_uniqueness_of(:username) }
+
     it 'validates username' do
       expect(user.update_attributes(username: 'JoeShmo123')).to eq true
       expect(user.update_attributes(username: 'Joe Shmo123')).to eq false
