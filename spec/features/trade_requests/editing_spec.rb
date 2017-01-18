@@ -37,7 +37,7 @@ feature 'my trade requests are editable', js: true do
       end
       When 'I click the gear for the trade request' do
         within '.table-list .row:first-child' do
-          find('.fa-cog').click
+          find('.actions .fa-cog').click
         end
       end
       Then 'I should see the action options' do
@@ -74,7 +74,7 @@ feature 'my trade requests are editable', js: true do
       end
       When 'I click the link to edit' do
         within '.table-list .row:first-child' do
-          find('.fa-cog').click
+          find('.actions .fa-cog').click
           click_link 'Edit'
         end
       end
@@ -106,7 +106,7 @@ feature 'my trade requests are editable', js: true do
       end
       When 'I click the link to edit' do
         within '.table-list .row:first-child' do
-          find('.fa-cog').click
+          find('.actions .fa-cog').click
           click_link 'Edit'
         end
       end
@@ -150,7 +150,7 @@ feature 'my trade requests are editable', js: true do
       end
       When 'I click the gear for the trade request' do
         within '.table-list .row:first-child' do
-          find('.fa-cog').click
+          find('.actions .fa-cog').click
         end
       end
       And 'I click Disable' do
@@ -170,7 +170,7 @@ feature 'my trade requests are editable', js: true do
       end
       When 'I click the gear for the trade request' do
         within '.table-list .row:first-child' do
-          find('.fa-cog').click
+          find('.actions .fa-cog').click
         end
       end
       And 'I click Activate' do
@@ -235,7 +235,7 @@ feature 'my trade requests are editable', js: true do
         end
         When 'I click the gear for the trade request' do
           within '.table-list .row:first-child' do
-            find('.fa-cog').click
+            find('.actions .fa-cog').click
           end
         end
         And 'I click Activate' do
