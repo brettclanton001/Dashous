@@ -1,6 +1,9 @@
 # Dashous
 [Dashous.com](https://dashous.com)
+
 Connect with other members of the Dash community to trade for Dash.
+
+Build Status: [![CircleCI](https://circleci.com/gh/brettclanton001/Dashous.svg?style=svg)](https://circleci.com/gh/brettclanton001/Dashous)
 
 # This Repository
 Reading further is not needed if you want to use the dashous service.
