@@ -37,15 +37,6 @@ class User < ApplicationRecord
   validates_acceptance_of :terms_and_conditions
   validates_confirmation_of :password, on: :create
   validates :currency, inclusion: { in: ExchangeRateService::CURRENCIES }
-  validate :email_uniqueness
-
-  protected
-
-  def email_uniqueness
-    if User.all.map(&:email).include?(email) && !persisted?
-      errors.add(:email, :taken)
-    end
-  end
 
 end
 

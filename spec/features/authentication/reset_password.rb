@@ -20,7 +20,7 @@ feature 'reset password', js: true do
       click_on 'Send me reset password instructions'
     end
     Then 'An email should be sent' do
-      sleep 1
+      should_see 'You will receive an email with instructions'
       user.reload
       expect(user.reset_password_token).to_not be_empty
     end

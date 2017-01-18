@@ -45,11 +45,5 @@ describe User do
       expect(user.update_attributes(username: 'Joe^Shmo123')).to eq false
       expect(user.update_attributes(username: 'Joe?Shmo123')).to eq false
     end
-
-    it 'validates email uniqueness' do
-      dup_user = build(:user, email: user1.email)
-      expect(dup_user.valid?).to be false
-      expect(dup_user.errors[:email]).to eq ["has already been taken"]
-    end
   end
 end
