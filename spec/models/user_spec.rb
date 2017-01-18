@@ -30,6 +30,12 @@ describe User do
   end
 
   describe 'validations' do
+    it { is_expected.to validate_presence_of(:username) }
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_presence_of(:password).on(:create) }
+    it { is_expected.to validate_presence_of(:password_confirmation).on(:create) }
+    it { is_expected.to validate_uniqueness_of(:username) }
+
     it 'validates username' do
       expect(user.update_attributes(username: 'JoeShmo123')).to eq true
       expect(user.update_attributes(username: 'Joe Shmo123')).to eq false
@@ -38,6 +44,12 @@ describe User do
       expect(user.update_attributes(username: 'Joe%Shmo123')).to eq false
       expect(user.update_attributes(username: 'Joe^Shmo123')).to eq false
       expect(user.update_attributes(username: 'Joe?Shmo123')).to eq false
+    end
+
+    it 'validates email uniqueness' do
+      dup_user = build(:user, email: user1.email)
+      expect(dup_user.valid?).to be false
+      expect(dup_user.errors[:email]).to eq ["has already been taken"]
     end
   end
 end
