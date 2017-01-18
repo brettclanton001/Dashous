@@ -37,6 +37,7 @@ feature 'my trade requests are editable', js: true do
       end
       When 'I click the gear for the trade request' do
         within '.table-list .row:first-child' do
+          should_see_element '.actions .fa-cog'
           find('.actions .fa-cog').click
         end
       end
