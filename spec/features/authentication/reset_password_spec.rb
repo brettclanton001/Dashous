@@ -1,7 +1,7 @@
 require 'feature_helper'
 
 feature 'reset password', js: true do
-  given!(:user) { create :user }
+  given!(:user) { create :user, username: 'luiswong' }
 
   Steps 'for requesting reset instructions' do
     When 'I visit the homepage' do
@@ -16,7 +16,10 @@ feature 'reset password', js: true do
       click_link 'Forgot your password?'
     end
     And 'I fill in my username' do
-      fill_in :user_username, with: user.username
+      fill_in :user_username, with: 'luiswong'
+      expect(find_field('user[username]').value).to eq 'luiswong'
+    end
+    And 'I submit the form' do
       click_button 'Send me reset password instructions'
     end
     Then 'An email should be sent' do
