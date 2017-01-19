@@ -15,6 +15,11 @@ feature 'reset password', js: true do
     And 'I ask for reset instructions' do
       click_link 'Forgot your password?'
     end
+    Then 'I should be on the password page' do
+      within 'h1' do
+        should_see 'Forgot your password?'
+      end
+    end
     And 'I fill in my username' do
       fill_in :user_username, with: 'luiswong'
       expect(find_field('user[username]').value).to eq 'luiswong'
