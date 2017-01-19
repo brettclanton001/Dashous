@@ -35,7 +35,7 @@ class User < ApplicationRecord
     on: :create
   validates_format_of :username, with: /\A[a-zA-Z0-9]+\z/
   validates_acceptance_of :terms_and_conditions
-  validates_confirmation_of :password, on: :create
+  validates_confirmation_of :password, if: "changed.include?('encrypted_password')"
   validates :currency, inclusion: { in: ExchangeRateService::CURRENCIES }
 
 end

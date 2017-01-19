@@ -45,7 +45,18 @@ feature 'reset password', js: true do
     And 'There is no error about the reset token' do
       should_not_see 'Reset password token is invalid'
     end
-    When 'I fill out the form' do
+    When 'I fill out the form incorrectly' do
+      fill_in :user_password, with: 'abcdef'
+      fill_in :user_password_confirmation, with: 'abcdefffff'
+    end
+    And 'I submit the form' do
+      click_button 'Change my password'
+    end
+    Then 'should not see success message' do
+      should_see "Password confirmation doesn't match Password"
+      should_not_see 'Your password has been changed successfully. You are now signed in.'
+    end
+    When 'I fill out the form correctly' do
       fill_in :user_password, with: 'abcdef'
       fill_in :user_password_confirmation, with: 'abcdef'
     end
