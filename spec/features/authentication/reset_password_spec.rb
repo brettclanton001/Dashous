@@ -23,7 +23,7 @@ feature 'reset password', js: true do
       click_button 'Send me reset password instructions'
     end
     Then 'An email should be sent' do
-      should_see 'You will receive an email with instructions'
+      should_see 'You will receive an email with instructions on how to reset your password in a few minutes.'
     end
     And 'the user should have a reset password token' do
       expect(user.reload.reset_password_token).to_not be_empty
@@ -37,18 +37,18 @@ feature 'reset password', js: true do
         should_see 'Change your password'
       end
     end
-    #And 'There is no error about the reset token' do
-      #should_not_see 'Reset password token is invalid'
-    #end
-    #When 'I fill out the form' do
-      #fill_in :user_password, with: 'abcdef'
-      #fill_in :user_password_confirmation, with: 'abcdef'
-    #end
-    #And 'I submit the form' do
-      #click_button 'Change my password'
-    #end
-    #Then 'should see success message' do
-      #should_see 'Your password has been changed successfully. You are now signed in.'
-    #end
+    And 'There is no error about the reset token' do
+      should_not_see 'Reset password token is invalid'
+    end
+    When 'I fill out the form' do
+      fill_in :user_password, with: 'abcdef'
+      fill_in :user_password_confirmation, with: 'abcdef'
+    end
+    And 'I submit the form' do
+      click_button 'Change my password'
+    end
+    Then 'should see success message' do
+      should_see 'Your password has been changed successfully. You are now signed in.'
+    end
   end
 end
