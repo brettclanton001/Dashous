@@ -4,7 +4,7 @@ Capybara.configure do |config|
   config.javascript_driver = :webkit
   config.default_max_wait_time = 10
   config.default_host = "http://127.0.0.1"
-  config.server_port = Capybara::Server.new(nil).send(:find_available_port)
+  config.server_port = "52010"
   WebMock.disable_net_connect!(allow: '127.0.0.1')
 end
 
@@ -13,11 +13,13 @@ Capybara::Webkit.configure do |config|
 end
 
 RSpec.configure do |config|
+
   config.before do |example|
     Capybara.reset_sessions!
     CapybaraSupport.set_user_agent(example.metadata[:user_agent]) if example.metadata[:user_agent]
     stub_price(10)
   end
+
   config.after do
     $redis.del(:exchange_rate)
   end
