@@ -16,7 +16,7 @@ feature 'reset password', js: true do
       click_link 'Forgot your password?'
     end
     And 'I fill in my username' do
-      fill_in 'Username', with: user.username
+      fill_in :user_username, with: user.username
       click_button 'Send me reset password instructions'
     end
     Then 'An email should be sent' do
