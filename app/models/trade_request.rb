@@ -24,6 +24,14 @@ class TradeRequest < ApplicationRecord
   after_validation :maybe_geocode
   before_create :generate_slug
 
+  def selling?
+    kind == 'sell'
+  end
+
+  def buying?
+    kind == 'buy'
+  end
+
   private
 
   def profit_valid

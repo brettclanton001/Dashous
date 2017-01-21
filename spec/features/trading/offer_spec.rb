@@ -7,7 +7,7 @@ feature 'Make an offer', js: true do
     create :trade_request, :new_york,
       user: user1,
       name: 'My Trade',
-      kind: 'sell',
+      kind: trade_kind,
       currency: currency,
       profit: '12'
   end
@@ -15,12 +15,16 @@ feature 'Make an offer', js: true do
     create :trade_request, :stamford,
       user: user2,
       name: "Another Guy's Trade",
-      kind: 'sell',
+      kind: trade_kind,
       profit: '12'
   end
   given(:offer) { user1.offers.last }
   given!(:current_price) { stub_price(10) }
   given(:currency) { 'usd' }
+  given(:trade_kind) { 'sell' }
+
+  given(:sale_price_explained_message) { 'This person is selling Dash for USD at 12% above market price' }
+  given(:sale_price_message) { 'The current sale price is $11.20' }
 
   context 'authenticated' do
 
@@ -35,8 +39,8 @@ feature 'Make an offer', js: true do
       Then 'I should see the trade request' do
         within '.content' do
           should_see "Another Guy's Trade"
-          should_see 'This person is selling Dash'
-          should_see 'This person wants a 12% profit so the current sale price is $11.20'
+          should_see sale_price_explained_message
+          should_see sale_price_message
           should_see 'The trade location is: Stamford'
           should_see 'Make Offer'
         end
@@ -48,8 +52,8 @@ feature 'Make an offer', js: true do
         should_see 'Offer successfully created. Please wait for a reply.'
         within '.content' do
           should_see "Another Guy's Trade"
-          should_see 'This person is selling Dash'
-          should_see 'This person wants a 12% profit so the current sale price is $11.20'
+          should_see sale_price_explained_message
+          should_see sale_price_message
           should_see 'The trade location is: Stamford'
           within 'button.disabled' do
             should_see 'Make Offer'
@@ -90,8 +94,8 @@ feature 'Make an offer', js: true do
         should_be_located '/t/another_guys_trade'
         within '.content' do
           should_see "Another Guy's Trade"
-          should_see 'This person is selling Dash'
-          should_see 'This person wants a 12% profit so the current sale price is $11.20'
+          should_see sale_price_explained_message
+          should_see sale_price_message
           should_see 'The trade location is: Stamford'
           within 'button.disabled' do
             should_see 'Make Offer'
@@ -279,8 +283,8 @@ feature 'Make an offer', js: true do
       Then 'I should see the trade request' do
         within '.content' do
           should_see "Another Guy's Trade"
-          should_see 'This person is selling Dash'
-          should_see 'This person wants a 12% profit so the current sale price is $11.20'
+          should_see sale_price_explained_message
+          should_see sale_price_message
           should_see 'The trade location is: Stamford'
           should_see 'Make Offer'
         end
@@ -292,8 +296,8 @@ feature 'Make an offer', js: true do
         should_see 'Offer successfully created. Please wait for a reply.'
         within '.content' do
           should_see "Another Guy's Trade"
-          should_see 'This person is selling Dash'
-          should_see 'This person wants a 12% profit so the current sale price is $11.20'
+          should_see sale_price_explained_message
+          should_see sale_price_message
           should_see 'The trade location is: Stamford'
           within 'button.disabled' do
             should_see 'Make Offer'
@@ -334,8 +338,8 @@ feature 'Make an offer', js: true do
         should_be_located '/t/another_guys_trade'
         within '.content' do
           should_see "Another Guy's Trade"
-          should_see 'This person is selling Dash'
-          should_see 'This person wants a 12% profit so the current sale price is $11.20'
+          should_see sale_price_explained_message
+          should_see sale_price_message
           should_see 'The trade location is: Stamford'
           within 'button.disabled' do
             should_see 'Make Offer'
@@ -444,8 +448,8 @@ feature 'Make an offer', js: true do
       Then 'I should see the trade request' do
         within '.content' do
           should_see "Another Guy's Trade"
-          should_see 'This person is selling Dash'
-          should_see 'This person wants a 12% profit so the current sale price is $11.20'
+          should_see sale_price_explained_message
+          should_see sale_price_message
           should_see 'The trade location is: Stamford'
           within 'button.disabled' do
             should_see 'Make Offer'
@@ -462,8 +466,8 @@ feature 'Make an offer', js: true do
       Then 'I should see the trade request' do
         within '.content' do
           should_see 'My Trade'
-          should_see 'This person is selling Dash'
-          should_see 'This person wants a 12% profit so the current sale price is $11.20'
+          should_see sale_price_explained_message
+          should_see sale_price_message
           should_see 'The trade location is: New York'
           within 'button.disabled' do
             should_see 'Make Offer'
@@ -473,8 +477,10 @@ feature 'Make an offer', js: true do
       end
     end
 
-    context 'eur currency' do
-      given(:currency) { 'eur' }
+    context 'buying' do
+      given(:trade_kind) { 'buy' }
+      given(:sale_price_explained_message) { 'This person is buying Dash with USD at 12% below market price' }
+      given(:sale_price_message) { 'The current sale price is $8.80' }
 
       Steps 'I attempt to create an offer with myself' do
         When 'I visit the trade request page' do
@@ -483,8 +489,32 @@ feature 'Make an offer', js: true do
         Then 'I should see the trade request' do
           within '.content' do
             should_see 'My Trade'
-            should_see 'This person is selling Dash'
-            should_see 'This person wants a 12% profit so the current sale price is €11.20'
+            should_see sale_price_explained_message
+            should_see sale_price_message
+            should_see 'The trade location is: New York'
+            within 'button.disabled' do
+              should_see 'Make Offer'
+            end
+            should_see 'This is your Trade Request.'
+          end
+        end
+      end
+    end
+
+    context 'eur currency' do
+      given(:currency) { 'eur' }
+      given(:sale_price_explained_message) { 'This person is selling Dash for EUR at 12% above market price' }
+      given(:sale_price_message) { 'The current sale price is €11.20' }
+
+      Steps 'I attempt to create an offer with myself' do
+        When 'I visit the trade request page' do
+          visit public_trade_request_path(trade_request1.slug)
+        end
+        Then 'I should see the trade request' do
+          within '.content' do
+            should_see 'My Trade'
+            should_see sale_price_explained_message
+            should_see sale_price_message
             should_see 'The trade location is: New York'
             within 'button.disabled' do
               should_see 'Make Offer'

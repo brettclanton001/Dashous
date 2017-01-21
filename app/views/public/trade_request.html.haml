@@ -11,13 +11,15 @@
 
 %p
   This person is
-  = @trade_request.intention
-  Dash
+  - if @trade_request.selling?
+    %strong selling
+    Dash for #{@trade_request.currency.upcase} at #{@trade_request.profit}% above market price
+  - elsif @trade_request.buying?
+    %strong buying
+    Dash with #{@trade_request.currency.upcase} at #{@trade_request.profit}% below market price
 %p
-  This person wants a
-  = "#{@trade_request.profit}%"
-  profit so the current sale price is
-  = @trade_request.sale_price
+  The current sale price is
+  %strong= @trade_request.sale_price
 %p
   The trade location is:
   = @trade_request.location
