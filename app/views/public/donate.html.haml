@@ -6,6 +6,6 @@
 
 .field
   %label Donation Address
-  %input{type: 'text', value: Settings.donations.address, readonly: 'readonly'}
+  %input.token{type: 'text', value: Settings.donations.address, readonly: 'readonly'}
 
 %img{src: Settings.donations.qr_code}

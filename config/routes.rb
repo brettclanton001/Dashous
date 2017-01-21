@@ -36,7 +36,7 @@ Rails.application.routes.draw do
       patch :activate
       patch :disable
     end
-    resources :offers, only: [:index, :create]
+    resources :offers, only: [:index, :new, :create]
     resource :account, only: [] do
       get :show
       patch :update

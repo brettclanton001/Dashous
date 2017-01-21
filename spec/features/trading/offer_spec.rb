@@ -48,6 +48,17 @@ feature 'Make an offer', js: true do
       When 'I click the Make Offer button' do
         click_link 'Make Offer'
       end
+      Then 'I should see an offer form' do
+        within 'h1' do
+          should_see 'Make an Offer'
+        end
+      end
+      When 'I enter a message' do
+        fill_in :offer_message, with: 'I want all the Dash you have!'
+      end
+      And 'I submit the offer' do
+        click_button 'Submit Offer'
+      end
       Then 'I should see a success message on the same page' do
         should_see 'Offer successfully created. Please wait for a reply.'
         within '.content' do
@@ -64,6 +75,7 @@ feature 'Make an offer', js: true do
       And 'there is an pending offer' do
         expect(offer.status).to eq 'pending'
         expect(offer.trade_request_id).to eq trade_request2.id
+        expect(offer.message).to eq 'I want all the Dash you have!'
       end
       When 'I navigate to my offers list page' do
         within '.nav' do
@@ -76,6 +88,7 @@ feature 'Make an offer', js: true do
           within '.table-list .row:first-child' do
             should_see "Another Guy's Trade"
             should_see 'Pending'
+            should_see_element '.fa-comment-o'
           end
         end
       end
@@ -136,6 +149,7 @@ feature 'Make an offer', js: true do
         within '.table-list' do
           should_see 'Bob'
           should_see 'Pending'
+          should_see_element '.fa-comment-o'
         end
         within '.table-list .row:last-child .actions' do
           should_see 'Approve'
@@ -292,6 +306,14 @@ feature 'Make an offer', js: true do
       When 'I click the Make Offer button' do
         click_link 'Make Offer'
       end
+      Then 'I should see an offer form' do
+        within 'h1' do
+          should_see 'Make an Offer'
+        end
+      end
+      When 'I submit the offer' do
+        click_button 'Submit Offer'
+      end
       Then 'I should see a success message on the same page' do
         should_see 'Offer successfully created. Please wait for a reply.'
         within '.content' do
@@ -308,6 +330,7 @@ feature 'Make an offer', js: true do
       And 'there is an pending offer' do
         expect(offer.status).to eq 'pending'
         expect(offer.trade_request_id).to eq trade_request2.id
+        expect(offer.message).to be_blank
       end
       When 'I navigate to my offers list page' do
         within '.nav' do
@@ -320,6 +343,7 @@ feature 'Make an offer', js: true do
           within '.table-list .row:first-child' do
             should_see "Another Guy's Trade"
             should_see 'Pending'
+            should_not_see_element '.fa-comment-o'
           end
         end
       end
@@ -380,6 +404,7 @@ feature 'Make an offer', js: true do
         within '.table-list' do
           should_see 'Bob'
           should_see 'Pending'
+          should_not_see_element '.fa-comment-o'
         end
         within '.table-list .row:last-child .actions' do
           should_see 'Approve'

@@ -34,6 +34,8 @@
       .info
         = offer.status_for_user(current_user)
       .info
+        - if offer.message.present?
+          .fa.fa-comment-o.fa-lg
       .actions
         - if offer.pending?
           = link_to 'Decline', trade_requests_offer_decline_path(offer.id), method: 'PATCH', data: { confirm: 'Are you sure?' }

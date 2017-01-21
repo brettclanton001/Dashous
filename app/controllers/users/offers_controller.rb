@@ -4,6 +4,11 @@ class Users::OffersController < Users::BaseController
     @offers = current_user.offers.decorate
   end
 
+  def new
+    @offer = current_user.offers.build(offer_params)
+    @trade_request = TradeRequest.active.find(offer_params[:trade_request_id]).decorate
+  end
+
   def create
     @offer = current_user.offers.build(offer_params.merge(status: :pending))
 
@@ -19,7 +24,7 @@ class Users::OffersController < Users::BaseController
   private
 
   def offer_params
-    params.require(:offer).permit(:trade_request_id)
+    params.require(:offer).permit(:trade_request_id, :message)
   end
 
   def set_section

@@ -2,3 +2,5 @@
 attr_encrypted:
   key: 'IDDp+ffSzZmT82pZ7xPVA8G/vjBXnX30IiZxWK0TK2sTKE+oWTsP/yrlC97kBsWPawdu9ApSciwcQs5GkWYn+CDdS/EknwKTp2wYTisIhRNWXK0o+HKtaVAsybZ+oNZ/WoXcYqNVGkBvzwOCPfCggjSLbIWijDMhyH8pFIQ6dble7CEauZMBfdutkWiAXu04YAd6WHOv3Bh8TFyt7lsJQFS1IoDGkUnkl0e22HUEJmDr92+LdvZ5MIq34Fbp9xa0dqx0QvIjmWSi+rjb/VSXilrWzzatEqGDvtKMIJ70u5Qoo11ai8niMg85uyBjHj2OeTdVYlL3aG8ddsZXAzWchQ=='
 
+rack_timeout:
+  seconds: 30

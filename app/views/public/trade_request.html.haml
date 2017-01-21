@@ -26,7 +26,7 @@
 
 - if @trade_request.offer_possible current_user
   %p
-    = link_to 'Make Offer', offers_path('offer[trade_request_id]': @trade_request.id), method: 'POST', class: 'button primary'
+    = link_to 'Make Offer', new_offer_path('offer[trade_request_id]': @trade_request.id), class: 'button primary'
 - else
   %p
     %button.disabled Make Offer
