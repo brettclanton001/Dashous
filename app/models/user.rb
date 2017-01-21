@@ -63,7 +63,7 @@ end
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string
-#  currency               :string
+#  currency               :string           not null
 #
 # Indexes
 #
