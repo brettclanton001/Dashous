@@ -1,3 +1,3 @@
 UpdateExchangeRateJob:
-  cron: "*/1 * * * *"
+  cron: "*/2 * * * *"
   queue: exchange_rate
