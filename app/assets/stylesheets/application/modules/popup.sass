@@ -1,0 +1,63 @@
+.popup
+  display: none
+  &.open
+    display: block
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    z-index: 100
+
+  .overlay
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background-color: $dark-grey
+    opacity: 0.6
+
+  .popup-content-container
+    box-sizing: border-box
+    position: absolute
+    top: 10%
+    left: 25%
+    height: 80%
+    width: 50%
+    border: 2px $soft-grey solid
+    border-radius: 5px
+
+    .popup-content
+      box-sizing: border-box
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: 80px
+      padding: 20px 20px 0
+      overflow: auto
+      background-color: $offwhite
+
+    .popup-actions
+      box-sizing: border-box
+      position: absolute
+      top: auto
+      left: 0
+      right: 0
+      bottom: 0
+      height: 80px
+      padding: 20px
+      background-color: $white
+
+@media (max-width: 720px)
+  .popup
+    .popup-content-container
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      height: 100%
+      width: 100%
+      border-radius: 0
+      border: none

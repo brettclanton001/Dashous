@@ -62,8 +62,7 @@ feature 'search for trade requests', js: true do
         within '.table-list .row:first-child' do
           should_see 'My Trade'
           should_see '0.0 miles E'
-          should_see 'selling'
-          should_see '$9.17'
+          should_see 'selling $9.17'
         end
         within '.table-list .row:last-child' do
           should_see "Another Guy's Trade"

@@ -6,13 +6,15 @@ feature 'my trade requests are editable', js: true do
   given!(:trade_request1) do
     create :trade_request, :new_york,
       user: user1,
-      name: 'My Trade'
+      name: 'My Trade',
+      currency: currency
   end
   given!(:trade_request2) do
     create :trade_request, :new_york,
       user: user2,
       name: "Another Guy's Trade"
   end
+  given(:currency) { 'usd' }
 
   context 'authenticated' do
     background do
@@ -35,7 +37,8 @@ feature 'my trade requests are editable', js: true do
       end
       When 'I click the gear for the trade request' do
         within '.table-list .row:first-child' do
-          find('.fa-cog').click
+          should_see_element '.actions .fa-cog'
+          find('.actions .fa-cog').click
         end
       end
       Then 'I should see the action options' do
@@ -72,7 +75,7 @@ feature 'my trade requests are editable', js: true do
       end
       When 'I click the link to edit' do
         within '.table-list .row:first-child' do
-          find('.fa-cog').click
+          find('.actions .fa-cog').click
           click_link 'Edit'
         end
       end
@@ -104,7 +107,7 @@ feature 'my trade requests are editable', js: true do
       end
       When 'I click the link to edit' do
         within '.table-list .row:first-child' do
-          find('.fa-cog').click
+          find('.actions .fa-cog').click
           click_link 'Edit'
         end
       end
@@ -148,7 +151,7 @@ feature 'my trade requests are editable', js: true do
       end
       When 'I click the gear for the trade request' do
         within '.table-list .row:first-child' do
-          find('.fa-cog').click
+          find('.actions .fa-cog').click
         end
       end
       And 'I click Disable' do
@@ -168,7 +171,7 @@ feature 'my trade requests are editable', js: true do
       end
       When 'I click the gear for the trade request' do
         within '.table-list .row:first-child' do
-          find('.fa-cog').click
+          find('.actions .fa-cog').click
         end
       end
       And 'I click Activate' do
@@ -184,6 +187,29 @@ feature 'my trade requests are editable', js: true do
           should_see 'My Trade'
           should_see 'Active'
           should_not_see 'Disabled'
+        end
+      end
+    end
+
+    context 'eur currency' do
+      given(:currency) { 'eur' }
+
+      Steps 'edit eur trade request' do
+        When 'I visit the trade request form' do
+          visit edit_trade_request_path(trade_request1.id)
+        end
+        Then 'I see the form' do
+          expect(page).to have_select('trade_request_currency', selected: 'EUR')
+        end
+        When 'I change the name' do
+          fill_in :trade_request_name, with: 'My Updated Trade'
+        end
+        And 'I click save' do
+          click_button 'Save'
+        end
+        Then 'I should see my updated trade request' do
+          should_see 'My Updated Trade'
+          should_not_see 'My Trade'
         end
       end
     end
@@ -210,7 +236,7 @@ feature 'my trade requests are editable', js: true do
         end
         When 'I click the gear for the trade request' do
           within '.table-list .row:first-child' do
-            find('.fa-cog').click
+            find('.actions .fa-cog').click
           end
         end
         And 'I click Activate' do

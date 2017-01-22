@@ -7,8 +7,4 @@ class RegistrationsController < Devise::RegistrationsController
       .permit(:username, :email, :password, :password_confirmation, :terms_and_conditions)
       .merge(currency: 'usd')
   end
-
-  #def account_update_params
-    #params.require(:user).permit(:username, :email, :password, :password_confirmation, :current_password)
-  #end
 end

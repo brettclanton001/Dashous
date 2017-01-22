@@ -1,0 +1,16 @@
+%h1 Make an Offer
+
+%hr
+
+
+= form_for @offer do |f|
+  .field
+    = f.label :trade_request_id, 'Trade Request'
+    = f.hidden_field :trade_request_id, value: @trade_request.id
+    %input{type: 'text', value: @trade_request.name, readonly: 'readonly'}
+  .field
+    = f.label :message, 'Message'
+    = f.text_area :message, maxlength: 1000, placeholder: 'Add any details that you think will help the offer to be accepted.  Clarify anything special about your needs.'
+  .actions
+    = f.submit 'Submit Offer', class: 'button primary'
+    = link_to 'Cancel', public_trade_request_path(@trade_request.slug), class: 'button text'

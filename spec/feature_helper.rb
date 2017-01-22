@@ -4,7 +4,7 @@ Capybara.configure do |config|
   config.javascript_driver = :webkit
   config.default_max_wait_time = 10
   config.default_host = "http://127.0.0.1"
-  config.server_port = Capybara::Server.new(nil).send(:find_available_port)
+  config.server_port = "52010"
   WebMock.disable_net_connect!(allow: '127.0.0.1')
 end
 
@@ -13,31 +13,38 @@ Capybara::Webkit.configure do |config|
 end
 
 RSpec.configure do |config|
+
   config.before do |example|
     Capybara.reset_sessions!
     CapybaraSupport.set_user_agent(example.metadata[:user_agent]) if example.metadata[:user_agent]
     stub_price(10)
   end
+
+  config.after do
+    $redis.del(:exchange_rate)
+  end
 end
 
 def stub_price(price)
-  Rails.cache.delete(:price_data)
-  stub_request(:get, 'https://api.cryptonator.com/api/ticker/dash-usd').to_return(
-    status: 200,
-    body: {
-      ticker: {
-        base: 'DASH',
-        target: 'USD',
-        price: price,
-        volume: '2056.78697840',
-        change: '0.04682657'
-      },
-      timestamp: 1481982394,
-      success: true,
-      error: ''
-    }.to_json,
-    headers: {}
-  )
+  $redis.del(:exchange_rate)
+  ExchangeRateService::CURRENCIES.each do |currency|
+    stub_request(:get, "https://api.cryptonator.com/api/ticker/dash-#{currency}").to_return(
+      status: 200,
+      body: {
+        ticker: {
+          base: 'DASH',
+          target: currency.upcase,
+          price: price,
+          volume: '2056.78697840',
+          change: '0.04682657'
+        },
+        timestamp: 1481982394,
+        success: true,
+        error: ''
+      }.to_json,
+      headers: {}
+    )
+  end
 end
 
 def should_be_located(path)
@@ -55,7 +62,7 @@ def login_as(user)
 end
 
 def logout
-  visit account_index_path
+  visit account_path
   click_link 'Logout'
   within '.nav' do
     should_see 'Login'

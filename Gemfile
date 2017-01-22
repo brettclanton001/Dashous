@@ -22,7 +22,7 @@ gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml' #
 gem 'faraday'
 gem 'autoprefixer-rails'
 
-gem 'draper', github: 'audionerd/draper', branch: 'rails5'
+gem 'draper', '3.0.0.pre1' # removes console warnings
 gem 'devise'
 gem 'newrelic_rpm'
 gem 'geocoder'
@@ -40,6 +40,10 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'annotate'
   gem 'launchy'
+  gem 'pry'
+  gem 'pry-stack_explorer'
+  gem 'pry-rescue'
+  gem 'pry-doc'
 end
 
 group :development do
@@ -58,4 +62,5 @@ group :test do
   gem 'webmock', '1.20.4'
   gem 'capybara-feature_helpers', '0.0.2'
   gem 'simplecov', require: false
+  gem 'rspec-its'
 end

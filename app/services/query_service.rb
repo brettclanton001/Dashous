@@ -5,6 +5,7 @@ class QueryService
   end
 
   def query
+    return '' if @location.nil?
     return human_location if location_found?
     @location.ip
   end

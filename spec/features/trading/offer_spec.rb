@@ -7,18 +7,24 @@ feature 'Make an offer', js: true do
     create :trade_request, :new_york,
       user: user1,
       name: 'My Trade',
-      kind: 'sell',
+      kind: trade_kind,
+      currency: currency,
       profit: '12'
   end
   given!(:trade_request2) do
     create :trade_request, :stamford,
       user: user2,
       name: "Another Guy's Trade",
-      kind: 'sell',
+      kind: trade_kind,
       profit: '12'
   end
   given(:offer) { user1.offers.last }
   given!(:current_price) { stub_price(10) }
+  given(:currency) { 'usd' }
+  given(:trade_kind) { 'sell' }
+
+  given(:sale_price_explained_message) { 'This person is selling Dash for USD at 12% above market price' }
+  given(:sale_price_message) { 'The current sale price is $11.20' }
 
   context 'authenticated' do
 
@@ -33,8 +39,8 @@ feature 'Make an offer', js: true do
       Then 'I should see the trade request' do
         within '.content' do
           should_see "Another Guy's Trade"
-          should_see 'This person is selling Dash'
-          should_see 'This person wants a 12% profit so the current sale price is $11.20'
+          should_see sale_price_explained_message
+          should_see sale_price_message
           should_see 'The trade location is: Stamford'
           should_see 'Make Offer'
         end
@@ -42,12 +48,23 @@ feature 'Make an offer', js: true do
       When 'I click the Make Offer button' do
         click_link 'Make Offer'
       end
+      Then 'I should see an offer form' do
+        within 'h1' do
+          should_see 'Make an Offer'
+        end
+      end
+      When 'I enter a message' do
+        fill_in :offer_message, with: 'I want all the Dash you have!'
+      end
+      And 'I submit the offer' do
+        click_button 'Submit Offer'
+      end
       Then 'I should see a success message on the same page' do
         should_see 'Offer successfully created. Please wait for a reply.'
         within '.content' do
           should_see "Another Guy's Trade"
-          should_see 'This person is selling Dash'
-          should_see 'This person wants a 12% profit so the current sale price is $11.20'
+          should_see sale_price_explained_message
+          should_see sale_price_message
           should_see 'The trade location is: Stamford'
           within 'button.disabled' do
             should_see 'Make Offer'
@@ -58,6 +75,7 @@ feature 'Make an offer', js: true do
       And 'there is an pending offer' do
         expect(offer.status).to eq 'pending'
         expect(offer.trade_request_id).to eq trade_request2.id
+        expect(offer.message).to eq 'I want all the Dash you have!'
       end
       When 'I navigate to my offers list page' do
         within '.nav' do
@@ -70,6 +88,7 @@ feature 'Make an offer', js: true do
           within '.table-list .row:first-child' do
             should_see "Another Guy's Trade"
             should_see 'Pending'
+            should_see_element '.fa-comment-o'
           end
         end
       end
@@ -78,6 +97,24 @@ feature 'Make an offer', js: true do
           should_not_see_element 'a[href="mailto:ken@email.com"]', text: 'Email'
           should_not_see 'Review'
         end
+      end
+      When 'I click on the comment icon' do
+        within '.content .table-list .row:first-child' do
+          find('.fa-comment-o').click
+        end
+      end
+      Then 'I should see the popup with the message in it' do
+        within '.popup' do
+          should_see 'I want all the Dash you have!'
+        end
+      end
+      When 'I click the close button' do
+        within '.popup' do
+          click_button 'Close'
+        end
+      end
+      Then 'I should not see the popup' do
+        should_not_see_element '.popup'
       end
       When 'I click on the trade View link' do
         within '.table-list .row:first-child .name' do
@@ -88,8 +125,8 @@ feature 'Make an offer', js: true do
         should_be_located '/t/another_guys_trade'
         within '.content' do
           should_see "Another Guy's Trade"
-          should_see 'This person is selling Dash'
-          should_see 'This person wants a 12% profit so the current sale price is $11.20'
+          should_see sale_price_explained_message
+          should_see sale_price_message
           should_see 'The trade location is: Stamford'
           within 'button.disabled' do
             should_see 'Make Offer'
@@ -130,11 +167,30 @@ feature 'Make an offer', js: true do
         within '.table-list' do
           should_see 'Bob'
           should_see 'Pending'
+          should_see_element '.fa-comment-o'
         end
         within '.table-list .row:last-child .actions' do
           should_see 'Approve'
           should_see 'Decline'
         end
+      end
+      When 'I click on the comment icon' do
+        within '.table-list' do
+          find('.fa-comment-o').click
+        end
+      end
+      Then 'I should see the popup with the message in it' do
+        within '.popup' do
+          should_see 'I want all the Dash you have!'
+        end
+      end
+      When 'I click the close button' do
+        within '.popup' do
+          click_button 'Close'
+        end
+      end
+      Then 'I should not see the popup' do
+        should_not_see_element '.popup'
       end
       When 'I approve the offer' do
         click_link 'Approve'
@@ -277,8 +333,8 @@ feature 'Make an offer', js: true do
       Then 'I should see the trade request' do
         within '.content' do
           should_see "Another Guy's Trade"
-          should_see 'This person is selling Dash'
-          should_see 'This person wants a 12% profit so the current sale price is $11.20'
+          should_see sale_price_explained_message
+          should_see sale_price_message
           should_see 'The trade location is: Stamford'
           should_see 'Make Offer'
         end
@@ -286,12 +342,20 @@ feature 'Make an offer', js: true do
       When 'I click the Make Offer button' do
         click_link 'Make Offer'
       end
+      Then 'I should see an offer form' do
+        within 'h1' do
+          should_see 'Make an Offer'
+        end
+      end
+      When 'I submit the offer' do
+        click_button 'Submit Offer'
+      end
       Then 'I should see a success message on the same page' do
         should_see 'Offer successfully created. Please wait for a reply.'
         within '.content' do
           should_see "Another Guy's Trade"
-          should_see 'This person is selling Dash'
-          should_see 'This person wants a 12% profit so the current sale price is $11.20'
+          should_see sale_price_explained_message
+          should_see sale_price_message
           should_see 'The trade location is: Stamford'
           within 'button.disabled' do
             should_see 'Make Offer'
@@ -302,6 +366,7 @@ feature 'Make an offer', js: true do
       And 'there is an pending offer' do
         expect(offer.status).to eq 'pending'
         expect(offer.trade_request_id).to eq trade_request2.id
+        expect(offer.message).to be_blank
       end
       When 'I navigate to my offers list page' do
         within '.nav' do
@@ -314,6 +379,7 @@ feature 'Make an offer', js: true do
           within '.table-list .row:first-child' do
             should_see "Another Guy's Trade"
             should_see 'Pending'
+            should_not_see_element '.fa-comment-o'
           end
         end
       end
@@ -332,8 +398,8 @@ feature 'Make an offer', js: true do
         should_be_located '/t/another_guys_trade'
         within '.content' do
           should_see "Another Guy's Trade"
-          should_see 'This person is selling Dash'
-          should_see 'This person wants a 12% profit so the current sale price is $11.20'
+          should_see sale_price_explained_message
+          should_see sale_price_message
           should_see 'The trade location is: Stamford'
           within 'button.disabled' do
             should_see 'Make Offer'
@@ -374,6 +440,7 @@ feature 'Make an offer', js: true do
         within '.table-list' do
           should_see 'Bob'
           should_see 'Pending'
+          should_not_see_element '.fa-comment-o'
         end
         within '.table-list .row:last-child .actions' do
           should_see 'Approve'
@@ -442,8 +509,8 @@ feature 'Make an offer', js: true do
       Then 'I should see the trade request' do
         within '.content' do
           should_see "Another Guy's Trade"
-          should_see 'This person is selling Dash'
-          should_see 'This person wants a 12% profit so the current sale price is $11.20'
+          should_see sale_price_explained_message
+          should_see sale_price_message
           should_see 'The trade location is: Stamford'
           within 'button.disabled' do
             should_see 'Make Offer'
@@ -460,13 +527,61 @@ feature 'Make an offer', js: true do
       Then 'I should see the trade request' do
         within '.content' do
           should_see 'My Trade'
-          should_see 'This person is selling Dash'
-          should_see 'This person wants a 12% profit so the current sale price is $11.20'
+          should_see sale_price_explained_message
+          should_see sale_price_message
           should_see 'The trade location is: New York'
           within 'button.disabled' do
             should_see 'Make Offer'
           end
           should_see 'This is your Trade Request.'
+        end
+      end
+    end
+
+    context 'buying' do
+      given(:trade_kind) { 'buy' }
+      given(:sale_price_explained_message) { 'This person is buying Dash with USD at 12% below market price' }
+      given(:sale_price_message) { 'The current sale price is $8.80' }
+
+      Steps 'I attempt to create an offer with myself' do
+        When 'I visit the trade request page' do
+          visit public_trade_request_path(trade_request1.slug)
+        end
+        Then 'I should see the trade request' do
+          within '.content' do
+            should_see 'My Trade'
+            should_see sale_price_explained_message
+            should_see sale_price_message
+            should_see 'The trade location is: New York'
+            within 'button.disabled' do
+              should_see 'Make Offer'
+            end
+            should_see 'This is your Trade Request.'
+          end
+        end
+      end
+    end
+
+    context 'eur currency' do
+      given(:currency) { 'eur' }
+      given(:sale_price_explained_message) { 'This person is selling Dash for EUR at 12% above market price' }
+      given(:sale_price_message) { 'The current sale price is €11.20' }
+
+      Steps 'I attempt to create an offer with myself' do
+        When 'I visit the trade request page' do
+          visit public_trade_request_path(trade_request1.slug)
+        end
+        Then 'I should see the trade request' do
+          within '.content' do
+            should_see 'My Trade'
+            should_see sale_price_explained_message
+            should_see sale_price_message
+            should_see 'The trade location is: New York'
+            within 'button.disabled' do
+              should_see 'Make Offer'
+            end
+            should_see 'This is your Trade Request.'
+          end
         end
       end
     end

@@ -10,6 +10,9 @@ google_maps_embed:
 google_geocode:
   key: <%= ENV['GOOGLE_GEOCODE_API_KEY'] %>
 
+google_analytics:
+  key: <%= ENV['GOOGLE_ANALYTICS_API_KEY'] %>
+
 smtp_config:
   user_name: <%= ENV['SMTP_USER_NAME'] %>
   password: <%= ENV['SMTP_PASSWORD'] %>

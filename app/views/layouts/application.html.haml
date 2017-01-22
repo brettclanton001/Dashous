@@ -26,6 +26,12 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    .popup
+      .overlay{onclick: 'window.closePopup()'}
+      .popup-content-container
+        .popup-content
+        .popup-actions
+          %button.primary{onclick: 'window.closePopup()'} Close
     .header
       .logo
         = link_to 'DASHOUS', root_path
@@ -35,7 +41,7 @@
               .fa.fa-usd.fa-lg
             = link_to trade_requests_path, class: "item #{'active' if @section == :trade_requests}" do
               .fa.fa-street-view.fa-lg
-            = link_to account_index_path, class: "item #{'active' if @section == :account}" do
+            = link_to account_path, class: "item #{'active' if @section == :account}" do
               .fa.fa-briefcase.fa-lg
           - else
             = link_to new_user_session_path, class: 'item' do
@@ -51,7 +57,9 @@
             .fa.fa-search.fa-lg
         .price
           %span.price-description 1 Dash =
-          = number_to_currency ExchangeRateService.current_price
+          - currency = current_user.present? ? current_user.currency : 'usd'
+          - price = ExchangeRateService.current_price(currency)
+          = MoneyService.format(price, currency)
     .nav
       - if current_user
         = link_to offers_path, class: "item #{'active' if @section == :offers}" do
@@ -60,7 +68,7 @@
         = link_to trade_requests_path, class: "item #{'active' if @section == :trade_requests}" do
           .fa.fa-street-view.fa-lg
           Trade Requests
-        = link_to account_index_path, class: "item #{'active' if @section == :account}" do
+        = link_to account_path, class: "item #{'active' if @section == :account}" do
           .fa.fa-briefcase.fa-lg
           Account
       - else
@@ -84,3 +92,11 @@
       = mail_to 'brett@dashous.com', 'Contact'
       = link_to 'Donate', donate_path
       %span Dashous LLC
+
+    :javascript
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', '#{Settings.google_analytics.key}', 'auto');
+      ga('send', 'pageview');

@@ -8,9 +8,9 @@ class TradeRequestDecorator < Draper::Decorator
   def sale_price
     case object.kind
     when 'buy'
-      current_price * (1 - profit_margin)
+      format_price(current_price * (1 - profit_margin))
     when 'sell'
-      current_price * (1 + profit_margin)
+      format_price(current_price * (1 + profit_margin))
     end
   end
 
@@ -32,6 +32,10 @@ class TradeRequestDecorator < Draper::Decorator
   end
 
   private
+
+  def format_price(price)
+    MoneyService.format(price, object.currency)
+  end
 
   def current_price
     ExchangeRateService.current_price

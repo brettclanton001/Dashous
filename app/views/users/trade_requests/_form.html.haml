@@ -16,6 +16,9 @@
     = f.label :kind, 'Trade Type'
     = f.select :kind, [['I am Selling Dash', 'sell'], ['I am Buying Dash', 'buy']]
   .field
+    = f.label :currency, 'Accepted Currency'
+    = f.select :currency, ExchangeRateService::CURRENCIES.map {|c| [c.upcase, c]}
+  .field
     = f.label :profit, 'Percentage Profit'
     = f.text_field :profit, placeholder: 'A number like "2" or "5.5"'
   .actions

@@ -27,12 +27,16 @@ class User < ApplicationRecord
     :email,
     :encrypted_email_iv,
     :username,
+    presence: true
+  validates \
     :password,
     :password_confirmation,
-    presence: true
+    presence: true,
+    on: :create
   validates_format_of :username, with: /\A[a-zA-Z0-9]+\z/
   validates_acceptance_of :terms_and_conditions
-  validates_confirmation_of :password
+  validates_confirmation_of :password, if: "changed.include?('encrypted_password')"
+  validates :currency, inclusion: { in: ExchangeRateService::CURRENCIES }
 
 end
 
@@ -59,7 +63,7 @@ end
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string
-#  currency               :string
+#  currency               :string           not null
 #
 # Indexes
 #

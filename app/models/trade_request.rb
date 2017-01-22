@@ -11,6 +11,7 @@ class TradeRequest < ApplicationRecord
   scope :active, -> { where(active: true) }
 
   validates :kind, inclusion: { in: KINDS }
+  validates :currency, inclusion: { in: ExchangeRateService::CURRENCIES }
   validates_presence_of \
     :user_id,
     :name,
@@ -22,6 +23,14 @@ class TradeRequest < ApplicationRecord
   geocoded_by :location
   after_validation :maybe_geocode
   before_create :generate_slug
+
+  def selling?
+    kind == 'sell'
+  end
+
+  def buying?
+    kind == 'buy'
+  end
 
   private
 
@@ -59,7 +68,7 @@ end
 #  longitude  :float
 #  slug       :string           not null
 #  active     :boolean          default(FALSE), not null
-#  currency   :string
+#  currency   :string           not null
 #
 # Indexes
 #

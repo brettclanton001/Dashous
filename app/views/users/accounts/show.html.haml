@@ -5,7 +5,19 @@
 %p You have a public profile page that you can share with others:
 = link_to 'View my Public Profile', public_user_profile_path(current_user.username), class: 'button primary'
 
-%p &nbsp;
+%br
+%br
+%hr
+
+= form_tag('/u/account', method: 'PATCH') do
+  .field
+    %label Preferred Currency
+    - options = ExchangeRateService::CURRENCIES.map {|c| [c.upcase, c]}
+    = select_tag 'user[currency]', options_for_select(options, current_user.currency)
+  .field
+    %input(type="submit" value="Update")
+
+%hr
 
 %p Logout if you're done using Dashous on a public computer.
 = link_to 'Logout', destroy_user_session_path, method: 'DELETE', class: 'button'

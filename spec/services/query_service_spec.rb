@@ -29,5 +29,13 @@ describe QueryService do
         expect(subject).to eq '192.168.1.100'
       end
     end
+
+    context 'location is nil' do
+      let(:location) { nil }
+
+      it 'should return an empty string' do
+        expect(subject).to eq ''
+      end
+    end
   end
 end

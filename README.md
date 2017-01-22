@@ -1,5 +1,6 @@
-# Dashous
+# Dashous [![CircleCI](https://circleci.com/gh/brettclanton001/Dashous.svg?style=svg)](https://circleci.com/gh/brettclanton001/Dashous)
 [Dashous.com](https://dashous.com)
+
 Connect with other members of the Dash community to trade for Dash.
 
 # This Repository

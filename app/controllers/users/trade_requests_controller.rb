@@ -62,6 +62,7 @@ class Users::TradeRequestsController < Users::BaseController
       :name,
       :location,
       :kind,
+      :currency,
       :profit
     )
   end

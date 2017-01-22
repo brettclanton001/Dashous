@@ -92,7 +92,7 @@ feature 'Signup', js: true do
       expect(user.currency).to eq 'usd'
     end
     When 'I visit the link' do
-      visit "/users/confirmation?confirmation_token=#{user.confirmation_token}"
+      visit "/u/confirmation?confirmation_token=#{user.confirmation_token}"
     end
     Then 'I should see a success message' do
       should_see 'Your email address has been successfully confirmed.'
@@ -122,6 +122,59 @@ feature 'Signup', js: true do
         should_see 'Trade Requests'
         should_see 'Account'
       end
+    end
+  end
+
+  Steps 'a new user signs up but has to resend the confirmation email' do
+    When 'I visit the signup page' do
+      visit '/signup'
+    end
+    When 'I fill out and submit the form' do
+      fill_in :user_email, with: 'test@example.com'
+      fill_in :user_username, with: 'JohnDoe'
+      fill_in :user_password, with: '123456'
+      fill_in :user_password_confirmation, with: '123456'
+      check 'I accept the terms and conditions *'
+    end
+    And 'I submit the form' do
+      click_button 'Signup'
+    end
+    Then 'I should see a message about checking my email' do
+      should_see 'A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.'
+    end
+    When 'I go to the login page' do
+      visit '/login'
+    end
+    And 'I try to act like I did not receive an email' do
+      click_link "Didn't receive confirmation instructions?"
+    end
+    Then 'I should see the resend confirmation page' do
+      within 'h1' do
+        should_see 'Resend confirmation instructions'
+      end
+    end
+    When 'I enter in my username' do
+      fill_in :user_username, with: 'JohnDoe'
+    end
+    And 'I submit the form' do
+      click_button 'Resend confirmation instructions'
+    end
+    Then 'I should see a success message' do
+      should_see 'You will receive an email with instructions for how to confirm your email address in a few minutes.'
+    end
+    When 'I visit the link' do
+      visit "/u/confirmation?confirmation_token=#{user.reload.confirmation_token}"
+    end
+    Then 'I should see a success message' do
+      should_see 'Your email address has been successfully confirmed.'
+    end
+    When 'I log in' do
+      fill_in :user_username, with: 'JohnDoe'
+      fill_in :user_password, with: '123456'
+      click_button 'Login'
+    end
+    Then 'I see the success message' do
+      should_see 'Signed in successfully.'
     end
   end
 
