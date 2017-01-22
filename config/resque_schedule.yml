@@ -1,3 +1,12 @@
-UpdateExchangeRateJob:
-  cron: "*/2 * * * *"
+update_exchange_rate_data:
   queue: exchange_rate
+  every: '2m'
+  class: 'ActiveJob::QueueAdapters::ResqueAdapter::JobWrapper'
+  args:
+    -
+      job_class: UpdateExchangeRateJob
+      job_id: #{SecureRandom.uuid}
+      queue_name: exchange_rate
+      arguments:
+        -
+  description: 'Update the cached exchange rate data.'
