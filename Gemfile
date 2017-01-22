@@ -7,6 +7,7 @@ gem 'puma', '~> 3.0'
 gem 'redis'
 gem 'rack-timeout'
 gem 'resque', "~> 1.26.0"
+gem 'sinatra', github: 'sinatra'
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -47,6 +48,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'foreman'
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
 end

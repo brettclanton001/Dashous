@@ -49,4 +49,10 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  ## Admin Routes
+  authenticated :user, lambda {|u| u.admin? } do
+    mount Resque::Server.new, :at => "/resque"
+  end
+
 end

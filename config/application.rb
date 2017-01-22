@@ -1,5 +1,6 @@
 require_relative 'boot'
 
+require 'resque/server'
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems

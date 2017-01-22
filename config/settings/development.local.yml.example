@@ -28,3 +28,8 @@ google_maps_embed:
 #
 # google_geocode:
 #   key: GOOGLE_GEOCODE_KEY
+
+# Admin Routes (optional):
+#
+# admin:
+#   email: MY_EMAIL

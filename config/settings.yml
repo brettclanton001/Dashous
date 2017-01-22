@@ -37,3 +37,6 @@ rack_timeout:
 donations:
   address: <%= ENV['DONATION_ADDRESS'] %>
   qr_code: <%= ENV['DONATION_QR_CODE'] %>
+
+admin:
+  email: <%= ENV['ADMIN_EMAIL'] %>

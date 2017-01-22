@@ -38,6 +38,9 @@ class User < ApplicationRecord
   validates_confirmation_of :password, if: "changed.include?('encrypted_password')"
   validates :currency, inclusion: { in: ExchangeRateService::CURRENCIES }
 
+  def admin?
+    confirmed? and email == Settings.admin.email
+  end
 end
 
 # == Schema Information
