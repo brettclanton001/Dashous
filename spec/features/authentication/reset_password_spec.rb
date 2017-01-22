@@ -1,6 +1,6 @@
 require 'feature_helper'
 
-feature 'reset password', js: true do
+feature 'reset password', js: true, perform_enqueued: true do
   given!(:user) { create :user, username: 'luiswong' }
 
   Steps 'for requesting reset instructions' do
