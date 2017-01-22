@@ -6,7 +6,8 @@ gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'redis'
 gem 'rack-timeout'
-gem 'resque', "~> 1.26.0"
+gem 'resque', '~> 1.26.0'
+gem 'resque-scheduler'
 gem 'sinatra', github: 'sinatra' # added for resque web ui
 
 gem 'sass-rails', '~> 5.0'
