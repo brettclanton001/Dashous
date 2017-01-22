@@ -7,7 +7,7 @@ gem 'puma', '~> 3.0'
 gem 'redis'
 gem 'rack-timeout'
 gem 'resque', "~> 1.26.0"
-gem 'sinatra', github: 'sinatra'
+gem 'sinatra', github: 'sinatra' # added for resque web ui
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -19,11 +19,10 @@ gem 'haml-rails'
 gem 'font-awesome-sass'
 gem 'config'
 gem "attr_encrypted", "~> 3.0.0"
-gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml' # added for draper
 gem 'faraday'
 gem 'autoprefixer-rails'
 
-gem 'draper', '3.0.0.pre1' # removes console warnings
+gem 'draper', '3.0.0.pre1'
 gem 'devise'
 gem 'newrelic_rpm'
 gem 'geocoder'
