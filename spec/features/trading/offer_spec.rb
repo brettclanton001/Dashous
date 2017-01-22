@@ -98,6 +98,24 @@ feature 'Make an offer', js: true do
           should_not_see 'Review'
         end
       end
+      When 'I click on the comment icon' do
+        within '.content .table-list .row:first-child' do
+          find('.fa-comment-o').click
+        end
+      end
+      Then 'I should see the popup with the message in it' do
+        within '.popup' do
+          should_see 'I want all the Dash you have!'
+        end
+      end
+      When 'I click the close button' do
+        within '.popup' do
+          click_button 'Close'
+        end
+      end
+      Then 'I should not see the popup' do
+        should_not_see_element '.popup'
+      end
       When 'I click on the trade View link' do
         within '.table-list .row:first-child .name' do
           click_link "Another Guy's Trade"
@@ -155,6 +173,24 @@ feature 'Make an offer', js: true do
           should_see 'Approve'
           should_see 'Decline'
         end
+      end
+      When 'I click on the comment icon' do
+        within '.table-list' do
+          find('.fa-comment-o').click
+        end
+      end
+      Then 'I should see the popup with the message in it' do
+        within '.popup' do
+          should_see 'I want all the Dash you have!'
+        end
+      end
+      When 'I click the close button' do
+        within '.popup' do
+          click_button 'Close'
+        end
+      end
+      Then 'I should not see the popup' do
+        should_not_see_element '.popup'
       end
       When 'I approve the offer' do
         click_link 'Approve'

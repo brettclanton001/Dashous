@@ -26,6 +26,12 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    .popup
+      .overlay{onclick: 'window.closePopup()'}
+      .popup-content-container
+        .popup-content
+        .popup-actions
+          %button.primary{onclick: 'window.closePopup()'} Close
     .header
       .logo
         = link_to 'DASHOUS', root_path

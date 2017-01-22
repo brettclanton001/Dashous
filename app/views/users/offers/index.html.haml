@@ -24,7 +24,7 @@
           = offer.status_for_user(current_user)
         .info
           - if offer.message.present?
-            .fa.fa-comment-o.fa-lg
+            .fa.fa-comment-o.fa-lg.clickable{onclick: 'window.openPopup(this)', title: offer.message}
         .actions
           - if offer.approved?
             = mail_to user.email, 'Email'
