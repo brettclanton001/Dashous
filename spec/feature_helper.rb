@@ -39,16 +39,17 @@ RSpec.configure do |config|
   end
 end
 
-def stub_price(price)
+def stub_price(price, options={})
   $redis.del(:exchange_rate)
   ExchangeRateService::CURRENCIES.each do |currency|
+    this_price = options[currency].present? ? options[currency] : price
     stub_request(:get, "https://api.cryptonator.com/api/ticker/dash-#{currency}").to_return(
       status: 200,
       body: {
         ticker: {
           base: 'DASH',
           target: currency.upcase,
-          price: price,
+          price: this_price,
           volume: '2056.78697840',
           change: '0.04682657'
         },

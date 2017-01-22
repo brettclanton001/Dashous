@@ -2,7 +2,14 @@ module ExchangeRateService extend self
 
   CURRENCIES = %w(
     usd
+    gbp
+    cad
+    cny
     eur
+    jpy
+    myr
+    pln
+    rub
   ).freeze
 
   CACHE_TIMEOUT = 15.minutes.freeze
