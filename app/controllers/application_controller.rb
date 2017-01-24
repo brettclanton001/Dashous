@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def enforce_domain
     unless request.host == Settings.default_url.host
-      redirect_to "https://#{Settings.default_url.host}", status: 301
+      redirect_to "https://#{Settings.default_url.host}#{request.path}", status: 301
     end
   end
 end
