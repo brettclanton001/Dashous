@@ -18,11 +18,11 @@ RSpec.describe 'Creating Offers', type: :request do
     }
   end
 
-  subject { post '/u/offers', params: data }
+  subject { post 'http://127.0.0.1/u/offers', params: data }
 
   before do
     ActionController::Base.allow_forgery_protection = false
-    post '/login', params: { user: { username: 'Bob', password: 'password'} }
+    post 'http://127.0.0.1/login', params: { user: { username: 'Bob', password: 'password'} }
   end
 
   after do

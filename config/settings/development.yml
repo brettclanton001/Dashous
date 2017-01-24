@@ -4,3 +4,7 @@ attr_encrypted:
 
 rack_timeout:
   seconds: 30
+
+default_url:
+  host: localhost
+  port: 3000

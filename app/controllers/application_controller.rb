@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :persist_query
+  before_action :enforce_domain
   protect_from_forgery with: :exception
 
   private
@@ -10,5 +11,11 @@ class ApplicationController < ActionController::Base
 
   def persist_query
     @query = params[:query]
+  end
+
+  def enforce_domain
+    unless request.host == Settings.default_url.host
+      redirect_to "https://#{Settings.default_url.host}", status: 301
+    end
   end
 end

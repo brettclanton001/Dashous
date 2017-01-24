@@ -13,7 +13,7 @@ RSpec.describe 'Admin Routes', type: :request do
   end
 
   context 'resque' do
-    subject { get '/resque' }
+    subject { get 'http://127.0.0.1/resque' }
 
     context 'not authenticated' do
       it 'should return an error' do
@@ -24,7 +24,7 @@ RSpec.describe 'Admin Routes', type: :request do
     context 'authenticated' do
       before do
         ActionController::Base.allow_forgery_protection = false
-        post '/login', params: { user: { username: 'Bob', password: 'password'} }
+        post 'http://127.0.0.1/login', params: { user: { username: 'Bob', password: 'password'} }
       end
 
       it 'should return an error' do

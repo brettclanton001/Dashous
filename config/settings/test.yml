@@ -4,3 +4,7 @@ attr_encrypted:
 
 admin:
   email: admin@guy.com
+
+default_url:
+  host: '127.0.0.1'
+  port: 52010
