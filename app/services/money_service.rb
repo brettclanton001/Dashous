@@ -8,14 +8,14 @@ module MoneyService extend self
 
   def currency_prefix(currency)
     case currency
-    when 'gbp'
-      "£"
-    when 'cad'
+    when 'usd', 'aud', 'cad', 'nzd'
       "$"
     when 'cny'
       "¥"
     when 'eur'
       "€"
+    when 'gbp'
+      "£"
     when 'jpy'
       "¥"
     when 'myr'
@@ -24,8 +24,6 @@ module MoneyService extend self
       "zł"
     when 'rub'
       "₽"
-    when 'usd'
-      "$"
     end
   end
 end

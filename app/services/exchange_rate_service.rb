@@ -2,12 +2,14 @@ module ExchangeRateService extend self
 
   CURRENCIES = %w(
     usd
-    gbp
+    aud
     cad
     cny
     eur
+    gbp
     jpy
     myr
+    nzd
     pln
     rub
   ).freeze
