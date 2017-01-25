@@ -45,3 +45,18 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 end
+
+def stub_price(price, options={})
+  $redis.del(:exchange_rate)
+  response_data = {}
+  ExchangeRateService::CURRENCIES.each do |currency|
+    this_price = options[currency].present? ? options[currency] : price
+    response_data[currency.upcase] = this_price
+  end
+  currencies = ExchangeRateService::CURRENCIES.map { |currency| currency.upcase }.join(',')
+  stub_request(:get, "https://min-api.cryptocompare.com/data/price?fsym=DASH&tsyms=#{currencies}").to_return(
+    status: 200,
+    body: response_data.to_json,
+    headers: {}
+  )
+end

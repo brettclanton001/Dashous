@@ -28,18 +28,17 @@ module ExchangeRateService extend self
 
   def fetch_external_data
     data = {}
+
+    currencies = CURRENCIES.map { |currency| currency.upcase }.join(',')
+    external_data = JSON.parse connection.get("/data/price?fsym=DASH&tsyms=#{currencies}").body
+
     CURRENCIES.each do |currency|
-      data[currency] = parse_data connection.get("/api/ticker/dash-#{currency}").body
+      data[currency] = external_data[currency.upcase].to_f.round(2)
     end
+
     data['updated_at'] = Time.now
     set_cache(data)
     data
-  end
-
-  def parse_data(body)
-    data = JSON.parse body
-    price = data['ticker']['price']
-    price.to_f.round(2)
   end
 
   def cache_valid?(cache)
@@ -57,6 +56,6 @@ module ExchangeRateService extend self
   end
 
   def connection
-    Faraday.new(url: 'https://api.cryptonator.com')
+    Faraday.new(url: 'https://min-api.cryptocompare.com')
   end
 end
