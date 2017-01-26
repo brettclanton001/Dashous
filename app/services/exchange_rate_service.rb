@@ -5,6 +5,7 @@ module ExchangeRateService extend self
     aud
     cad
     cny
+    czk
     eur
     gbp
     jpy
