@@ -79,7 +79,7 @@
           .fa.fa-trophy.fa-lg
           Signup
       .revision
-        = link_to "Version: #{Dashous::REVISION}", "https://github.com/brettclanton001/Dashous/commit/#{Dashous::REVISION}", target: '_blank'
+        = link_to "Version: #{Settings.git.revision}", "#{Settings.git.github_url}/commit/#{Settings.git.revision}", target: '_blank'
 
     .content
       - flash.each do |key, value|
@@ -89,9 +89,9 @@
     .footer
       = link_to 'Terms', terms_path
       = link_to 'Privacy', privacy_path
-      = link_to 'Github', 'https://github.com/brettclanton001/Dashous', target: '_blank'
+      = link_to 'Github', Settings.git.github_url, target: '_blank'
       = link_to 'Reddit', 'https://www.reddit.com/r/dashous', target: '_blank'
-      = mail_to 'brett@dashous.com', 'Contact'
+      = mail_to Settings.admin.email, 'Contact'
       = link_to 'Donate', donate_path
       %span Dashous LLC
 

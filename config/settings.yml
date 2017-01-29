@@ -39,4 +39,8 @@ donations:
   qr_code: <%= ENV['DONATION_QR_CODE'] %>
 
 admin:
-  email: <%= ENV['ADMIN_EMAIL'] %>
+  email: <%= ENV.fetch('ADMIN_EMAIL', 'brett@dashous.com') %>
+
+git:
+  revision: <%= ENV.fetch('REVISION', `git log --pretty=format:'%h' -n 1`) %>
+  github_url: https://github.com/brettclanton001/Dashous
