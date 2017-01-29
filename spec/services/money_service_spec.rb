@@ -100,6 +100,14 @@ describe MoneyService do
       end
     end
 
+    context 'sek' do
+      let(:currency) { 'sek' }
+
+      it 'should format the money' do
+        expect(subject).to eq "10.00 kr"
+      end
+    end
+
     context 'tzs' do
       let(:currency) { 'tzs' }
 

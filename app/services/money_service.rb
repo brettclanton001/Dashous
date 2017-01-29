@@ -45,6 +45,8 @@ module MoneyService extend self
       ' zł'
     when 'rub'
       ' ₽'
+    when 'sek'
+      ' kr'
     when 'tzs'
       ' TSh'
     else

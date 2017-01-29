@@ -15,6 +15,7 @@ module ExchangeRateService extend self
     nzd
     pln
     rub
+    sek
     tzs
   ).freeze
 
