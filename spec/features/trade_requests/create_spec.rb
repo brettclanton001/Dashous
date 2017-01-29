@@ -39,6 +39,7 @@ feature 'Create trade request', js: true do
       When 'I fill out the form' do
         fill_in :trade_request_name, with: 'Best Trade Ever'
         fill_in :trade_request_location, with: 'New York City, New York'
+        fill_in :trade_request_description, with: 'I only accept trading on Sundays.'
         select "I am Buying Dash", from: "trade_request_kind"
         select "EUR", from: "trade_request_currency"
         fill_in :trade_request_profit, with: 'foo'
@@ -60,6 +61,7 @@ feature 'Create trade request', js: true do
       end
       And 'the record should be created with correct data' do
         expect(trade_request.name).to eq 'Best Trade Ever'
+        expect(trade_request.description).to eq 'I only accept trading on Sundays.'
         expect(trade_request.kind).to eq 'buy'
         expect(trade_request.profit).to eq '2.5'
         expect(trade_request.location).to eq 'New York City, New York'

@@ -60,6 +60,7 @@ class Users::TradeRequestsController < Users::BaseController
   def trade_request_params
     params.require(:trade_request).permit(
       :name,
+      :description,
       :location,
       :kind,
       :currency,

@@ -15,6 +15,7 @@ feature 'Make an offer', js: true do
     create :trade_request, :stamford,
       user: user2,
       name: "Another Guy's Trade",
+      description: 'I am another human person, definitely not a robot.',
       kind: trade_kind,
       profit: '12'
   end
@@ -39,6 +40,7 @@ feature 'Make an offer', js: true do
       Then 'I should see the trade request' do
         within '.content' do
           should_see "Another Guy's Trade"
+          should_see 'I am another human person, definitely not a robot.'
           should_see sale_price_explained_message
           should_see sale_price_message
           should_see 'The trade location is: Stamford'

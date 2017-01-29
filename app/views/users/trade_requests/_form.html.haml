@@ -7,10 +7,13 @@
           %li= msg
 
   .field
-    = f.label :name, 'Name'
+    = f.label :name, 'Name *'
     = f.text_field :name, placeholder: 'Best deal in Antarctica!'
   .field
-    = f.label :location, 'Location of Trade'
+    = f.label :description, 'Description'
+    = f.text_area :description, maxlength: 2000, placeholder: 'Anything you wish to share about this Trade Request?'
+  .field
+    = f.label :location, 'Location of Trade *'
     = f.text_area :location, placeholder: "The full address of a well-populated public place like a Cafe, Bank, or Police Station. \r\rWARNING - Never use your Home or Work as a Trade Location"
   .field
     = f.label :kind, 'Trade Type'
@@ -19,7 +22,7 @@
     = f.label :currency, 'Accepted Currency'
     = f.select :currency, ExchangeRateService::CURRENCIES.map {|c| [c.upcase, c]}
   .field
-    = f.label :profit, 'Percentage Profit'
+    = f.label :profit, 'Percentage Profit *'
     = f.text_field :profit, placeholder: 'A number like "2" or "5.5"'
   .actions
     = f.submit 'Save', class: 'button primary'

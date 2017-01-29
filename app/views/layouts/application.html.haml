@@ -82,9 +82,10 @@
         = link_to "Version: #{Settings.git.revision}", "#{Settings.git.github_url}/commit/#{Settings.git.revision}", target: '_blank'
 
     .content
-      - flash.each do |key, value|
-        %div{class: "alert alert-#{key}"}= value
-      = yield
+      .wrapper
+        - flash.each do |key, value|
+          %div{class: "alert alert-#{key}"}= value
+        = yield
 
     .footer
       = link_to 'Terms', terms_path

@@ -1,0 +1,29 @@
+.grid
+  & > .row
+    display: inline-block
+    &:after
+      content: ' '
+      visibility: hidden
+      display: block
+      height: 0
+      font-size: 0
+      clear: both
+    & > [class^="span-"]
+      box-sizing: border-box
+      float: left
+      padding: 0 5px
+      &:first-child
+        padding-left: 0
+      &:last-child
+        padding-right: 0
+
+    .span-1of2
+      width: 50%
+
+@media (max-width: 720px)
+  .grid
+    & > .row
+      display: block
+      & > [class^="span-"]
+        width: auto
+        padding: 0
