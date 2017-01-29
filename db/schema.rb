@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170121140300) do
+ActiveRecord::Schema.define(version: 20170129142622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,18 +35,19 @@ ActiveRecord::Schema.define(version: 20170121140300) do
   end
 
   create_table "trade_requests", force: :cascade do |t|
-    t.string   "name",                       null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "user_id",                    null: false
-    t.string   "kind",                       null: false
-    t.string   "profit",                     null: false
-    t.string   "location",                   null: false
+    t.string   "name",                        null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "user_id",                     null: false
+    t.string   "kind",                        null: false
+    t.string   "profit",                      null: false
+    t.string   "location",                    null: false
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "slug",                       null: false
-    t.boolean  "active",     default: false, null: false
-    t.string   "currency",                   null: false
+    t.string   "slug",                        null: false
+    t.boolean  "active",      default: false, null: false
+    t.string   "currency",                    null: false
+    t.text     "description"
     t.index ["slug"], name: "index_trade_requests_on_slug", unique: true, using: :btree
   end
 
