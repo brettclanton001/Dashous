@@ -9,34 +9,16 @@
 
 %iframe.map{ src: "//www.google.com/maps/embed/v1/place?q=#{@trade_request.map_location}&zoom=14&key=#{Settings.google_maps_embed.key}" }
 
-.grid
-  .row
-    .span-1of2
-      %p
-        This person is
-        - if @trade_request.selling?
-          %strong selling
-          Dash for #{@trade_request.currency.upcase} at #{@trade_request.profit}% above market price
-        - elsif @trade_request.buying?
-          %strong buying
-          Dash with #{@trade_request.currency.upcase} at #{@trade_request.profit}% below market price
-      %p
-        The current sale price is
-        %strong= @trade_request.sale_price
-      %p
-        The trade location is:
-        = @trade_request.location
-
-      - if @trade_request.offer_possible current_user
-        %p
-          = link_to 'Make Offer', new_offer_path('offer[trade_request_id]': @trade_request.id), class: 'button primary'
-      - else
-        %p
-          %button.disabled Make Offer
-        %p= @trade_request.offer_restricted_reason current_user
-    .span-1of2
-      %hr.phone-only
-      %h4
-        More information from
-        = user.username
-      %p.whitespaced= @trade_request.description
+- if @trade_request.description.blank?
+  = render 'trade_request_info'
+- else
+  .grid
+    .row
+      .span-1of2
+        = render 'trade_request_info'
+      .span-1of2
+        %hr.phone-only
+        %h4
+          More information from
+          = user.username
+        %p.whitespaced= @trade_request.description

@@ -40,6 +40,7 @@ feature 'Make an offer', js: true do
       Then 'I should see the trade request' do
         within '.content' do
           should_see "Another Guy's Trade"
+          should_see 'More information from Ken'
           should_see 'I am another human person, definitely not a robot.'
           should_see sale_price_explained_message
           should_see sale_price_message
@@ -529,6 +530,7 @@ feature 'Make an offer', js: true do
       Then 'I should see the trade request' do
         within '.content' do
           should_see 'My Trade'
+          should_not_see 'More information from'
           should_see sale_price_explained_message
           should_see sale_price_message
           should_see 'The trade location is: New York'
