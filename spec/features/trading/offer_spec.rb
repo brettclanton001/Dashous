@@ -591,7 +591,7 @@ feature 'Make an offer', js: true do
     context 'jpy currency' do
       given(:currency) { 'jpy' }
       given(:sale_price_explained_message) { 'This person is selling Dash for JPY at 12% above market price' }
-      given(:sale_price_message) { 'The current sale price is ¥1120.00' }
+      given(:sale_price_message) { 'The current sale price is ¥1120' }
       given!(:conversion_is_higher) { stub_price(1000, 'usd' => 10) }
 
       Steps 'I attempt to create an offer with myself' do

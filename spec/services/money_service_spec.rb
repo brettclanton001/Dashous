@@ -2,7 +2,15 @@ require 'spec_helper'
 
 describe MoneyService do
   describe '#format' do
+    let(:currency) { 'usd' }
+
     subject { described_class.format(10,currency) }
+
+    context 'usd' do
+      it 'should format the money' do
+        expect(subject).to eq "$10.00"
+      end
+    end
 
     context 'gbp' do
       let(:currency) { 'gbp' }
@@ -17,6 +25,14 @@ describe MoneyService do
 
       it 'should format the money' do
         expect(subject).to eq "$10.00"
+      end
+    end
+
+    context 'chf' do
+      let(:currency) { 'chf' }
+
+      it 'should format the money' do
+        expect(subject).to eq "10.00 Fr."
       end
     end
 
@@ -52,6 +68,14 @@ describe MoneyService do
       end
     end
 
+    context 'kes' do
+      let(:currency) { 'kes' }
+
+      it 'should format the money' do
+        expect(subject).to eq "10.00 KSh"
+      end
+    end
+
     context 'myr' do
       let(:currency) { 'myr' }
 
@@ -76,11 +100,29 @@ describe MoneyService do
       end
     end
 
-    context 'usd' do
-      let(:currency) { 'usd' }
+    context 'tzs' do
+      let(:currency) { 'tzs' }
 
       it 'should format the money' do
-        expect(subject).to eq "$10.00"
+        expect(subject).to eq "10.00 TSh"
+      end
+    end
+
+    context 'large numbers' do
+      subject { described_class.format(1000,currency) }
+
+      context 'usd' do
+        it 'it should omit decimals on large numbers' do
+          expect(subject).to eq "$1000"
+        end
+      end
+
+      context 'tzs' do
+        let(:currency) { 'tzs' }
+
+        it 'should format the money' do
+          expect(subject).to eq "1000 TSh"
+        end
       end
     end
   end

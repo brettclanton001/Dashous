@@ -4,15 +4,18 @@ module ExchangeRateService extend self
     usd
     aud
     cad
+    chf
     cny
     czk
     eur
     gbp
     jpy
+    kes
     myr
     nzd
     pln
     rub
+    tzs
   ).freeze
 
   CACHE_TIMEOUT = 15.minutes.freeze

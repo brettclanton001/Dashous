@@ -7,38 +7,48 @@ module MoneyService extend self
   private
 
   def format_number(number)
-    '%.2f' % number
+    if number < 1000
+      '%.2f' % number
+    else
+      number.floor
+    end
   end
 
   def currency_prefix(currency)
     case currency
     when 'usd', 'aud', 'cad', 'nzd'
-      "$"
+      '$'
     when 'cny'
-      "¥"
+      '¥'
     when 'eur'
-      "€"
+      '€'
     when 'gbp'
-      "£"
+      '£'
     when 'jpy'
-      "¥"
+      '¥'
     when 'myr'
-      "RM"
+      'RM'
     else
-      ""
+      ''
     end
   end
 
   def currency_suffix(currency)
     case currency
+    when 'chf'
+      ' Fr.'
     when 'czk'
-      " Kč"
+      ' Kč'
+    when 'kes'
+      ' KSh'
     when 'pln'
-      " zł"
+      ' zł'
     when 'rub'
-      " ₽"
+      ' ₽'
+    when 'tzs'
+      ' TSh'
     else
-      ""
+      ''
     end
   end
 end
