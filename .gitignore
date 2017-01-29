@@ -23,6 +23,10 @@ coverage/assets/*
 coverage/index.html
 coverage/.resultset*
 
+# settings
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
+
+# scripts
+deploy.sh
