@@ -78,6 +78,8 @@
         = link_to new_user_registration_path, class: 'item' do
           .fa.fa-trophy.fa-lg
           Signup
+      .revision
+        = link_to "Version: #{Dashous::REVISION}", "https://github.com/brettclanton001/Dashous/commit/#{Dashous::REVISION}", target: '_blank'
 
     .content
       - flash.each do |key, value|
