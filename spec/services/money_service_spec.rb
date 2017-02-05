@@ -52,6 +52,14 @@ describe MoneyService do
       end
     end
 
+    context 'dkk' do
+      let(:currency) { 'dkk' }
+
+      it 'should format the money' do
+        expect(subject).to eq "10.00 kr"
+      end
+    end
+
     context 'eur' do
       let(:currency) { 'eur' }
 

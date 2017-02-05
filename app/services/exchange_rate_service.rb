@@ -1,24 +1,7 @@
 module ExchangeRateService extend self
 
-  CURRENCIES = %w(
-    usd
-    aud
-    cad
-    chf
-    cny
-    czk
-    eur
-    gbp
-    jpy
-    kes
-    myr
-    nzd
-    pln
-    rub
-    sek
-    tzs
-  ).freeze
-
+  CURRENCY_DATA = YAML.load_file("#{Rails.root}/config/currencies.yml").with_indifferent_access.freeze
+  CURRENCIES = CURRENCY_DATA.keys.freeze
   CACHE_TIMEOUT = 15.minutes.freeze
 
   def current_price(currency='usd')

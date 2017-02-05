@@ -1,0 +1,51 @@
+usd:
+  name: United States dollar
+  prefix: $
+aud:
+  name: Australian dollar
+  prefix: $
+cad:
+  name: Canadian dollar
+  prefix: $
+chf:
+  name: Swiss franc
+  suffix: Fr.
+cny:
+  name: Chinese yuan
+  prefix: ¥
+czk:
+  name: Czech koruna
+  suffix: Kč
+dkk:
+  name: Danish krone
+  suffix: kr
+eur:
+  name: Euro
+  prefix: €
+gbp:
+  name: Pound sterling
+  prefix: £
+jpy:
+  name: Japanese yen
+  prefix: ¥
+kes:
+  name: Kenyan shilling
+  suffix: KSh
+myr:
+  name: Malaysian ringgit
+  prefix: RM
+nzd:
+  name: New Zealand dollar
+  prefix: $
+pln:
+  name: Polish złoty
+  suffix: zł
+rub:
+  name: Russian ruble
+  suffix: ₽
+sek:
+  name: Swedish krona
+  suffix: kr
+tzs:
+  name: Tanzanian shilling
+  suffix: TSh
