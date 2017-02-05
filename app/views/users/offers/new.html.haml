@@ -2,7 +2,6 @@
 
 %hr
 
-
 = form_for @offer do |f|
   .field
     = f.label :trade_request_id, 'Trade Request'
@@ -14,3 +13,31 @@
   .actions
     = f.submit 'Submit Offer', class: 'button primary'
     = link_to 'Cancel', public_trade_request_path(@trade_request.slug), class: 'button text'
+
+%hr
+
+.muted
+  %h2 Warning, Avoid Scammers:
+  %p
+    %strong
+      Do not extend payment to anyone you have not met in person.
+  %p
+    %strong
+      Beware offers involving shipping
+    \- deal with locals you can meet in person.
+  %p
+    %strong
+      Never wire funds (e.g. Western Union)
+    \- anyone who asks you to could be a scammer.
+  %p
+    %strong
+      Don't accept cashier/certified checks or money orders
+    \- banks cash fakes, then hold you responsible.
+  %p
+    %strong
+      Transactions are between users only
+    \, no third party provides a "guarantee".
+  %p
+    %strong
+      Never give out financial info
+    (bank account, social security, paypal account, etc).

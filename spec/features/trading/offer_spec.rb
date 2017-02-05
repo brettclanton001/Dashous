@@ -56,6 +56,9 @@ feature 'Make an offer', js: true do
           should_see 'Make an Offer'
         end
       end
+      And 'I should see the warning message' do
+        should_see 'Warning, Avoid Scammers:'
+      end
       When 'I enter a message' do
         fill_in :offer_message, with: 'I want all the Dash you have!'
       end
