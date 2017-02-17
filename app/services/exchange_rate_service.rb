@@ -1,6 +1,8 @@
 module ExchangeRateService extend self
 
-  CURRENCY_DATA = YAML.load_file("#{Rails.root}/config/currencies.yml").with_indifferent_access.freeze
+  CURRENCY_DATA = YAML.load_file(
+    Rails.root.join('config', 'currencies.yml')
+  ).with_indifferent_access.freeze
   CURRENCIES = CURRENCY_DATA.keys.freeze
   CACHE_TIMEOUT = 15.minutes.freeze
 

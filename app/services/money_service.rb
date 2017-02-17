@@ -1,6 +1,6 @@
 module MoneyService extend self
 
-  CURRENCY_DATA = YAML.load_file("#{Rails.root}/config/currencies.yml").with_indifferent_access.freeze
+  CURRENCY_DATA = ExchangeRateService::CURRENCY_DATA
 
   def format(number, currency)
     "#{currency_prefix(currency)}#{format_number(number)}#{currency_suffix(currency)}"
