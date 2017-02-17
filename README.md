@@ -98,8 +98,5 @@ later.
 
 # Donations
 
-Dash Donation Address: `XrLFuhyvrm3PdPrCLNC9hM7hjdbAEvuZPL`
-
-![QR CODE](http://i.imgur.com/5tyPJla.png)
-
+Donation Address: [Donation Page](https://dashous.com/donate)
 Donation Instructions: [video](https://www.youtube.com/watch?v=I-BYzaDwNoE)
