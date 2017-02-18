@@ -10,14 +10,6 @@ module ExchangeRateService extend self
     external_data[currency]
   end
 
-  private
-
-  def external_data
-    cache = get_cache
-    return cache if cache_valid?(cache)
-    fetch_external_data
-  end
-
   def fetch_external_data
     data = {}
 
@@ -31,6 +23,14 @@ module ExchangeRateService extend self
     data['updated_at'] = Time.now
     set_cache(data)
     data
+  end
+
+  private
+
+  def external_data
+    cache = get_cache
+    return cache if cache_valid?(cache)
+    fetch_external_data
   end
 
   def cache_valid?(cache)
