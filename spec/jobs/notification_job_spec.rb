@@ -10,7 +10,8 @@ RSpec.describe NotificationJob, type: :job do
     subject { described_class.perform_now('offer_created', offer.id) }
 
     it 'should update exchange rate data' do
-      expect(NotificationMailer).to receive(:offer_created).with(offer.id)
+      expect(NotificationMailer).to receive(:offer_created)
+        .with(offer.id).and_call_original
       subject
     end
   end
@@ -19,7 +20,8 @@ RSpec.describe NotificationJob, type: :job do
     subject { described_class.perform_now('offer_approved', offer.id) }
 
     it 'should update exchange rate data' do
-      expect(NotificationMailer).to receive(:offer_approved).with(offer.id)
+      expect(NotificationMailer).to receive(:offer_approved)
+        .with(offer.id).and_call_original
       subject
     end
   end
