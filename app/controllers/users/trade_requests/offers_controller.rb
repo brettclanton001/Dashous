@@ -2,18 +2,20 @@ class Users::TradeRequests::OffersController < Users::BaseController
   before_action :get_offer
 
   def approve
-    @offer.status = :approved
+    service = OfferService.new(current_user, @offer)
+    service.approve
 
-    if @offer.save
+    if service.save!
       redirect_to request.referer,
         notice: 'Offer approved.'
     end
   end
 
   def decline
-    @offer.status = :declined
+    service = OfferService.new(current_user, @offer)
+    service.decline
 
-    if @offer.save
+    if service.save!
       redirect_to request.referer,
         notice: 'Offer declined.'
     end

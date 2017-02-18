@@ -3,20 +3,12 @@ require 'spec_helper'
 RSpec.describe NotificationMailer, type: :mailer do
   let!(:user1) { create :user, username: 'Bob', email: 'bob@email.com' }
   let!(:user2) { create :user, username: 'Ken', email: 'ken@email.com' }
-  let!(:trade_request) do
-    create :trade_request, :new_york,
-      user: user1,
-      name: "I am Active",
-      slug: 'i_am_active',
-      active: true,
-      kind: 'sell',
-      profit: '12'
-  end
+  let!(:trade_request) { create :trade_request, :new_york, user: user1 }
   let(:offer) { create :offer, user: user2, trade_request: trade_request }
   let(:body) { Capybara::Node::Simple.new(mail.body.to_s) }
 
   describe 'offer_created' do
-    let(:mail) { NotificationMailer.offer_created(offer) }
+    let(:mail) { NotificationMailer.offer_created(offer.id) }
 
     it 'renders the headers' do
       expect(mail.subject).to eq('You have a new Offer!')
@@ -34,7 +26,7 @@ RSpec.describe NotificationMailer, type: :mailer do
   end
 
   describe 'offer_approved' do
-    let(:mail) { NotificationMailer.offer_approved(offer) }
+    let(:mail) { NotificationMailer.offer_approved(offer.id) }
 
     it 'renders the headers' do
       expect(mail.subject).to eq('Your Offer has been Approved!')

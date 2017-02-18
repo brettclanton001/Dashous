@@ -1,6 +1,6 @@
 require 'feature_helper'
 
-feature 'Make an offer', js: true do
+feature 'Make an offer', js: true, perform_enqueued: true do
   given!(:user1) { create :user, username: 'Bob', email: 'bob@email.com' }
   given!(:user2) { create :user, username: 'Ken', email: 'ken@email.com' }
   given!(:trade_request1) do
@@ -34,6 +34,12 @@ feature 'Make an offer', js: true do
     end
 
     Steps 'I make my first offer and it is accepted' do
+      Given 'notifications will be enqueued' do
+        expect(NotificationJob).to receive(:perform_later)
+          .with('offer_created', anything).and_call_original
+        expect(NotificationJob).to receive(:perform_later)
+          .with('offer_approved', anything).and_call_original
+      end
       When 'I visit the trade request page' do
         visit public_trade_request_path(trade_request2.slug)
       end
@@ -333,6 +339,12 @@ feature 'Make an offer', js: true do
     end
 
     Steps 'I make my first offer and it is declined' do
+      Given 'notifications will be enqueued' do
+        expect(NotificationJob).to receive(:perform_later)
+          .with('offer_created', anything).and_call_original
+        expect(NotificationJob).not_to receive(:perform_later)
+          .with('offer_approved', anything)
+      end
       When 'I visit the trade request page' do
         visit public_trade_request_path(trade_request2.slug)
       end

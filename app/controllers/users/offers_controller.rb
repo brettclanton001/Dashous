@@ -10,13 +10,14 @@ class Users::OffersController < Users::BaseController
   end
 
   def create
-    @offer = current_user.offers.build(offer_params.merge(status: :pending))
+    service = OfferService.new(current_user)
+    service.build offer_params
 
-    if @offer.save
-      redirect_to public_trade_request_path(@offer.trade_request.slug),
+    if service.save!
+      redirect_to public_trade_request_path(service.offer.trade_request.slug),
         notice: 'Offer successfully created. Please wait for a reply.'
     else
-      redirect_to public_trade_request_path(@offer.trade_request.slug),
+      redirect_to public_trade_request_path(service.offer.trade_request.slug),
         alert: 'Offer failed to create.'
     end
   end
