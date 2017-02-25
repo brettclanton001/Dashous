@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get :terms, to: 'public#terms'
   get :privacy, to: 'public#privacy'
   get :donate, to: 'public#donate'
+  get :about, to: 'public#about'
 
   ## Devise
   devise_for :users, skip: [:sessions, :registrations, :confirmations, :passwords]
