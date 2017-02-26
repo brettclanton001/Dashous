@@ -31,6 +31,9 @@ Rails.application.routes.draw do
     put '/u/password', to: 'devise/passwords#update', as: :put_user_password
   end
 
+  ## Authentication
+  get 'test_login', to: 'authentication#login'
+
   ## User Restricted Area
   scope :u, module: :users do
     resources :trade_requests, only: [:index, :new, :edit, :create, :update] do

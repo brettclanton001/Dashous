@@ -22,6 +22,9 @@ gem 'config'
 gem "attr_encrypted", "~> 3.0.0"
 gem 'faraday'
 gem 'autoprefixer-rails'
+gem 'marionette-rails'
+gem 'rails-backbone'
+gem 'handlebars_assets'
 
 gem 'draper', '3.0.0.pre1'
 gem 'devise'

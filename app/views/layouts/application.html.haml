@@ -23,8 +23,8 @@
     %meta{content: '/assets/favicons/ms-icon-144x144.png', name: 'msapplication-TileImage'}
     %meta{content: '#ffffff', name: 'theme-color'}
 
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'application'
   %body
     .popup
       .overlay{onclick: 'window.closePopup()'}
