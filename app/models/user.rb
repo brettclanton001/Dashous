@@ -1,5 +1,8 @@
 class User < ApplicationRecord
 
+  RESTRICTED_USERNAMES = YAML.load_file(
+    Rails.root.join('config', 'restricted_usernames.yml')
+  ).freeze
   has_many :trade_requests
   has_many :trade_request_offers, through: :trade_requests, source: :offers
   has_many :offers
@@ -37,6 +40,7 @@ class User < ApplicationRecord
   validates_acceptance_of :terms_and_conditions
   validates_confirmation_of :password, if: "changed.include?('encrypted_password')"
   validates :currency, inclusion: { in: ExchangeRateService::CURRENCIES }
+  validates :username, exclusion: { in: RESTRICTED_USERNAMES }
 
   def admin?
     confirmed? and email == Settings.admin.email
