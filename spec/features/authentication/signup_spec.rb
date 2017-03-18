@@ -233,7 +233,9 @@ feature 'Signup', js: true do
         click_button 'Signup'
       end
       Then 'I should see an error' do
-        should_see 'Username is reserved'
+        within '.field[data-field-for="username"]' do
+          should_see 'is reserved'
+        end
       end
     end
 
@@ -248,7 +250,9 @@ feature 'Signup', js: true do
         click_button 'Signup'
       end
       Then 'I should see an error' do
-        should_see 'Username is reserved'
+        within '.field[data-field-for="username"]' do
+          should_see 'is reserved'
+        end
       end
     end
 
@@ -263,7 +267,9 @@ feature 'Signup', js: true do
         click_button 'Signup'
       end
       Then 'I should see an error' do
-        should_see 'Username is reserved'
+        within '.field[data-field-for="username"]' do
+          should_see 'is reserved'
+        end
       end
     end
 
@@ -278,7 +284,9 @@ feature 'Signup', js: true do
         click_button 'Signup'
       end
       Then 'I should see an error' do
-        should_see 'Username is reserved'
+        within '.field[data-field-for="username"]' do
+          should_see 'is reserved'
+        end
       end
     end
   end
