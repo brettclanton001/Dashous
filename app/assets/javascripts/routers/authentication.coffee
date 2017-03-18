@@ -1,7 +1,11 @@
-class Dashous.Routers.Authentication extends Backbone.Router
+class Dashous.Routers.Authentication extends Dashous.Routers.Base
 
-  constructor: (@app, @data) ->
-    super({})
+  routes:
+    'login': 'login'
+    'signup': 'signup'
 
-  initialize: ->
+  login: ->
     @app.mainRegion.show new Dashous.Views.Authentication.Login()
+
+  signup: ->
+    @app.mainRegion.show new Dashous.Views.Authentication.Signup()

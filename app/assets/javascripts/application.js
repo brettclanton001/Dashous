@@ -13,6 +13,7 @@
 //= require_tree ./initializers
 //= require ./apps/base
 //= require ./apps/authentication
+//= require ./routers/base
 //= require ./routers/authentication
 //= require_tree ./views/authentication
 //= require_tree ./templates/authentication

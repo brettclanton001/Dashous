@@ -13,11 +13,9 @@ Rails.application.routes.draw do
   ## Devise
   devise_for :users, skip: [:sessions, :registrations, :confirmations, :passwords]
   as :user do
-    get 'login', to: 'devise/sessions#new', as: :new_user_session
     post 'login', to: 'devise/sessions#create', as: :user_session
     delete 'logout', to: 'devise/sessions#destroy', as: :destroy_user_session, via: Devise.mappings[:user].sign_out_via
 
-    get 'signup', to: 'registrations#new', as: :new_user_registration
     post 'signup', to: 'registrations#create', as: :user_registration
 
     get '/u/confirmation', to: 'devise/confirmations#show', as: :show_user_confirmation
@@ -32,7 +30,8 @@ Rails.application.routes.draw do
   end
 
   ## Authentication
-  get 'test_login', to: 'authentication#login'
+  get :login, to: 'authentication#login', as: :new_user_session
+  get :signup, to: 'authentication#signup', as: :new_user_registration
 
   ## User Restricted Area
   scope :u, module: :users do
