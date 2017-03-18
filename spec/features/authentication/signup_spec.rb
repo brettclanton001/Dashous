@@ -220,6 +220,69 @@ feature 'Signup', js: true do
     end
   end
 
+  context 'restricted usernames' do
+
+    Steps 'restricted username dashous' do
+      When 'I visit the signup page' do
+        visit '/signup'
+      end
+      And 'I enter in an invalid username' do
+        fill_in :user_username, with: 'dashous'
+      end
+      And 'I click submit' do
+        click_button 'Signup'
+      end
+      Then 'I should see an error' do
+        should_see 'Username is reserved'
+      end
+    end
+
+    Steps 'restricted username Dashous' do
+      When 'I visit the signup page' do
+        visit '/signup'
+      end
+      And 'I enter in an invalid username' do
+        fill_in :user_username, with: 'Dashous'
+      end
+      And 'I click submit' do
+        click_button 'Signup'
+      end
+      Then 'I should see an error' do
+        should_see 'Username is reserved'
+      end
+    end
+
+    Steps 'restricted username DASHOUS' do
+      When 'I visit the signup page' do
+        visit '/signup'
+      end
+      And 'I enter in an invalid username' do
+        fill_in :user_username, with: 'DASHOUS'
+      end
+      And 'I click submit' do
+        click_button 'Signup'
+      end
+      Then 'I should see an error' do
+        should_see 'Username is reserved'
+      end
+    end
+
+    Steps 'restricted username dash' do
+      When 'I visit the signup page' do
+        visit '/signup'
+      end
+      And 'I enter in an invalid username' do
+        fill_in :user_username, with: 'dash'
+      end
+      And 'I click submit' do
+        click_button 'Signup'
+      end
+      Then 'I should see an error' do
+        should_see 'Username is reserved'
+      end
+    end
+  end
+
   Steps 'non-matching passwords' do
     When 'I visit the signup page' do
       visit '/signup'
