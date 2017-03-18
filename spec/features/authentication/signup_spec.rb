@@ -33,12 +33,21 @@ feature 'Signup', js: true do
     end
     Then 'I should see validation errors' do
       within '.content' do
-        should_see "Email can't be blank"
-        should_see "Username can't be blank"
-        should_see 'Username is invalid'
-        should_see "Password can't be blank"
-        should_see "Password confirmation can't be blank"
-        should_see 'Terms and conditions must be accepted'
+        within '.field[data-field-for="email"]' do
+          should_see "can't be blank"
+        end
+        within '.field[data-field-for="username"]' do
+          should_see "can't be blank"
+        end
+        within '.field[data-field-for="password"]' do
+          should_see "can't be blank"
+        end
+        within '.field[data-field-for="password_confirmation"]' do
+          should_see "can't be blank"
+        end
+        within '.field[data-field-for="terms_and_conditions"]' do
+          should_see 'must be accepted'
+        end
       end
     end
     When 'I fill out and submit the form' do
@@ -57,13 +66,20 @@ feature 'Signup', js: true do
       click_button 'Signup'
     end
     Then 'I should see validation errors' do
-      within '.content' do
-        should_not_see "Email can't be blank"
-        should_not_see "Username can't be blank"
-        should_not_see 'Username is invalid'
-        should_see 'Terms and conditions must be accepted'
-        expect(find_field('user[password]').value).to eq ''
-        expect(find_field('user[password_confirmation]').value).to eq ''
+      within '.field[data-field-for="email"]' do
+        should_not_see "can't be blank"
+      end
+      within '.field[data-field-for="username"]' do
+        should_not_see "can't be blank"
+      end
+      within '.field[data-field-for="password"]' do
+        should_not_see "can't be blank"
+      end
+      within '.field[data-field-for="password_confirmation"]' do
+        should_not_see "can't be blank"
+      end
+      within '.field[data-field-for="terms_and_conditions"]' do
+        should_see 'must be accepted'
       end
     end
     When 'I accept the terms and conditions and re-enter the password' do
@@ -189,7 +205,7 @@ feature 'Signup', js: true do
       click_button 'Signup'
     end
     Then 'I should see an error' do
-      should_see 'Username is invalid'
+      should_see 'is invalid'
     end
     When 'I fill out and submit the form' do
       fill_in :user_email, with: 'test@example.com'
@@ -220,7 +236,7 @@ feature 'Signup', js: true do
       click_button 'Signup'
     end
     Then 'I should see an error' do
-      should_see "Password confirmation doesn't match Password"
+      should_see "doesn't match Password"
       should_not_see 'A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.'
     end
     When 'I fill out and submit the form' do

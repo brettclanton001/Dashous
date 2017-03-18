@@ -27,6 +27,8 @@ form
     appearance: none
     line-height: 20px
     color: $dark-grey
+    &.error
+      background-color: lighten($danger-red, 30%)
 
   textarea
     min-height: 150px
@@ -46,6 +48,9 @@ form
     text-align: center
     font-family: monospace
     cursor: text
+
+  .error-message
+    margin: 5px 0 0
 
 .field_with_errors
   display: inline

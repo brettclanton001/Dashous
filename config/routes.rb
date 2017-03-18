@@ -33,6 +33,13 @@ Rails.application.routes.draw do
   get :login, to: 'authentication#login', as: :new_user_session
   get :signup, to: 'authentication#signup', as: :new_user_registration
 
+  ## API
+  namespace :api do
+    namespace :v1 do
+      resources :registrations, only: [:create]
+    end
+  end
+
   ## User Restricted Area
   scope :u, module: :users do
     resources :trade_requests, only: [:index, :new, :edit, :create, :update] do

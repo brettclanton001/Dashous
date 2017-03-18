@@ -1,46 +1,55 @@
 <h1>Signup</h1>
 <hr />
 
-<form class="new_user" id="new_user" action="/signup" accept-charset="UTF-8" method="post">
+<form class="js-form">
 
-  <input name="utf8" type="hidden" value="✓" />
-  <input type="hidden" name="authenticity_token" value="{{formToken}}" />
-
-  <div class="field">
+  <div class="field" data-field-for="email">
     <label for="user_email">Email *</label>
     <input autofocus="autofocus" type="email" name="user[email]" id="user_email" />
+    <div class="error-message"></div>
   </div>
 
-  <div class="field">
+  <div class="field" data-field-for="username">
     <label for="user_username">Username * (used to login)</label>
     <input type="text" name="user[username]" id="user_username" />
+    <div class="error-message"></div>
   </div>
 
-  <div class="field">
+  <div class="field" data-field-for="password">
     <label for="user_password">Password * (6 characters minimum)</label>
     <input autocomplete="off" type="password" name="user[password]" id="user_password" />
+    <div class="error-message"></div>
   </div>
 
-  <div class="field">
+  <div class="field" data-field-for="password_confirmation">
     <label for="user_password_confirmation">Password Confirmation *</label>
     <input autocomplete="off" type="password" name="user[password_confirmation]" id="user_password_confirmation" />
+    <div class="error-message"></div>
   </div>
 
-  <div class="field">
+  <div class="field" data-field-for="terms_and_conditions">
     <label for="user_terms_and_conditions">
-      <input name="user[terms_and_conditions]" type="hidden" value="0" />
       <input type="checkbox" value="1" name="user[terms_and_conditions]" id="user_terms_and_conditions" />
       I accept the <a target="_blank" href="/terms">terms and conditions</a> *
     </label>
+    <div class="error-message"></div>
   </div>
 
   <div class="actions">
-    <input type="submit" name="commit" value="Signup" data-disable-with="Signup" />
+    <input type="submit" name="commit" value="Signup" />
   </div>
 
+  <br />
+  <p>
+    <a href="/u/confirmation/new">Didn't receive confirmation instructions?</a>
+  </p>
 </form>
 
-<p>
-  <a href="/u/confirmation/new">Didn't receive confirmation instructions?</a>
-</p>
+<div class="js-success empty-state" style="display: none;" >
+  <div class="fa fa-envelope-o fa-5x"></div>
+  <p>
+    A message with a confirmation link has been sent to your email address.
+    Please follow the link to activate your account.
+  </p>
+</div>
 
