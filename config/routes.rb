@@ -36,7 +36,10 @@ Rails.application.routes.draw do
   ## API
   namespace :api do
     namespace :v1 do
-      resources :registrations, only: [:create]
+      namespace :authentication do
+        resources :registrations, only: [:create]
+        resources :sessions, only: [:create]
+      end
     end
   end
 

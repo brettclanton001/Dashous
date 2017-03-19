@@ -1,11 +1,7 @@
 <h1>Login</h1>
 <hr />
 
-<form class="new_user" id="new_user" action="/login" accept-charset="UTF-8" method="post">
-
-  <input name="utf8" type="hidden" value="✓" />
-  <input type="hidden" name="authenticity_token" value="{{formToken}}" />
-  <input value="1" type="hidden" name="user[remember_me]" id="user_remember_me" />
+<form class="js-form">
 
   <div class="field">
     <label for="user_username">Username</label>
@@ -15,10 +11,12 @@
   <div class="field">
     <label for="user_password">Password</label>
     <input autocomplete="off" type="password" name="user[password]" id="user_password" />
+
+    <div class="js-error-message error-message"></div>
   </div>
 
   <div class="actions">
-    <input type="submit" name="commit" value="Login" data-disable-with="Login" />
+    <input type="submit" name="commit" value="Login" />
   </div>
 
 </form>

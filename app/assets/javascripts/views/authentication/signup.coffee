@@ -1,30 +1,27 @@
-class Dashous.Views.Authentication.Signup extends Marionette.ItemView
+class Dashous.Views.Authentication.Signup extends Dashous.Views.Authentication.Base
   template: 'authentication/signup'
 
   ui:
     form: '.js-form'
     inputs: '.js-form input'
-    errorMessages: '.js-form .error-message'
+    submitButton: '.js-form input[type="submit"]'
+    errorMessages: '.js-form .js-error-message'
     email: '.js-form input#user_email'
     username: '.js-form input#user_username'
     password: '.js-form input#user_password'
     password_confirmation: '.js-form input#user_password_confirmation'
     terms_and_conditions: '.js-form input#user_terms_and_conditions'
-    submitButton: '.js-form input[type="submit"]'
     successMessage: '.js-success'
-
-  events:
-    'submit @ui.form': 'submitForm'
 
   initialize: ->
     @registration = new Backbone.Model
-    @registration.url = '/api/v1/registrations'
+    @registration.url = '/api/v1/authentication/registrations'
 
   ##################################################################
 
   submitForm: (e) ->
     e.preventDefault()
-    @ui.submitButton.prop 'disabled', true
+    @disableSubmit()
     @registration.save
       authenticity_token: Dashous.formToken
       user:
@@ -47,6 +44,6 @@ class Dashous.Views.Authentication.Signup extends Marionette.ItemView
     @ui.inputs.removeClass 'error'
     $.each data.responseJSON, (field, message) =>
       @ui[field].addClass 'error'
-      @ui.form.find(".field[data-field-for='#{field}'] .error-message").text message[0]
-    @ui.submitButton.prop 'disabled', false
+      @ui.form.find(".field[data-field-for='#{field}'] .js-error-message").text message[0]
+    @enableSubmit()
 
