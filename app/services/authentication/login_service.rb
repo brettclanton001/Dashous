@@ -14,9 +14,6 @@ class Authentication::LoginService
     true
   end
 
-  def create_session
-  end
-
   private
 
   def password_correct?

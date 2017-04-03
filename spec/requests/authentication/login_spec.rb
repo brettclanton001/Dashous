@@ -19,6 +19,10 @@ RSpec.describe 'Login API', type: :request do
     }
   end
 
+  before do
+    ActionController::Base.allow_forgery_protection = false
+  end
+
   it 'should return successful response' do
     subject
     expect(response.status).to eq 204

@@ -362,6 +362,7 @@ DEPENDENCIES
   annotate
   attr_encrypted (~> 3.0.0)
   autoprefixer-rails
+  bcrypt
   byebug
   capybara (= 2.5.0)
   capybara-email (= 2.4.0)

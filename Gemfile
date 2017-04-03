@@ -28,6 +28,7 @@ gem 'handlebars_assets'
 
 gem 'draper', '3.0.0.pre1'
 gem 'devise'
+gem 'bcrypt'
 gem 'newrelic_rpm'
 gem 'geocoder'
 gem 'airbrake', '~> 5.6'
