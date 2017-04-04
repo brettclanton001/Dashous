@@ -11,7 +11,7 @@ RSpec.describe 'Login API', type: :request do
   let(:password) { 'Secret1' }
 
   subject do
-    post 'http://127.0.0.1/api/v1/authentication/sessions', {
+    post 'http://127.0.0.1/api/v1/authentication/sessions', params: {
       user: {
         username: username,
         password: password
