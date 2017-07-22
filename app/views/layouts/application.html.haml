@@ -56,10 +56,9 @@
             %input(type="submit" value="")
             .fa.fa-search.fa-lg
         .price
-          %span.price-description 1 Dash =
-          - currency = current_user.present? ? current_user.currency : 'usd'
-          - price = ExchangeRateService.current_price(currency)
-          = MoneyService.format(price, currency)
+          %span.price-description
+            1 Dash =
+            = ExchangeRateService.local_current_price(current_user, true)
     .nav
       - if current_user
         = link_to offers_path, class: "item #{'active' if @section == :offers}" do

@@ -6,8 +6,17 @@ module ExchangeRateService extend self
   CURRENCIES = CURRENCY_DATA.keys.freeze
   CACHE_TIMEOUT = 15.minutes.freeze
 
-  def current_price(currency='usd')
-    external_data[currency]
+  def current_price(currency, formatted=false)
+    if formatted
+      MoneyService.format external_data[currency], currency
+    else
+      external_data[currency]
+    end
+  end
+
+  def local_current_price(user, formatted=false)
+    currency = user.present? ? user.currency : 'usd'
+    current_price(currency, formatted)
   end
 
   def fetch_external_data
