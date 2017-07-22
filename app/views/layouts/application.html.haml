@@ -55,10 +55,9 @@
           %label.search-button
             %input(type="submit" value="")
             .fa.fa-search.fa-lg
-        .price
-          %span.price-description{ title: ExchangeRateService.updated_at.strftime("Data from cryptocompare.com, updated on %b %d, %Y at %H:%M UTC") }
-            1 Dash =
-            = ExchangeRateService.local_current_price(current_user, true)
+        .price{ title: ExchangeRateService.updated_at.strftime("Data from cryptocompare.com, updated on %b %d, %Y at %H:%M UTC") }
+          %span.price-description 1 Dash =
+          = ExchangeRateService.local_current_price(current_user, true)
     .nav
       - if current_user
         = link_to offers_path, class: "item #{'active' if @section == :offers}" do
