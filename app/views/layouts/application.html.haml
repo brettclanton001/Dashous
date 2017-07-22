@@ -56,7 +56,7 @@
             %input(type="submit" value="")
             .fa.fa-search.fa-lg
         .price
-          %span.price-description
+          %span.price-description{ title: ExchangeRateService.updated_at.strftime("Data from cryptocompare.com, updated on %b %d, %Y at %H:%M UTC") }
             1 Dash =
             = ExchangeRateService.local_current_price(current_user, true)
     .nav

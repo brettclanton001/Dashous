@@ -74,6 +74,15 @@ describe ExchangeRateService do
     end
   end
 
+  describe '#updated_at' do
+    subject { described_class.updated_at }
+
+    it 'returns the last updated time' do
+      expect(subject.class).to eq ActiveSupport::TimeWithZone
+      expect(subject).to be_within(1.minute).of(Time.now)
+    end
+  end
+
   describe '#connection' do
     subject { described_class.send(:connection) }
 

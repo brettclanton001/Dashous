@@ -19,6 +19,10 @@ module ExchangeRateService extend self
     current_price(currency, formatted)
   end
 
+  def updated_at
+    Time.zone.parse(external_data['updated_at'])
+  end
+
   def fetch_external_data
     data = {}
 
@@ -29,7 +33,7 @@ module ExchangeRateService extend self
       data[currency] = external_data[currency.upcase].to_f.round(2)
     end
 
-    data['updated_at'] = Time.now
+    data['updated_at'] = Time.now.to_s
     set_cache(data)
     data
   end
