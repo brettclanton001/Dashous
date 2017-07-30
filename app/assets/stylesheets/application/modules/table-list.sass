@@ -7,9 +7,11 @@
     position: relative
     &, a.name
       color: lighten($dark-grey,40%)
-    &:hover
+    &:hover, &.focused
       &, a.name
         color: $dark-grey
+    &.stripe
+      background-color: #fff
     .name, .info, .actions
       display: table-cell
       position: relative

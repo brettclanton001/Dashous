@@ -35,7 +35,7 @@
           = number_with_precision distance, precision: 1, delimiter: ','
           miles
           = Geocoder::Calculations.compass_point trade_request.bearing_from(@query)
-        .info
-          = trade_request.intention
+        .info.dotted-status{class: trade_request.intention}
+          = trade_request.intention.capitalize
         .info
           = trade_request.sale_price

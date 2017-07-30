@@ -1,13 +1,15 @@
 - state_class_name = expanded ? 'row expanded' : 'row collapsed'
 - class_name = trade_request.offers.empty? ? 'row' : state_class_name
+- class_name += ' focused' if expanded
 - link_url = expanded ? trade_requests_path : trade_requests_path(expand: trade_request.id)
 %div{class: class_name}
   = link_to link_url, class: 'name' do
     = trade_request.name
-  .info
-    - if trade_request.active
+  - if trade_request.active
+    .info.dotted-status.active
       Active
-    - else
+  - else
+    .info.dotted-status.disabled
       Disabled
   .info
     = trade_request.offers.count
@@ -26,24 +28,25 @@
         = link_to 'Show Offers', link_url unless expanded
         = link_to 'Hide Offers', link_url if expanded
 - if expanded
-  - trade_request.offers.each do |offer|
+  - trade_request.offers.each_with_index do |offer, index|
     - offer = offer.decorate
-    .row
+    - status = offer.status_for_user(current_user)
+    .row.focused{class: "#{'stripe' if index % 2 == 0}"}
       .name
         = link_to offer.user.username, public_user_profile_path(offer.user.username)
-      .info
-        = offer.status_for_user(current_user)
+      .info.dotted-status{class: status.downcase}
+        = status
       .info
         - if offer.message.present?
           .fa.fa-comment-o.fa-lg.clickable{onclick: 'window.openPopup(this)', title: offer.message}
       .actions
         - if offer.pending?
-          = link_to 'Decline', trade_requests_offer_decline_path(offer.id), method: 'PATCH', data: { confirm: 'Are you sure?' }
-          = link_to 'Approve', trade_requests_offer_approve_path(offer.id), method: 'PATCH'
+          = link_to 'Decline', trade_requests_offer_decline_path(offer.id), method: 'PATCH', data: { confirm: 'Are you sure?' }, class: 'status-link decline'
+          = link_to 'Approve', trade_requests_offer_approve_path(offer.id), method: 'PATCH', class: 'status-link approve'
         - if offer.approved?
-          = mail_to offer.user.email, 'Email'
+          = mail_to offer.user.email, 'Email', class: 'status-link email'
         - if offer.approved? and not offer.reviewed_by?(current_user)
-          %span.link{onclick: 'window.onClickActionToggle(this)'} Review
+          %span.link.status-link.review{onclick: 'window.onClickActionToggle(this)'} Review
           .action-list
             = link_to 'Positive', reviews_path(review: {offer_id: offer.id, tone: 'positive'}), method: 'POST'
             = link_to 'Negative', reviews_path(review: {offer_id: offer.id, tone: 'negative'}), method: 'POST'

@@ -15,21 +15,22 @@
     - @offers.each do |offer|
       - trade_request = offer.trade_request
       - user = trade_request.user
+      - status = offer.status_for_user(current_user)
       .row
         .name
           = link_to trade_request.name, public_trade_request_path(trade_request.slug)
         .info
           = link_to user.username, public_user_profile_path(user.username)
-        .info
-          = offer.status_for_user(current_user)
+        .info.dotted-status{class: status.downcase}
+          = status
         .info
           - if offer.message.present?
             .fa.fa-comment-o.fa-lg.clickable{onclick: 'window.openPopup(this)', title: offer.message}
         .actions
           - if offer.approved?
-            = mail_to user.email, 'Email'
+            = mail_to user.email, 'Email', class: 'status-link email'
           - if offer.approved? and not offer.reviewed_by?(current_user)
-            %span.link{onclick: 'window.onClickActionToggle(this)'} Review
+            %span.link.status-link.review{onclick: 'window.onClickActionToggle(this)'} Review
             .action-list
               = link_to 'Positive', reviews_path(review: {offer_id: offer.id, tone: 'positive'}), method: 'POST'
               = link_to 'Negative', reviews_path(review: {offer_id: offer.id, tone: 'negative'}), method: 'POST'

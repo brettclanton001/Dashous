@@ -1,0 +1,26 @@
+.dotted-status
+  &:before
+    content: ''
+    display: inline-block
+    width: 10px
+    height: 10px
+    margin: 0 2px 0 0
+    border-radius: 50%/50%
+    background-color: #ccc
+    box-shadow: inset rgba(0,0,0,0.3) 0 0 0 1px
+
+  &.reviewed:before,
+  &.selling:before
+    background-color: #f7a700
+
+  &.pending:before,
+  &.buying:before
+    background-color: #f4f569
+
+  &.approved:before,
+  &.active:before
+    background-color: #7bd500
+
+  &.declined:before,
+  &.disabled:before
+    background-color: #f0507d
