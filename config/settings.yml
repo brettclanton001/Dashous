@@ -44,3 +44,6 @@ admin:
 git:
   revision: <%= ENV.fetch('REVISION', `git log --pretty=format:'%h' -n 1`) %>
   github_url: https://github.com/brettclanton001/Dashous
+
+heap_analytics:
+  id: <%= ENV['HEAP_ANALYTICS_ID'] %>
