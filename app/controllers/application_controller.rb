@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :persist_query
+  before_action :init_gdpr
   protect_from_forgery with: :exception
 
   private
@@ -10,5 +11,9 @@ class ApplicationController < ActionController::Base
 
   def persist_query
     @query = params[:query]
+  end
+
+  def init_gdpr
+    @gdpr = GdprService.new(current_user, request.remote_ip)
   end
 end

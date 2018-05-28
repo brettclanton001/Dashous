@@ -25,6 +25,7 @@ gem 'autoprefixer-rails'
 gem 'marionette-rails'
 gem 'rails-backbone'
 gem 'handlebars_assets'
+gem 'maxminddb'
 
 gem 'draper', '3.0.0.pre1'
 gem 'devise'
