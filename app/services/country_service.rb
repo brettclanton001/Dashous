@@ -22,7 +22,7 @@ class CountryService
   end
 
   def is_in_european_union?
-    return true unless country_data
+    return false unless country_data
     !!country_data['is_in_european_union']
   end
 
