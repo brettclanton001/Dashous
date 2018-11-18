@@ -175,7 +175,7 @@ GEM
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
-    loofah (2.2.2)
+    loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -195,7 +195,7 @@ GEM
     mustermann (1.0.0.beta2)
     newrelic_rpm (3.17.1.326)
     nio4r (1.2.1)
-    nokogiri (1.8.4)
+    nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
     pg (0.19.0)
@@ -214,7 +214,7 @@ GEM
       pry (>= 0.9.11)
     public_suffix (2.0.3)
     puma (3.6.0)
-    rack (2.0.5)
+    rack (2.0.6)
     rack-cors (1.0.2)
     rack-force_domain (0.3.0)
     rack-test (0.6.3)
@@ -392,6 +392,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   listen (~> 3.0.5)
+  loofah (>= 2.2.3)
   marionette-rails
   maxminddb
   newrelic_rpm
@@ -402,6 +403,7 @@ DEPENDENCIES
   pry-rescue
   pry-stack_explorer
   puma (~> 3.0)
+  rack (>= 2.0.6)
   rack-cors
   rack-force_domain
   rack-timeout
