@@ -298,7 +298,7 @@ GEM
     rspec-support (3.7.0)
     ruby_parser (3.10.1)
       sexp_processor (~> 4.9)
-    rubyzip (1.2.1)
+    rubyzip (1.2.2)
     rufus-scheduler (3.3.2)
       tzinfo
     safe_yaml (1.0.4)
@@ -416,7 +416,7 @@ DEPENDENCIES
   rspec-example_steps
   rspec-its
   rspec-rails
-  rubyzip (~> 1.2.1)
+  rubyzip (~> 1.2.2)
   sass-rails (~> 5.0)
   selenium-webdriver (= 2.44.0)
   shoulda-matchers (= 2.8.0)
