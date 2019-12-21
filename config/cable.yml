@@ -1,5 +1,6 @@
 development:
   adapter: async
+  url: redis://redis:6379/12
 
 test:
   adapter: async
