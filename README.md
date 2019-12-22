@@ -62,11 +62,9 @@ google_maps_embed:
 
 ### Setup App:
 
-1. Install Redis, usually: `brew install redis` or `sudo apt-get install redis-server`
-1. Install Gems `bundle install`
-1. Setup the DB `rails db:setup`
-1. Setup test DB `rails db:test:prepare`
-1. Run the app `rails s`
+1. Install Docker Desktop
+1. Set it up `docker-compose build`
+1. Run everything `docker-compose up`
 1. View local app [localhost:3000](http://localhost:3000)
 
 
@@ -75,20 +73,19 @@ google_maps_embed:
 on this app and will not accept PRs that diminish the test coverage.
 
 To run specs:
-```
-rspec
-```
+1. Mount app `docker-compose run app /bin/bash`
+1. Run tests `xvfb-run -a bundle exec rspec`
 
 You should see output like this (number of examples will increase over
 time):
 ```
-.............................................................
+root@902f13892bde:/myapp# xvfb-run -a bundle exec rspec
+..............................................................................................................................
 
-Finished in 25.54 seconds (files took 4.83 seconds to load)
-61 examples, 0 failures
+Finished in 31.3 seconds (files took 2.25 seconds to load)
+126 examples, 0 failures
 
-Coverage report generated for RSpec to
-path/to/dashous/coverage. 1579 / 1579 LOC (100.0%) covered.
+Coverage report generated for RSpec to /myapp/coverage. 2281 / 2281 LOC (100.0%) covered.
 ```
 
 ### Submit Pull Request:
@@ -101,3 +98,4 @@ later.
 Donation Address: [Donation Page](https://dashous.com/donate)
 
 Donation Instructions: [video](https://www.youtube.com/watch?v=I-BYzaDwNoE)
+
