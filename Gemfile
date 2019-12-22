@@ -37,7 +37,7 @@ gem 'geocoder'
 gem 'airbrake', '~> 5.6'
 
 gem 'nokogiri', '~> 1.8.1'
-gem 'rubyzip', '~> 1.2.2'
+gem 'rubyzip', '>= 1.3.0'
 gem 'yard', '~> 0.9.11'
 
 group :production do
