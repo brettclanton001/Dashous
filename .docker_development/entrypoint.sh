@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e
 
-# Remove a potentially pre-existing server.pid for Rails.
-rm -f /myapp/tmp/pids/server.pid
-
 # get the DB in ship shape
 bundle exec rails db:create db:migrate db:test:prepare
 
