@@ -38,7 +38,7 @@ gem 'airbrake', '~> 5.6'
 
 gem 'nokogiri', '~> 1.8.1'
 gem 'rubyzip', '~> 1.2.2'
-gem 'yard', '~> 0.9.11'
+gem 'yard', '~> 0.9.20'
 
 group :production do
   gem 'rack-force_domain'
