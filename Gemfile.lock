@@ -395,7 +395,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   listen (~> 3.0.5)
-  loofah (>= 2.2.3)
+  loofah (>= 2.3.1)
   marionette-rails
   maxminddb
   newrelic_rpm

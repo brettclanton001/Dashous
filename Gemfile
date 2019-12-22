@@ -10,7 +10,7 @@ gem 'rack-timeout'
 gem 'resque', '~> 1.26.0'
 gem 'resque-scheduler'
 gem 'sinatra', github: 'sinatra' # added for resque web ui
-gem 'loofah', '>= 2.2.3'
+gem 'loofah', '>= 2.3.1'
 gem "actionview", ">= 5.0.7.2"
 
 gem 'sass-rails', '~> 5.0'
