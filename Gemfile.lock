@@ -216,7 +216,8 @@ GEM
     public_suffix (2.0.3)
     puma (3.12.2)
     rack (2.0.8)
-    rack-cors (1.0.2)
+    rack-cors (1.1.0)
+      rack (>= 2.0.0)
     rack-force_domain (0.3.0)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -406,7 +407,7 @@ DEPENDENCIES
   pry-stack_explorer
   puma (~> 3.12.2)
   rack (>= 2.0.6)
-  rack-cors
+  rack-cors (>= 1.0.4)
   rack-force_domain
   rack-timeout
   rails (~> 5.0.7.2)

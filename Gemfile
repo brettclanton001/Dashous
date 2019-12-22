@@ -44,7 +44,7 @@ gem 'yard', '~> 0.9.11'
 group :production do
   gem 'rack-force_domain'
   gem 'rails_12factor'
-  gem 'rack-cors'
+  gem 'rack-cors', '>= 1.0.4'
 end
 
 group :development, :test do
