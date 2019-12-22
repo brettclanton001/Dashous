@@ -37,7 +37,7 @@ gem 'newrelic_rpm'
 gem 'geocoder'
 gem 'airbrake', '~> 5.6'
 
-gem 'nokogiri', '~> 1.8.1'
+gem 'nokogiri', '~> 1.10.4'
 gem 'rubyzip', '>= 1.3.0'
 gem 'yard', '~> 0.9.11'
 
